@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Basic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-field {
+  @apply my-3 md:my-0;
+}
+.title {
+  @apply font-Basic text-secondary text-2xl md:text-2xl tracking-tight md:py-2;
+}
+.button {
+  @apply py-3 px-10 font-Basic text-white tracking-wider rounded-full shadow-xl bg-primary;
+}
