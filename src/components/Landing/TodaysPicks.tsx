@@ -63,7 +63,7 @@ const TodaysPicks: FC<Props> = ({
           </p>
         )}
 
-        <p className="font-Times text-tertiary text-base italic tracking-tight pt-4">
+        <p className="font-Times text-tertiary text-base italic tracking-tight pt-3 pb-5 md:pt-4 md:pb-0">
           {today}
         </p>
       </div>
