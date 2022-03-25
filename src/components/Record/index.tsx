@@ -31,7 +31,7 @@ const Record: FC<Props> = () => {
   const roi = Number(((profit / totalUnitsStaked!) * 100).toFixed(2));
 
   useEffect(() => {
-    if (pastBets.length && todaysBets) {
+    if (pastBets && todaysBets) {
       const pastGradedBets = pastBets.filter(
         ({ status }) => status !== "pending"
       );
