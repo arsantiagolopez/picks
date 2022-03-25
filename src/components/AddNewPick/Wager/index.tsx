@@ -43,7 +43,7 @@ const Wager: FC<Props> = ({
             spellCheck={false}
             autoComplete="off"
             placeholder="What is the pick?"
-            className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
+            className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
               !validWagerField && "animate-pulse pr-0"
             }`}
             {...wagerRegister}
@@ -63,7 +63,7 @@ const Wager: FC<Props> = ({
           <input
             type="number"
             placeholder="How many units?"
-            className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
+            className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
               !validStakeField && "animate-pulse pr-0"
             }`}
             {...stakeRegister}

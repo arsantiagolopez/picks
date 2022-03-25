@@ -44,7 +44,7 @@ const EventDetails: FC<Props> = ({
             <input
               spellCheck={false}
               placeholder={isTennisWager ? "Home player" : "Home team"}
-              className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
+              className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
                 !validHomeField && "animate-pulse pr-0"
               }`}
               {...homeRegister}
@@ -60,7 +60,7 @@ const EventDetails: FC<Props> = ({
             <input
               spellCheck={false}
               placeholder={isTennisWager ? "Away player" : "Away team"}
-              className={`w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
+              className={`w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
                 !validAwayField && "animate-pulse pr-0"
               }`}
               {...awayRegister}

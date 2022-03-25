@@ -91,7 +91,7 @@ const WagerOdds: FC<Props> = ({ setValue, resetField }) => {
           placeholder={`${oddsFormat} odds`}
           value={inputValue}
           onChange={handleChange}
-          className={`relative capitalize w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
+          className={`relative capitalize w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
             !validOddsField && "animate-pulse pr-0"
           }`}
         />
