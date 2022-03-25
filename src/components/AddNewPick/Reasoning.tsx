@@ -22,7 +22,7 @@ const Reasoning: FC<Props> = ({ watch, reasoningRegister }) => {
       <div className="relative flex flex-row items-center">
         <textarea
           autoComplete="off"
-          className={`relative resize w-full py-2 md:py-2 pl-3 my-2 md:my-4 text-left bg-white rounded-lg shadow-md focus:outline-black min-h-[5rem] min-w-full max-w-full ${
+          className={`relative resize w-full py-2 md:py-2 pl-3 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black min-h-[5rem] min-w-full max-w-full ${
             !validReasoningField && "animate-pulse"
           }`}
           placeholder="Your reasoning (optional)"

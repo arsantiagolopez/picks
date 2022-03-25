@@ -19,6 +19,7 @@ const TournamentDetails: FC<Props> = ({
   watch,
   tournamentNameRegister,
 }) => {
+  //@ts-ignore
   const isTennisWager = watch("sport") === "tennis";
 
   const validNameField =
@@ -49,7 +50,7 @@ const TournamentDetails: FC<Props> = ({
               spellCheck={false}
               autoComplete="off"
               placeholder="Tournament name"
-              className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white rounded-lg shadow-md focus:outline-black ${
+              className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[0.5px] border-gray-100 md:border-0 rounded-lg shadow-md focus:outline-black ${
                 !validNameField && "animate-pulse pr-0"
               }`}
               {...tournamentNameRegister}

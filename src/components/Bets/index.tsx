@@ -72,11 +72,7 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
   }, [bets]);
 
   return (
-    <div
-      className={`flex flex-col items-center w-full ${
-        !isPast && bets.length && "pb-20"
-      }`}
-    >
+    <div className="flex flex-col items-center w-full">
       {/* POTD Record - Net profit for the day */}
       {isTomorrow ? (
         <div className="font-Times text-secondary text-2xl mb-10 md:mb-16">
