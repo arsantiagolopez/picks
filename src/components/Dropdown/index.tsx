@@ -1,6 +1,5 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import React, { FC, useContext } from "react";
-import { IoChevronDownSharp } from "react-icons/io5";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
 import { BetAdminControl } from "../BetAdminControl";
@@ -39,20 +38,8 @@ const Dropdown: FC<Props> = ({
       <Disclosure defaultOpen={isDefaultOpen}>
         {({ open }) => (
           <>
-            <Disclosure.Button
-              className={`flex flex-row justify-between items-center ${
-                status === "pending" && "md:pr-6"
-              }`}
-            >
+            <Disclosure.Button className="flex flex-row justify-between items-center md:pr-5">
               {Button}
-
-              {status === "pending" ? (
-                <IoChevronDownSharp
-                  className={`transition-transform duration-300 mr-1 md:mr-0 mt-4 md:mt-0 ${
-                    open ? "transform -rotate-180" : ""
-                  }`}
-                />
-              ) : null}
 
               {/* Admin control */}
               {isAdmin && (
