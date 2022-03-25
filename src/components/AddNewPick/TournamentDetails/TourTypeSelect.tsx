@@ -13,6 +13,7 @@ const TourTypeSelect: FC<Props> = ({ setValue, watch }) => {
   const { SUPPORTED_TOURNAMENTS } = useContext(PreferencesContext);
 
   const handleSelect = (tournament: string) =>
+    // @ts-ignore
     setValue("tournament", tournament);
 
   return (
