@@ -24,9 +24,7 @@ const Record: FC<Props> = () => {
   const losses = record && record[1];
   const voids = record && record[2];
 
-  const profit = Number(
-    (totalUnitsStaked! - totalUnitsLost! + totalUnitsWon!).toFixed(2)
-  );
+  const profit = Number((totalUnitsWon! - totalUnitsLost!).toFixed(2));
 
   const roi = Number(((profit / totalUnitsStaked!) * 100).toFixed(2));
 
@@ -113,7 +111,7 @@ const Record: FC<Props> = () => {
             {voids}
           </p>
           <p className="font-Times text-lg md:text-2xl text-secondary italic tracking-tight">
-            voids
+            pushed
           </p>
         </div>
       </div>
@@ -160,7 +158,7 @@ const Record: FC<Props> = () => {
         </p>
 
         <p className="font-Times text-tertiary text-base italic tracking-tighter pt-8">
-          Stats calculated based on already graded wagers.
+          Stats calculated based on graded wagers.
         </p>
       </div>
     </div>
