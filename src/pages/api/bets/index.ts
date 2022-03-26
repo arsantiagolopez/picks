@@ -35,13 +35,13 @@ const getTodaysBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const today = moment().startOf("day");
+  const today = moment.utc().startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
         $gte: today.toDate(),
-        $lte: moment(today).endOf("day").toDate(),
+        $lte: moment.utc(today).endOf("day").toDate(),
       },
     });
 
@@ -62,13 +62,13 @@ const getTomorrowsBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const tomorrow = moment().add(1, "day").startOf("day");
+  const tomorrow = moment.utc().add(1, "day").startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
         $gte: tomorrow.toDate(),
-        $lte: moment(tomorrow).endOf("day").toDate(),
+        $lte: moment.utc(tomorrow).endOf("day").toDate(),
       },
     });
 
@@ -89,12 +89,12 @@ const getPastBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const today = moment().startOf("day");
+  const today = moment.utc().startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
-        $lte: moment(today).toDate(),
+        $lte: moment.utc(today).toDate(),
       },
     });
     return res.status(200).json(bets);
@@ -139,12 +139,15 @@ const createBet = async (
   res: NextApiResponse,
   userId: string
 ): Promise<BetEntity | void> => {
-  const { stake, odds } = body as BetEntity;
+  let { stake, odds, startTime } = body as BetEntity;
 
   const returns = Number((stake * odds.decimal - stake).toFixed());
 
+  // Store date in UTC format
+  startTime = moment.utc(startTime).toDate();
+
   try {
-    const bet = new Bet({ ...body, returns });
+    const bet = new Bet({ ...body, returns, startTime });
 
     bet.userId = userId;
     await bet.save();

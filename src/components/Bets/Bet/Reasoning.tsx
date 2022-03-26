@@ -16,7 +16,7 @@ const Reasoning: FC<Props> = ({ bet }) => {
       <p className="text-primary text-sm md:text-base">{reasoning}</p>
       <p className="text-primary text-xs md:text-sm pt-2 md:pt-6">
         {status === "won"
-          ? `Result: Won ${returns}u`
+          ? `Result: Won ${returns.toFixed(2)}u`
           : status === "lost"
           ? `Result: Lost ${stake}u`
           : `Match starts ${fromNow}`}
