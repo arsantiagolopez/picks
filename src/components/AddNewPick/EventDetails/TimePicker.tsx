@@ -20,8 +20,8 @@ interface Props {
 
 const TimePicker: FC<Props> = ({ setValue }) => {
   const dayOptions: DayOption[] = [
-    { label: "Today", value: "today" },
     { label: "Tomorrow", value: "tomorrow" },
+    { label: "Today", value: "today" },
   ];
 
   const [selectedDay, setSelectedDay] = useState<DayOption>(dayOptions[0]);
@@ -81,7 +81,7 @@ const TimePicker: FC<Props> = ({ setValue }) => {
     <div className="flex flex-row w-full py-6">
       <Select
         defaultValue={selectedDay}
-        placeholder="Today"
+        placeholder="Tomorrow"
         // @ts-ignore
         onChange={setSelectedDay}
         options={dayOptions}
