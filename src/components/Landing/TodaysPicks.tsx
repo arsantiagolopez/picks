@@ -48,7 +48,7 @@ const TodaysPicks: FC<Props> = ({
   const betsProps = { bets: sortedBets, isAdmin };
 
   return (
-    <div className="w-full pb-8 md:pb-32">
+    <div className="w-full pb-8 md:pb-0">
       {/* Heading */}
       <div className="flex flex-col w-full items-center pt-16 md:pt-20 md:pb-12">
         {!isTomorrowsPicksVisible && (

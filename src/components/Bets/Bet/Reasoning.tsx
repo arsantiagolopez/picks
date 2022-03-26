@@ -13,8 +13,8 @@ const Reasoning: FC<Props> = ({ bet }) => {
 
   return (
     <div className="flex flex-col justify-between">
-      <p className="text-secondary text-sm md:text-base">{reasoning}</p>
-      <p className="text-tertiary text-xs md:text-sm pt-2 md:pt-6">
+      <p className="text-primary text-sm md:text-base">{reasoning}</p>
+      <p className="text-primary text-xs md:text-sm pt-2 md:pt-6">
         {status === "won"
           ? `Result: Won ${returns}u`
           : status === "lost"
