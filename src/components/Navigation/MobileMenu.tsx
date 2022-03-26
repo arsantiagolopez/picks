@@ -13,7 +13,6 @@ interface Props {
 const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
   const handleSignOut = () => signOut();
 
-  // @todo
   return (
     <>
       {isMenuOpen ? (

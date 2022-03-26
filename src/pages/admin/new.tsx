@@ -2,11 +2,11 @@ import Head from "next/head";
 import React from "react";
 import { AddNewPick } from "../../components/AddNewPick";
 import { Layout } from "../../components/Layout";
-import { ProtectedPage } from "../../types";
+import { AdminPage } from "../../types";
 
 interface Props {}
 
-const NewPickPage: ProtectedPage<Props> = () => (
+const NewPickPage: AdminPage<Props> = () => (
   <>
     <Head>
       <title>Add A Pick | {process.env.NEXT_PUBLIC_BRAND_NAME}</title>
@@ -18,6 +18,6 @@ const NewPickPage: ProtectedPage<Props> = () => (
   </>
 );
 
-NewPickPage.isProtected = true;
+NewPickPage.isAdmin = true;
 
 export default NewPickPage;

@@ -141,7 +141,7 @@ const createBet = async (
 ): Promise<BetEntity | void> => {
   const { stake, odds } = body as BetEntity;
 
-  const returns = stake * odds.decimal - stake;
+  const returns = Number((stake * odds.decimal - stake).toFixed());
 
   try {
     const bet = new Bet({ ...body, returns });

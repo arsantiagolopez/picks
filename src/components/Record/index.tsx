@@ -26,7 +26,10 @@ const Record: FC<Props> = () => {
 
   const profit = Number((totalUnitsWon! - totalUnitsLost!).toFixed(2));
 
-  const roi = Number(((profit / totalUnitsStaked!) * 100).toFixed(2));
+  const roi =
+    totalUnitsStaked !== 0
+      ? Number(((profit / totalUnitsStaked!) * 100).toFixed(2))
+      : 0;
 
   useEffect(() => {
     if (pastBets && todaysBets) {

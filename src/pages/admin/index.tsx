@@ -2,11 +2,11 @@ import Head from "next/head";
 import React from "react";
 import { AdminDashboard } from "../../components/AdminDashboard";
 import { Layout } from "../../components/Layout";
-import { ProtectedPage } from "../../types";
+import { AdminPage } from "../../types";
 
 interface Props {}
 
-const AdminPage: ProtectedPage<Props> = () => (
+const AdminPage: AdminPage<Props> = () => (
   <>
     <Head>
       <title>Dashboard | {process.env.NEXT_PUBLIC_BRAND_NAME}</title>
@@ -18,6 +18,6 @@ const AdminPage: ProtectedPage<Props> = () => (
   </>
 );
 
-AdminPage.isProtected = true;
+AdminPage.isAdmin = true;
 
 export default AdminPage;

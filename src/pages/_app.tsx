@@ -3,6 +3,7 @@ import { NextComponentType, NextPage, NextPageContext } from "next";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps as NextAppProps } from "next/app";
 import { SWRConfig } from "swr";
+import { AdminRoute } from "../components/AdminRoute";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { PreferencesProvider } from "../context/PreferencesProvider";
 import "../styles/globals.css";
@@ -11,9 +12,15 @@ interface IsProtectedProp {
   isProtected?: boolean;
 }
 
+interface IsAdminProp {
+  isAdmin?: boolean;
+}
+
 // Custom type to override Component type
 type AppProps<P = any> = {
-  Component: NextComponentType<NextPageContext, any, {}> & IsProtectedProp;
+  Component: NextComponentType<NextPageContext, any, {}> &
+    IsProtectedProp &
+    IsAdminProp;
 } & Omit<NextAppProps<P>, "Component">;
 
 const MyApp: NextPage<AppProps> = ({
@@ -27,7 +34,11 @@ const MyApp: NextPage<AppProps> = ({
       }}
     >
       <PreferencesProvider>
-        {Component.isProtected ? (
+        {Component.isAdmin ? (
+          <AdminRoute>
+            <Component {...pageProps} />
+          </AdminRoute>
+        ) : Component.isProtected ? (
           <ProtectedRoute>
             <Component {...pageProps} />
           </ProtectedRoute>

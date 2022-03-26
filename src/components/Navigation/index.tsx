@@ -12,13 +12,13 @@ interface Session {
 interface Props {}
 
 const Navigation: FC<Props> = () => {
-  const { data: session, status } = useSession() as unknown as Session;
+  const { data: session } = useSession() as unknown as Session;
 
-  const isAuthenticated = status !== "loading" && session;
+  const isAdmin = session?.user?.isAdmin || session?.user?.isSuperAdmin;
 
   const authenticatedProps = { session };
 
-  return isAuthenticated ? (
+  return isAdmin ? (
     <Authenticated {...authenticatedProps} />
   ) : (
     <NotAuthenticated />

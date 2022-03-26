@@ -5,5 +5,6 @@ export interface StyleProps {
 }
 
 export type ProtectedPage<Props> = NextPage<Props> & { isProtected?: boolean };
+export type AdminPage<Props> = NextPage<Props> & { isAdmin?: boolean };
 
 export * from "./entities";
