@@ -22,8 +22,6 @@ const TodaysPicks: FC<Props> = ({
 
   let { bets } = useBets({ todays: true });
 
-  console.log("* todaysPicks: ", bets);
-
   const { sortBy } = useContext(PreferencesContext);
 
   const today = now.format("MMMM D, YYYY");
