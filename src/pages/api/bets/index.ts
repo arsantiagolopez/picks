@@ -35,13 +35,13 @@ const getTodaysBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const today = moment.utc().startOf("day");
+  const today = moment().startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
         $gte: today.toDate(),
-        $lte: moment.utc(today).endOf("day").toDate(),
+        $lte: moment(today).endOf("day").toDate(),
       },
     });
 
@@ -62,13 +62,13 @@ const getTomorrowsBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const tomorrow = moment.utc().add(1, "day").startOf("day");
+  const tomorrow = moment().add(1, "day").startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
         $gte: tomorrow.toDate(),
-        $lte: moment.utc(tomorrow).endOf("day").toDate(),
+        $lte: moment(tomorrow).endOf("day").toDate(),
       },
     });
 
@@ -89,12 +89,12 @@ const getPastBets = async (
   _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
-  const today = moment.utc().startOf("day");
+  const today = moment().startOf("day");
 
   try {
     const bets = await Bet.find({
       startTime: {
-        $lte: moment.utc(today).toDate(),
+        $lte: moment(today).toDate(),
       },
     });
     return res.status(200).json(bets);

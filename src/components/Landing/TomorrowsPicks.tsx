@@ -15,6 +15,8 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
 
   let { bets } = useBets({ tomorrows: true });
 
+  console.log("* tomorrowsPicks: ", bets);
+
   const { sortBy } = useContext(PreferencesContext);
 
   const tomorrow = moment().add(1, "day").format("MMMM D, YYYY");

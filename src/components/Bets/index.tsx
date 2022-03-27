@@ -103,17 +103,19 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
       )}
 
       {/* Normal render for a small list */}
-      {!isPast && bets?.length ? (
-        <div className="w-full pb-20">
-          {bets.map((bet) => (
-            <Bet key={bet._id} bet={bet} {...betProps} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-tertiary pb-20 text-center text-sm md:text-base">
-          No picks as of right now... Come back in a bit.
-        </div>
-      )}
+      {!isPast ? (
+        bets?.length ? (
+          <div className="w-full pb-20">
+            {bets.map((bet) => (
+              <Bet key={bet._id} bet={bet} {...betProps} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-tertiary pb-20 text-center text-sm md:text-base">
+            No picks as of right now... Come back in a bit.
+          </div>
+        )
+      ) : null}
 
       {/* Virtuoso list for a potentially large list */}
       {isPast &&
