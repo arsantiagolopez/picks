@@ -10,6 +10,7 @@ const Reasoning: FC<Props> = ({ bet }) => {
   const { startTime, reasoning, status, stake, returns } = bet;
 
   const fromNow = moment().to(moment(startTime));
+  const isPast = moment(startTime).isBefore();
 
   return (
     <div className="flex flex-col justify-between">
@@ -19,7 +20,7 @@ const Reasoning: FC<Props> = ({ bet }) => {
           ? `Result: Won ${returns.toFixed(2)}u`
           : status === "lost"
           ? `Result: Lost ${stake}u`
-          : `Match starts ${fromNow}`}
+          : `Match ${isPast ? "started" : "starts"} ${fromNow}`}
       </p>
     </div>
   );

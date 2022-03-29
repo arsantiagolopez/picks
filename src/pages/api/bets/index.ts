@@ -141,7 +141,7 @@ const createBet = async (
 ): Promise<BetEntity | void> => {
   let { stake, odds, startTime } = body as BetEntity;
 
-  const returns = Number((stake * odds.decimal - stake).toFixed());
+  const returns = Number((stake * odds.decimal - stake).toFixed(2));
 
   // Store date in UTC format
   startTime = moment.utc(startTime).toDate();
