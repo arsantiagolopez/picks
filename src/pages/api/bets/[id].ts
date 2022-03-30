@@ -34,30 +34,44 @@ const updateBet = async (
 ) => {
   const { id } = query;
 
-  let { sport, stake, odds, startTime } = body as BetEntity;
+  // Update bet status
+  if (body?.status !== "pending") {
+    try {
+      const bet = await Bet.findByIdAndUpdate(id, body);
 
-  const returns = Number((stake * odds.decimal - stake).toFixed(2));
-
-  // Store date in UTC format
-  startTime = moment.utc(startTime).toDate();
-
-  try {
-    let bet = await Bet.findByIdAndUpdate(id, {
-      ...body,
-      returns,
-      startTime,
-    });
-
-    if (sport !== "tennis") {
-      // Delete tournament data if not tennis
-      bet = await Bet.findByIdAndUpdate(id, {
-        $unset: { tournament: "", tournamentName: "" },
-      });
+      return res.status(200).json(bet);
+    } catch (error) {
+      return res.status(400).json({ message: error });
     }
+  }
 
-    return res.status(200).json(bet);
-  } catch (error) {
-    return res.status(400).json({ message: error });
+  // Update bet entity
+  else {
+    let { sport, stake, odds, startTime } = body as BetEntity;
+
+    const returns = Number((stake * odds.decimal - stake).toFixed(2));
+
+    // Store date in UTC format
+    startTime = moment.utc(startTime).toDate();
+
+    try {
+      let bet = await Bet.findByIdAndUpdate(id, {
+        ...body,
+        returns,
+        startTime,
+      });
+
+      if (sport !== "tennis") {
+        // Delete tournament data if not tennis
+        bet = await Bet.findByIdAndUpdate(id, {
+          $unset: { tournament: "", tournamentName: "" },
+        });
+      }
+
+      return res.status(200).json(bet);
+    } catch (error) {
+      return res.status(400).json({ message: error });
+    }
   }
 };
 
