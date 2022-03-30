@@ -7,9 +7,10 @@ import { BetEntity, OddsEntity } from "../../../types";
 interface Props {
   setValue: UseFormSetValue<BetEntity>;
   resetField: UseFormResetField<BetEntity>;
+  defaultOdds?: OddsEntity;
 }
 
-const WagerOdds: FC<Props> = ({ setValue, resetField }) => {
+const WagerOdds: FC<Props> = ({ setValue, resetField, defaultOdds }) => {
   const [inputValue, setInputValue] = useState<string>("");
 
   const { oddsFormat, setOddsFormat } = useContext(PreferencesContext);
@@ -82,6 +83,18 @@ const WagerOdds: FC<Props> = ({ setValue, resetField }) => {
       resetField("odds");
     }
   }, [inputValue]);
+
+  // Set default values for updates
+  useEffect(() => {
+    if (defaultOdds) {
+      const { american, decimal } = defaultOdds;
+
+      setInputValue(String(american));
+
+      // @ts-ignore
+      setValue("odds", { american, decimal });
+    }
+  }, [defaultOdds]);
 
   return (
     <div className="form-field w-full">

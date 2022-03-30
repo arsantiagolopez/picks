@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { AxiosResponse } from "axios";
+import { useRouter } from "next/router";
 import React, { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import axios from "../../axios";
@@ -15,6 +16,10 @@ interface Props {
 
 const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
   const { bets, setBets } = useBets();
+
+  const router = useRouter();
+
+  const redirectToUpdate = () => router.push(`/admin/update?id=${bet?._id}`);
 
   const handleCancel = () => setIsOpen(false);
 
@@ -124,8 +129,19 @@ const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
                     Won
                   </button>
                 </div>
+
+                {/* Mid row */}
+                <div className="grid-cols-3 flex flex-row space-x-2 w-full my-2">
+                  <button
+                    onClick={() => redirectToUpdate()}
+                    className="rounded-lg bg-blue-500 text-white w-full hover:bg-blue-700 hover:animate-pulse p-4"
+                  >
+                    Update
+                  </button>
+                </div>
+
                 {/* Bottom row */}
-                <div className="flex flex-row mt-4 w-full space-x-2">
+                <div className="flex flex-row w-full space-x-2">
                   <button
                     onClick={() => handleUpdate("DELETE")}
                     className="flex flex-row justify-center items-center rounded-lg bg-red-700 hover:bg-red-900 text-white w-auto p-4 px-6"

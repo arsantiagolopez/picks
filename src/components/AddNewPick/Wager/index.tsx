@@ -6,7 +6,7 @@ import {
   UseFormWatch,
 } from "react-hook-form";
 import { CgCheck } from "react-icons/cg";
-import { BetEntity } from "../../../types";
+import { BetEntity, OddsEntity } from "../../../types";
 import { WagerOdds } from "./WagerOdds";
 
 interface Props {
@@ -15,6 +15,7 @@ interface Props {
   resetField: UseFormResetField<BetEntity>;
   wagerRegister: UseFormRegisterReturn;
   stakeRegister: UseFormRegisterReturn;
+  defaultOdds?: OddsEntity;
 }
 
 const Wager: FC<Props> = ({
@@ -23,12 +24,13 @@ const Wager: FC<Props> = ({
   resetField,
   wagerRegister,
   stakeRegister,
+  defaultOdds,
 }) => {
   // @ts-ignore
   const validWagerField = watch("wager")?.length > 3;
   const validStakeField = Number(watch("stake")) > 0;
 
-  const wagerOddsProps = { setValue, resetField };
+  const wagerOddsProps = { setValue, resetField, defaultOdds };
 
   return (
     <div className="flex flex-col w-full">

@@ -12,9 +12,8 @@ interface Props {
 const SportSelect: FC<Props> = ({ setValue, watch }) => {
   const { SUPPORTED_SPORTS } = useContext(PreferencesContext);
 
-  const handleSelect = (sport: string) => {
-    setValue("sport", sport);
-  };
+  // @ts-ignore
+  const handleSelect = (sport: string) => setValue("sport", sport);
 
   return (
     <div className="flex flex-row w-auto flex-nowrap overflow-scroll p-2 pl-1">

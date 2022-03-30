@@ -1,7 +1,8 @@
+import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { Bet } from "../../../models/Bet";
-import { UserSession } from "../../../types";
+import { BetEntity, UserSession } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 
 /**
@@ -33,8 +34,27 @@ const updateBet = async (
 ) => {
   const { id } = query;
 
+  let { sport, stake, odds, startTime } = body as BetEntity;
+
+  const returns = Number((stake * odds.decimal - stake).toFixed(2));
+
+  // Store date in UTC format
+  startTime = moment.utc(startTime).toDate();
+
   try {
-    const bet = await Bet.findByIdAndUpdate(id, body);
+    let bet = await Bet.findByIdAndUpdate(id, {
+      ...body,
+      returns,
+      startTime,
+    });
+
+    if (sport !== "tennis") {
+      // Delete tournament data if not tennis
+      bet = await Bet.findByIdAndUpdate(id, {
+        $unset: { tournament: "", tournamentName: "" },
+      });
+    }
+
     return res.status(200).json(bet);
   } catch (error) {
     return res.status(400).json({ message: error });

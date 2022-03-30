@@ -13,6 +13,7 @@ interface Props {
   watch: UseFormWatch<BetEntity>;
   homeRegister: UseFormRegisterReturn;
   awayRegister: UseFormRegisterReturn;
+  defaultStartTime?: Date;
 }
 
 const EventDetails: FC<Props> = ({
@@ -20,6 +21,7 @@ const EventDetails: FC<Props> = ({
   watch,
   homeRegister,
   awayRegister,
+  defaultStartTime,
 }) => {
   // @ts-ignore
   const isMulti = watch("sport") === "multi";
@@ -29,7 +31,7 @@ const EventDetails: FC<Props> = ({
 
   const isTennisWager = watch("sport") === "tennis";
 
-  const timePickerProps = { setValue };
+  const timePickerProps = { setValue, defaultStartTime };
 
   return (
     <div className="flex flex-col w-full">

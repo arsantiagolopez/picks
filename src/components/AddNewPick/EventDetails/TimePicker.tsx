@@ -16,9 +16,10 @@ interface DayOption {
 
 interface Props {
   setValue: UseFormSetValue<BetEntity>;
+  defaultStartTime?: Date;
 }
 
-const TimePicker: FC<Props> = ({ setValue }) => {
+const TimePicker: FC<Props> = ({ setValue, defaultStartTime }) => {
   const dayOptions: DayOption[] = [
     { label: "Tomorrow", value: "tomorrow" },
     { label: "Today", value: "today" },
@@ -77,11 +78,41 @@ const TimePicker: FC<Props> = ({ setValue }) => {
     }
   }, [selectedDay, selectedTime]);
 
+  // Set default values for updates
+  useEffect(() => {
+    if (timeOptions && defaultStartTime) {
+      const tomorrow = moment().add(1, "day");
+      const isTomorrow = moment(defaultStartTime).isSame(tomorrow, "day");
+
+      // Set selected day
+      if (isTomorrow) {
+        setSelectedDay(dayOptions[0]);
+      } else {
+        setSelectedDay(dayOptions[1]);
+      }
+
+      // Set selected time
+      const selectedOption = timeOptions.find((option) => {
+        const startTime = isTomorrow
+          ? moment(defaultStartTime).subtract(1, "day").format("h:mm A")
+          : moment(defaultStartTime, ["h:mm A"]).format("h:mm A");
+
+        return startTime === option.label;
+      });
+
+      if (selectedOption) {
+        setSelectedTime(selectedOption);
+      }
+      setValue("startTime", defaultStartTime);
+    }
+  }, [timeOptions, defaultStartTime]);
+
   return (
     <div className="flex flex-row w-full py-6">
       <Select
+        instanceId="day-id"
         defaultValue={selectedDay}
-        placeholder="Tomorrow"
+        placeholder={defaultStartTime ? selectedDay?.label : "Tomorrow"}
         // @ts-ignore
         onChange={setSelectedDay}
         options={dayOptions}
@@ -89,8 +120,9 @@ const TimePicker: FC<Props> = ({ setValue }) => {
         className="w-full md:w-[16rem] mr-4"
       />
       <Select
+        instanceId="time-id"
         defaultValue={selectedTime}
-        placeholder="Start time"
+        placeholder={defaultStartTime ? selectedTime?.label : "Start time"}
         // @ts-ignore
         onChange={setSelectedTime}
         options={timeOptions}

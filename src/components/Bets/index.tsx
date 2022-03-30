@@ -26,7 +26,7 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
     ? `${record[0]}-${record[1]}-${record[2]}`
     : null;
 
-  const options: string[] = ["units", "upcoming"];
+  const options: string[] = ["units", "date"];
 
   const handleSelect = (option: string) => {
     setSelected(option);

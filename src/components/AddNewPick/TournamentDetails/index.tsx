@@ -12,12 +12,14 @@ interface Props {
   setValue: UseFormSetValue<BetEntity>;
   watch: UseFormWatch<BetEntity>;
   tournamentNameRegister: UseFormRegisterReturn;
+  defaultTournament?: string;
 }
 
 const TournamentDetails: FC<Props> = ({
   setValue,
   watch,
   tournamentNameRegister,
+  defaultTournament,
 }) => {
   //@ts-ignore
   const isTennisWager = watch("sport") === "tennis";
@@ -25,10 +27,17 @@ const TournamentDetails: FC<Props> = ({
   const validNameField =
     watch("tournamentName") && watch("tournamentName")!.length > 2;
 
+  // Set default values for updates
   useEffect(() => {
-    setValue("tournament", undefined);
-    setValue("tournamentName", undefined);
-  }, [watch("sport")]);
+    if (defaultTournament) {
+      setValue("tournament", defaultTournament);
+    }
+
+    if (watch("sport") !== "tennis") {
+      setValue("tournament", undefined);
+      setValue("tournamentName", undefined);
+    }
+  }, [watch("sport"), defaultTournament]);
 
   // Tennis related tournaments
   if (isTennisWager) {

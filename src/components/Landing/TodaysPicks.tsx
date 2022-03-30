@@ -34,8 +34,8 @@ const TodaysPicks: FC<Props> = ({
         setSortedBets([...bets.sort((a, b) => b.stake - a.stake)]);
       }
 
-      // Sort by upcoming
-      if (sortBy === "upcoming") {
+      // Sort by date
+      if (sortBy === "date") {
         setSortedBets([
           ...bets.sort((a, b) =>
             b.startTime.valueOf() < a.startTime.valueOf() ? 1 : -1
