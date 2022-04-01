@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import React, { FC, useEffect, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 import useSWR from "swr";
@@ -65,7 +65,9 @@ const SelectPotdTime: FC<Props> = () => {
       const { potdReleaseTime } = user;
 
       const potdTimeOption = timeOptions.find(
-        ({ label }) => label === moment(potdReleaseTime).format("h:mm A")
+        ({ label }) =>
+          label ===
+          moment(potdReleaseTime).tz("America/Chicago").format("h:mm A")
       );
 
       if (potdTimeOption) {

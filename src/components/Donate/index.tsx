@@ -45,7 +45,7 @@ const Donate: FC<Props> = () => {
         Donate
       </h1>
 
-      <div className="flex flex-col justify-center items-center md:items-start py-14 w-full font-Times">
+      <div className="flex flex-col justify-center items-center md:items-start py-14 w-full">
         {payments.map(({ id, address, href }) => (
           <div
             key={id}

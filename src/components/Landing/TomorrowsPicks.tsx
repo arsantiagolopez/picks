@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import React, { FC, useContext, useEffect, useState } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
@@ -19,10 +19,15 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
 
   const tomorrow = moment().add(1, "day").format("MMMM D, YYYY");
 
-  const now = moment(new Date());
-  const releaseTime = moment(potdReleaseTime, "h:mm A");
-  const timeUntilRelease = moment().to(releaseTime);
-  const picksReleased = moment(releaseTime).isBefore(now);
+  const currentCentralizedTime = moment()
+    .tz("America/Chicago")
+    .format("h:mm A");
+  const timeUntilRelease = moment(currentCentralizedTime, "h:mm A").to(
+    moment(potdReleaseTime, "h:mm A")
+  );
+  const picksReleased = moment(potdReleaseTime).isBefore(
+    currentCentralizedTime
+  );
 
   // Sort bets
   useEffect(() => {
@@ -55,7 +60,7 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
         {isAdmin && !picksReleased && (
           <div className="absolute top-10 rounded-md p-2 px-3 animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-sm">
             <p className="uppercase font-Inter text-[0.6rem] text-gray-900">
-              {`Picks to be released ${timeUntilRelease}`}
+              Picks to be released {timeUntilRelease}
             </p>
           </div>
         )}
@@ -63,9 +68,7 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
         <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
           Tomorrow&apos;s Picks
         </h1>
-        <p className="font-Times text-secondary text-base italic tracking-tight pt-4">
-          {tomorrow}
-        </p>
+        <p className="text-tertiary text-sm tracking-tight pt-4">{tomorrow}</p>
       </div>
 
       {/* Picks */}

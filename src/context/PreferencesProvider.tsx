@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import React, { FC, ReactNode, useEffect, useState } from "react";
 import useSWR from "swr";
 import { UserEntity } from "../types";
@@ -48,8 +48,10 @@ const PreferencesProvider: FC<Props> = ({ children }) => {
       const { potdReleaseTime: releaseTime, isBetsColored } = preferences;
 
       // Update time state
-      const formatedTime = moment(releaseTime).format("h:mm A");
-      setPotdReleaseTime(formatedTime);
+      const formattedTime = moment(releaseTime)
+        .tz("America/Chicago")
+        .format("h:mm A");
+      setPotdReleaseTime(formattedTime);
 
       // Update bet slip colors
       setIsBetsColored(isBetsColored);

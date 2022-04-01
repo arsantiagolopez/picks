@@ -4,7 +4,7 @@ interface Props {}
 
 const Footer: FC<Props> = () => {
   return (
-    <div className="flex flex-row justify-center items-center w-screen bg-primary text-gray-100 text-sm h-20 md:h-32 tracking-widest font-Times italic">
+    <div className="flex flex-row justify-center items-center w-screen bg-primary text-gray-100 font-Times text-sm h-20 md:h-32 tracking-widest font-thin italic">
       <a
         href={process.env.NEXT_PUBLIC_PORTFOLIO}
         rel="noreferrer"

@@ -37,7 +37,7 @@ const PicksHistory: FC<Props> = ({ bets, isAdmin }) => {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel className="mt-10 md:my-16">
+              <Disclosure.Panel className="mt-8 md:my-12">
                 <Bets {...betsProps} />
               </Disclosure.Panel>
             </Transition>

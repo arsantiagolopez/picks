@@ -27,7 +27,7 @@ const Record: FC<Props> = () => {
       <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
         Record To Date
       </h1>
-      <p className="font-Times text-tertiary text-base italic tracking-tighter pt-4">
+      <p className="text-tertiary text-base tracking-tight pt-4">
         as of {today}
       </p>
 
@@ -69,36 +69,44 @@ const Record: FC<Props> = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center py-4">
-        <p className="font-Times text-lg text-tertiary">
-          – <span className="text-xl text-secondary font-bold">{roi}%</span>{" "}
+        <p className="text-tertiary">
+          –{" "}
+          <span className="text-xl text-secondary font-semibold font-Times">
+            {roi}%
+          </span>{" "}
           ROI.
         </p>
-        <p className="font-Times text-lg text-tertiary">
+        <p className="text-tertiary">
           –{" "}
-          <span className="text-xl text-secondary font-bold">
+          <span className="text-xl text-secondary font-semibold font-Times">
             {unitsStaked}
           </span>{" "}
           total units staked.
         </p>
-        <p className="font-Times text-lg text-tertiary">
-          – <span className="text-xl text-secondary font-bold">{unitsWon}</span>{" "}
+        <p className="text-tertiary">
+          –{" "}
+          <span className="text-xl text-secondary font-semibold font-Times">
+            {unitsWon}
+          </span>{" "}
           total units won.
         </p>
-        <p className="font-Times text-lg text-tertiary">
+        <p className="text-tertiary">
           –{" "}
-          <span className="text-xl text-secondary font-bold">{unitsLost}</span>{" "}
+          <span className="text-xl text-secondary font-semibold font-Times">
+            {unitsLost}
+          </span>{" "}
           total units lost.
         </p>
-        <p className="font-Times text-lg text-tertiary">
+        <p className="text-tertiary">
           –{" "}
-          <span className="text-xl text-secondary font-bold">
+          <span className="text-xl text-secondary font-semibold font-Times">
             {unitsReturned}
           </span>{" "}
           total units returned.
         </p>
-        <p className="font-Times text-lg text-tertiary">
+        <p className="text-tertiary">
           –{" "}
-          <span className="text-xl text-secondary font-bold">
+          <span className="text-xl text-secondary font-semibold font-Times">
             {totalProfit && totalProfit > 0
               ? `+${totalProfit}`
               : `${totalProfit}`}
@@ -106,7 +114,7 @@ const Record: FC<Props> = () => {
           total units profited.
         </p>
 
-        <p className="font-Times text-tertiary text-base italic tracking-tighter pt-8">
+        <p className="text-tertiary tracking-tight pt-8">
           Stats calculated based on graded wagers.
         </p>
       </div>

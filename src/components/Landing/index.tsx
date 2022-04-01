@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 import { useSession } from "next-auth/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
@@ -22,20 +22,20 @@ const Landing: FC<Props> = () => {
 
   const { potdReleaseTime } = useContext(PreferencesContext);
 
-  const now = moment(new Date());
+  const currentCentralizedTime = moment()
+    .tz("America/Chicago")
+    .format("h:mm A");
 
-  const isStillToday = potdReleaseTime?.includes("PM");
-  const isPastPotdReleastTime = now.isSameOrAfter(
+  const isPastPotdReleastTime = moment(currentCentralizedTime).isSameOrAfter(
     moment(potdReleaseTime, "h:mm A")
   );
-  const isTomorrowsPicksVisible =
-    (isStillToday && isPastPotdReleastTime) || false;
+
+  const isTomorrowsPicksVisible = isPastPotdReleastTime;
 
   const isAdmin = user ? user?.isAdmin : false;
 
   const tomorrowsPicksProps = { isAdmin, potdReleaseTime };
   const todaysPicksProps = {
-    now,
     potdReleaseTime,
     isTomorrowsPicksVisible,
     isAdmin,
@@ -43,7 +43,7 @@ const Landing: FC<Props> = () => {
   const pastPicks = { isAdmin };
 
   return (
-    <div className="flex flex-col items-center mb-[25vh]">
+    <div className="flex flex-col items-center">
       {(isAdmin || isTomorrowsPicksVisible) && (
         <TomorrowsPicks {...tomorrowsPicksProps} />
       )}

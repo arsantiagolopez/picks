@@ -1,4 +1,4 @@
-import { Moment } from "moment";
+import moment from "moment";
 import React, { FC, useContext, useEffect, useState } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
@@ -6,14 +6,12 @@ import { useBets } from "../../utils/useBets";
 import { Bets } from "../Bets";
 
 interface Props {
-  now: Moment;
   potdReleaseTime: string | null;
   isTomorrowsPicksVisible: boolean;
   isAdmin: boolean;
 }
 
 const TodaysPicks: FC<Props> = ({
-  now,
   potdReleaseTime,
   isTomorrowsPicksVisible,
   isAdmin,
@@ -24,7 +22,7 @@ const TodaysPicks: FC<Props> = ({
 
   const { sortBy } = useContext(PreferencesContext);
 
-  const today = now.format("MMMM D, YYYY");
+  const today = moment(new Date()).format("MMMM D, YYYY");
 
   // Sort bets
   useEffect(() => {
@@ -58,12 +56,12 @@ const TodaysPicks: FC<Props> = ({
           Today&apos;s Picks
         </h1>
         {!isTomorrowsPicksVisible && (
-          <p className="font-Times text-tertiary text-base italic tracking-tight pt-4">
+          <p className="text-tertiary text-sm pt-4">
             Picks released everyday at {potdReleaseTime}
           </p>
         )}
 
-        <p className="font-Times text-tertiary text-base italic tracking-tight pt-3 pb-5 md:pt-4 md:pb-0">
+        <p className="text-tertiary text-sm tracking-tight pb-5 pt-4 md:pb-0">
           {today}
         </p>
       </div>
