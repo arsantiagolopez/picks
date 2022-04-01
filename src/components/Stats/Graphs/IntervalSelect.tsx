@@ -20,8 +20,8 @@ const IntervalSelect: FC<Props> = ({
     {({ open }) => (
       <div className="z-40 relative flex items-center not-italic font-Basic w-44">
         <Listbox.Button className="flex flex-col items-start capitalize font-Basic text-lg text-primary">
-          <p className="text-tertiary">Profit to date</p>
-          <h1 className="font-Basic text-7xl font-bold tracking-tight">
+          <p className="text-tertiary tracking-tight">Profit to date</p>
+          <h1 className="font-Basic text-7xl font-bold tracking-tighter">
             {profit > 0 ? `+${profit}u` : `${profit}u`}
           </h1>
           <div className="flex flex-row items-center py-3">
@@ -45,7 +45,7 @@ const IntervalSelect: FC<Props> = ({
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} className="">
                 {({ selected }) => (
-                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 text-sm capitalize cursor-pointer py-3 px-4">
+                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 text-sm tracking-tighter md:tracking-tight capitalize cursor-pointer py-3 px-4">
                     {option.toLowerCase()}
                     {selected && <CgCheck className="text-lg" />}
                   </p>
