@@ -34,7 +34,7 @@ const Stats: FC<Props> = () => {
       {/* Full screen */}
       <div className="flex flex-col md:flex-row w-full h-full">
         {/* Left side*/}
-        <div className="w-full h-full pt-16 min-h-[70vh] md:min-h-[80vh] md:py-[3vw]">
+        <div className="w-full h-full pt-16 min-h-[70vh] md:min-h-[80vh] md:py-[3vw] min-w-[50%]">
           <Graphs {...graphsProps} />
         </div>
 
