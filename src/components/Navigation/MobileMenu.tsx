@@ -55,9 +55,9 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
                 <Link href="/record">
                   <button>Record</button>
                 </Link>
-                {/* <Link href="/past">
+                <Link href="/stats">
                   <button>Past tournaments</button>
-                </Link> */}
+                </Link>
                 <Link href="/donate">
                   <button>Donate</button>
                 </Link>

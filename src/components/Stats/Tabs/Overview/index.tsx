@@ -36,7 +36,7 @@ const Overview: FC<Props> = ({ stats }) => {
   return (
     <div>
       <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
-        It's always 🌽 season
+        It&apos;s always 🌽 season
       </h1>
 
       <p className="py-4 md:py-8 text-tertiary">You wanted more numbers...</p>

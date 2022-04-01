@@ -11,7 +11,7 @@ import { dbConnect } from "../../../utils/dbConnect";
  * @returns a stats object of all possible stats.
  */
 const getStats = async (
-  req: NextApiRequest,
+  _: NextApiRequest,
   res: NextApiResponse
 ): Promise<BetStats | void> => {
   try {

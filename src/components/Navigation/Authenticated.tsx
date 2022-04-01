@@ -73,15 +73,15 @@ const Authenticated: FC<Props> = ({ session }) => {
               Record
             </button>
           </Link>
-          {/* <Link href="/past">
+          <Link href="/stats">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/past" ? "text-primary" : "text-tertiary"
+                router.pathname === "/stats" ? "text-primary" : "text-tertiary"
               }`}
             >
-              Past tournaments
+              Stats
             </button>
-          </Link> */}
+          </Link>
           <Link href="/donate">
             <button
               className={`font-Basic  mx-4 ${

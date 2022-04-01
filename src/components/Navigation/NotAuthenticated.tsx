@@ -55,6 +55,15 @@ const NotAuthenticated: FC<Props> = () => {
               Record
             </button>
           </Link>
+          <Link href="/stats">
+            <button
+              className={`font-Basic  mx-4 ${
+                router.pathname === "/stats" ? "text-primary" : "text-tertiary"
+              }`}
+            >
+              Stats
+            </button>
+          </Link>
           <Link href="/donate">
             <button
               className={`font-Basic  mx-4 ${
@@ -64,15 +73,6 @@ const NotAuthenticated: FC<Props> = () => {
               Donate
             </button>
           </Link>
-          {/* <Link href="/past">
-            <button
-              className={`font-Basic  mx-4 ${
-                router.pathname === "/past" ? "text-primary" : "text-tertiary"
-              }`}
-            >
-              Past tournaments
-            </button>
-          </Link> */}
         </div>
       </div>
 

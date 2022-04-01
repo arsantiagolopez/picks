@@ -49,7 +49,7 @@ const AllGraph: FC<Props> = ({
 
   // Create up to 9 data points to represent all time
   useEffect(() => {
-    if (bets.length && weekBets.length) {
+    if (bets.length && weekBets.length && monthBets.length && yearBets.length) {
       // Sort bets by oldest to newest
       bets.sort((a, b) =>
         b.startTime.valueOf() < a.startTime.valueOf() ? 1 : -1
@@ -66,66 +66,160 @@ const AllGraph: FC<Props> = ({
 
       // If days < 10, create new day data point
       if (Math.floor(daysSinceFirstPick) < 10) {
-        if (weekBets.length) {
-          // Split bets by days
-          let daysWithProfit: IntervalAndProfit[] = [];
+        // Split bets by days
+        let daysWithProfit: IntervalAndProfit[] = [];
 
-          let currentDay = null;
-          let currentDayIndex = 0;
+        let currentDay = null;
+        let currentDayIndex = 0;
 
-          // Categorize bets by days and add up day profits
-          for (const { startTime, status, stake, returns } of weekBets) {
-            const profit =
-              status === "won" ? returns : status === "lost" ? stake * -1 : 0;
+        // Categorize bets by days and add up day profits
+        for (const { startTime, status, stake, returns } of weekBets) {
+          const profit =
+            status === "won" ? returns : status === "lost" ? stake * -1 : 0;
 
-            // Create first day record
-            if (!currentDay) {
-              currentDay = moment(startTime);
-            }
-
-            const dayName = moment(currentDay).format("ddd, MMM Do");
-            const dayStart = moment(currentDay).startOf("day");
-            const dayEnd = moment(currentDay).endOf("day");
-            const betIsCurrentDay = moment(startTime).isBetween(
-              dayStart,
-              dayEnd
-            );
-
-            if (betIsCurrentDay) {
-              const dayAndProfit = {
-                interval: dayName,
-                profit: daysWithProfit[currentDayIndex]
-                  ? daysWithProfit[currentDayIndex].profit + profit
-                  : profit,
-              };
-
-              daysWithProfit[currentDayIndex] = dayAndProfit;
-            } else {
-              // Reset fields & create new day record
-              currentDayIndex += 1;
-              currentDay = currentDay.add(1, "day");
-
-              daysWithProfit[currentDayIndex] = {
-                interval: dayName,
-                profit,
-              };
-            }
+          // Create first day record
+          if (!currentDay) {
+            currentDay = moment(startTime);
           }
 
-          // Store in state
-          setPoints(daysWithProfit);
+          const dayName = moment(currentDay).format("ddd, MMM Do");
+          const dayStart = moment(currentDay).startOf("day");
+          const dayEnd = moment(currentDay).endOf("day");
+          const betIsCurrentDay = moment(startTime).isBetween(dayStart, dayEnd);
+
+          if (betIsCurrentDay) {
+            const dayAndProfit = {
+              interval: dayName,
+              profit: daysWithProfit[currentDayIndex]
+                ? daysWithProfit[currentDayIndex].profit + profit
+                : profit,
+            };
+
+            daysWithProfit[currentDayIndex] = dayAndProfit;
+          } else {
+            // Reset fields & create new day record
+            currentDayIndex += 1;
+            currentDay = currentDay.add(1, "day");
+
+            daysWithProfit[currentDayIndex] = {
+              interval: dayName,
+              profit,
+            };
+          }
         }
+
+        // Store in state
+        setPoints(daysWithProfit);
       } else if (Math.floor(daysSinceFirstPick) < 31) {
         // Handle month
+
+        // Split bets by weeks
+        let weekWithProfit: IntervalAndProfit[] = [];
+
+        let currentWeek = null;
+        let currentWeekIndex = 0;
+
+        // Categorize bets by weeks and add up week profits
+        for (const { startTime, status, stake, returns } of monthBets) {
+          const profit =
+            status === "won" ? returns : status === "lost" ? stake * -1 : 0;
+
+          // Create first week record
+          if (!currentWeek) {
+            currentWeek = moment(startTime);
+          }
+
+          const weekStart = moment(currentWeek).startOf("week");
+          const weekEnd = moment(currentWeek).endOf("week");
+          const betIsCurrentWeek = moment(startTime).isBetween(
+            weekStart,
+            weekEnd
+          );
+
+          const weekLabel = `${weekStart.format("MMM Do")} - ${weekEnd.format(
+            "MMM Do"
+          )}`;
+
+          if (betIsCurrentWeek) {
+            const weekAndProfit = {
+              interval: weekLabel,
+              profit: weekWithProfit[currentWeekIndex]
+                ? weekWithProfit[currentWeekIndex].profit + profit
+                : profit,
+            };
+
+            weekWithProfit[currentWeekIndex] = weekAndProfit;
+          } else {
+            // Reset fields & create new week record
+            currentWeekIndex += 1;
+            currentWeek = currentWeek.add(1, "week");
+
+            weekWithProfit[currentWeekIndex] = {
+              interval: weekLabel,
+              profit,
+            };
+          }
+        }
+
+        // Store in state
+        setPoints(weekWithProfit);
       } else if (Math.floor(daysSinceFirstPick) < 366) {
         // Handle year
+
+        // Split bets by months
+        let monthWithProfit: IntervalAndProfit[] = [];
+
+        let currentMonth = null;
+        let currentMonthIndex = 0;
+
+        // Categorize bets by months and add up month profits
+        for (const { startTime, status, stake, returns } of yearBets) {
+          const profit =
+            status === "won" ? returns : status === "lost" ? stake * -1 : 0;
+
+          // Create first month record
+          if (!currentMonth) {
+            currentMonth = moment(startTime);
+          }
+
+          const monthStart = moment(currentMonth).startOf("month");
+          const monthEnd = moment(currentMonth).endOf("month");
+          const betIsCurrentMonth = moment(startTime).isBetween(
+            monthStart,
+            monthEnd
+          );
+
+          const monthLabel = monthStart.format("MMMM");
+
+          if (betIsCurrentMonth) {
+            const monthAndProfit = {
+              interval: monthLabel,
+              profit: monthWithProfit[currentMonthIndex]
+                ? monthWithProfit[currentMonthIndex].profit + profit
+                : profit,
+            };
+
+            monthWithProfit[currentMonthIndex] = monthAndProfit;
+          } else {
+            // Reset fields & create new day record
+            currentMonthIndex += 1;
+            currentMonth = currentMonth.add(1, "month");
+
+            monthWithProfit[currentMonthIndex] = {
+              interval: monthLabel,
+              profit,
+            };
+          }
+        }
+
+        // Store in state
+        setPoints(monthWithProfit);
       } else {
         // Handle anytime
+        // Worry about this when the time comes ;)
       }
     }
-
-    // If days > 9, create
-  }, [bets, weekBets]);
+  }, [bets, weekBets, monthBets, yearBets]);
 
   const graphProps = { data: points };
 
