@@ -84,7 +84,7 @@ const Projections: FC<Props> = ({
 
   return (
     <div className="h-full min-h-[50vh]">
-      <h1 className="font-Basic text-4xl md:text-5xl md:font-bold tracking-tight">
+      <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
         Where would you be if you tailed...
       </h1>
 
@@ -105,7 +105,7 @@ const Projections: FC<Props> = ({
 
       <div className="flex flex-col">
         <div className="flex flex-col items-start md:flex-row flex-wrap md:items-center">
-          <p className="font-Basic text-3xl md:font-bold tracking-tight mr-3">
+          <p className="font-Basic text-3xl font-bold tracking-tighter md:tracking-tight mr-3">
             $
             {Number(inputValue) === 0
               ? "0"
@@ -114,14 +114,14 @@ const Projections: FC<Props> = ({
           <p className="text-tertiary min-w-[33%] py-3 md:py-0 mr-2">
             bets would make you
           </p>
-          <p className="font-Basic text-3xl md:font-bold tracking-tight">
+          <p className="font-Basic text-3xl font-bold tracking-tighter md:tracking-tight">
             ${returns}
           </p>
         </div>
 
         {/* Little corn animation */}
         <div className="flex flex-row justify-start items-center pt-8 md:pt-10">
-          <p className="font-Basic text-5xl md:font-bold tracking-tight">
+          <p className="font-Basic text-5xl font-bold tracking-tighter md:tracking-tight">
             {emojiText}
           </p>
         </div>

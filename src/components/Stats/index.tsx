@@ -41,10 +41,10 @@ const Stats: FC<Props> = () => {
         {/* Right side*/}
         <div className="flex flex-col justify-center items-center w-full my-[3vw] rounded-lg bg-gray-50 p-5 md:p-8">
           <Tab.Group>
-            <Tab.List className="flex flex-row justify-start w-full">
+            <Tab.List className="flex flex-row justify-start w-full tracking-tight">
               <Tab
                 className={({ selected }) =>
-                  `${selected ? "text-primary md:font-bold" : "text-tertiary"}`
+                  `${selected ? "text-primary font-bold" : "text-tertiary"}`
                 }
               >
                 Overview
@@ -52,7 +52,7 @@ const Stats: FC<Props> = () => {
               <Tab
                 className={({ selected }) =>
                   `ml-6 ${
-                    selected ? "text-primary md:font-bold" : "text-tertiary"
+                    selected ? "text-primary font-bold" : "text-tertiary"
                   }`
                 }
               >

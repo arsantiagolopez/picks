@@ -27,17 +27,15 @@ const MobileStats: FC<Props> = ({
   lastFiveStreak,
   longestStreak,
 }) => (
-  <section className="flex md:hidden flex-col justify-around items-center py-2 md:py-4">
+  <section className="flex md:hidden flex-col justify-around items-center py-2">
     {/* Top row */}
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 1*/}
       <div className="flex flex-col">
         <p className="text-tertiary">Total Picks</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
-            {totalPicks}
-          </p>
-          <VscGraphLine className="text-xl md:text-2xl ml-2 text-green-600" />
+          <p className="font-Basic text-4xl tracking-tighter">{totalPicks}</p>
+          <VscGraphLine className="text-xl ml-2 text-green-600" />
         </div>
       </div>
 
@@ -45,10 +43,10 @@ const MobileStats: FC<Props> = ({
       <div className="flex flex-col">
         <p className="text-tertiary">Days tracked</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
+          <p className="font-Basic text-4xl tracking-tighter">
             {daysTracked ? `${daysTracked} days` : null}
           </p>
-          <BsSun className="text-xl md:text-2xl ml-2 text-yellow-500" />
+          <BsSun className="text-xl ml-2 text-yellow-500" />
         </div>
       </div>
     </div>
@@ -59,10 +57,10 @@ const MobileStats: FC<Props> = ({
       <div onClick={toggleOdds} className="flex flex-col cursor-pointer">
         <p className="text-tertiary">Avg. odds</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
+          <p className="font-Basic text-4xl tracking-tighter">
             {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
           </p>
-          <IoPricetagsOutline className="text-xl md:text-2xl ml-2 text-blue-500" />
+          <IoPricetagsOutline className="text-xl ml-2 text-blue-500" />
         </div>
       </div>
 
@@ -70,10 +68,10 @@ const MobileStats: FC<Props> = ({
       <div className="flex flex-col">
         <p className="text-tertiary">Win percentage</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
+          <p className="font-Basic text-4xl tracking-tighter">
             {winPercentage ? winPercentage : null}
           </p>
-          <AiOutlinePercentage className="text-xl md:text-2xl ml-2 text-green-500" />
+          <AiOutlinePercentage className="text-xl ml-2 text-green-500" />
         </div>
       </div>
     </div>
@@ -84,10 +82,10 @@ const MobileStats: FC<Props> = ({
       <div className="flex flex-col">
         <p className="text-tertiary">Last five</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
+          <p className="font-Basic text-4xl tracking-tighter">
             {lastFiveStreak ? lastFiveStreak : null}
           </p>
-          <RiBarChartFill className="text-2xl md:text-3xl ml-2 text-green-500" />
+          <RiBarChartFill className="text-2xl ml-2 text-green-500" />
         </div>
       </div>
 
@@ -95,10 +93,10 @@ const MobileStats: FC<Props> = ({
       <div className="flex flex-col">
         <p className="text-tertiary">Longest streak</p>
         <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl md:text-5xl tracking-tight">
+          <p className="font-Basic text-4xl tracking-tighter">
             {longestStreak ? longestStreak : null}
           </p>
-          <RiBarChartFill className="text-2xl md:text-3xl ml-2 text-blue-500" />
+          <RiBarChartFill className="text-2xl ml-2 text-blue-500" />
         </div>
       </div>
     </div>
