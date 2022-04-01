@@ -41,3 +41,26 @@ export interface UserSession {
   expires: string;
   user: UserEntity;
 }
+
+export interface IntervalAndProfit {
+  interval: string;
+  profit: number;
+}
+
+export interface BetStats {
+  wins: number;
+  losses: number;
+  pushes: number;
+  unitsWon: number;
+  unitsLost: number;
+  unitsStaked: number;
+  unitsReturned: number;
+  totalPicks: number;
+  totalProfit: number;
+  roi: number;
+  winPercentage: number;
+  daysTracked: number;
+  avgOdds: OddsEntity;
+  longestStreak: number;
+  lastFiveStreak: string;
+}

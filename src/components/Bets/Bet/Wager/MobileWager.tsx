@@ -91,7 +91,11 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
             }`}
           />
         ) : !isAdmin && status === "void" ? (
-          <GoDash className="text-2xl ml-2 text-blue-500 animate-[ping_0.5s_ease-out_1]" />
+          <GoDash
+            className={`text-2xl ml-2 animate-[ping_0.5s_ease-out_1] ${
+              isBetsColored ? "text-white" : "text-blue-500"
+            }`}
+          />
         ) : !isAdmin ? (
           <RiLoader4Line className="text-2xl animate-spin-slow" />
         ) : null}

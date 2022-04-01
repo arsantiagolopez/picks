@@ -32,6 +32,8 @@ const Dropdown: FC<Props> = ({
           ? "bg-gradient-to-br from-green-400 to-green-600"
           : isBetsColored && status === "lost"
           ? "bg-gradient-to-r from-red-400 to-red-600"
+          : isBetsColored && status === "void"
+          ? "bg-gradient-to-r from-blue-400 to-blue-600"
           : "bg-white"
       }`}
     >

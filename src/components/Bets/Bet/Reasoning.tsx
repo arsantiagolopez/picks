@@ -12,9 +12,11 @@ const Reasoning: FC<Props> = ({ bet }) => {
   const fromNow = moment().to(moment(startTime));
   const isPast = moment(startTime).isBefore();
 
-  const withBreaks = reasoning
-    ?.split("\n")
-    .map((str) => <p className="my-2 md:my-3">{str}</p>);
+  const withBreaks = reasoning?.split("\n").map((str, index) => (
+    <p key={index} className="my-2 md:my-3">
+      {str}
+    </p>
+  ));
 
   return (
     <div className="flex flex-col justify-between">
@@ -32,8 +34,8 @@ const Reasoning: FC<Props> = ({ bet }) => {
                 ? `Won ${returns.toFixed(2)}u`
                 : status === "lost"
                 ? `Lost ${stake}u`
-                : status === "push"
-                ? "Pushed."
+                : status === "void"
+                ? "Pushed"
                 : null}
             </b>
           </span>

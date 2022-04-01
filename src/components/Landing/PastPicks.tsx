@@ -9,7 +9,7 @@ interface Props {
 const PastPicks: FC<Props> = ({ isAdmin }) => {
   const { bets } = useBets({ past: true });
 
-  // Sort bets by date
+  // Sort bets by date (newest to oldest)
   const sortedBets = bets.sort((a, b) =>
     b.startTime.valueOf() > a.startTime.valueOf() ? 1 : -1
   );

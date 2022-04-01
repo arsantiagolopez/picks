@@ -1,77 +1,26 @@
 import moment from "moment";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import useSWR from "swr";
-import { useBets } from "../../utils/useBets";
+import { BetStats } from "../../types";
 
 interface Props {}
 
 const Record: FC<Props> = () => {
-  const [totalUnitsStaked, setTotalUnitsStaked] = useState<number | null>(null);
-  const [totalUnitsWon, setTotalUnitsWon] = useState<number | null>(null);
-  const [totalUnitsLost, setTotalUnitsLost] = useState<number | null>(null);
-  const [totalUnitsReturned, setTotalUnitsReturned] = useState<number | null>(
-    null
-  );
+  const { data: stats } = useSWR<BetStats>("/api/bets/stats");
 
-  const { data: record } = useSWR("/api/bets?set=record");
-
-  const { bets: pastBets } = useBets({ past: true });
-  const { bets: todaysBets } = useBets({ todays: true });
+  const {
+    wins,
+    losses,
+    pushes,
+    unitsStaked,
+    unitsWon,
+    unitsLost,
+    unitsReturned,
+    roi,
+    totalProfit,
+  } = stats || {};
 
   const today = moment().format("MMMM D, YYYY");
-
-  const wins = record && record[0];
-  const losses = record && record[1];
-  const voids = record && record[2];
-
-  const profit = Number((totalUnitsWon! - totalUnitsLost!).toFixed(2));
-
-  const roi =
-    totalUnitsStaked !== 0
-      ? Number(((profit / totalUnitsStaked!) * 100).toFixed(2))
-      : 0;
-
-  useEffect(() => {
-    if (pastBets && todaysBets) {
-      const pastGradedBets = pastBets.filter(
-        ({ status }) => status !== "pending"
-      );
-      const todaysGradedBets = todaysBets.filter(
-        ({ status }) => status !== "pending"
-      );
-
-      const all = [...pastGradedBets, ...todaysGradedBets];
-
-      const unitsStaked = all
-        .reduce((acc, { stake }) => acc + stake, 0)
-        .toFixed(2);
-      const unitsWon = all
-        .reduce(
-          (acc, { status, returns }) =>
-            status === "won" ? acc + returns : acc,
-          0
-        )
-        .toFixed(2);
-      const unitsLost = all
-        .reduce(
-          (acc, { status, stake }) => (status === "lost" ? acc + stake : acc),
-          0
-        )
-        .toFixed(2);
-      const unitsReturned = all
-        .reduce(
-          (acc, { status, stake }) =>
-            status === "won" || status === "void" ? acc + stake : acc,
-          0
-        )
-        .toFixed(2);
-
-      setTotalUnitsStaked(Number(unitsStaked));
-      setTotalUnitsWon(Number(unitsWon));
-      setTotalUnitsLost(Number(unitsLost));
-      setTotalUnitsReturned(Number(unitsReturned));
-    }
-  }, [pastBets, todaysBets]);
 
   return (
     <div className="flex flex-col justify-center items-center w-full pt-16 md:pt-20 pb-10 md:pb-12">
@@ -108,10 +57,10 @@ const Record: FC<Props> = () => {
 
         <p className="hidden md:block font-thin text-7xl md:text-9xl mx-2">-</p>
 
-        {/* Voids */}
+        {/* Pushes */}
         <div className="flex flex-col items-center justify-center">
           <p className="font-thin text-8xl md:text-9xl text-primary tracking-tighter">
-            {voids}
+            {pushes}
           </p>
           <p className="font-Times text-lg md:text-2xl text-secondary italic tracking-tight">
             pushed
@@ -127,35 +76,32 @@ const Record: FC<Props> = () => {
         <p className="font-Times text-lg text-tertiary">
           –{" "}
           <span className="text-xl text-secondary font-bold">
-            {totalUnitsStaked}
+            {unitsStaked}
           </span>{" "}
           total units staked.
         </p>
         <p className="font-Times text-lg text-tertiary">
-          –{" "}
-          <span className="text-xl text-secondary font-bold">
-            {totalUnitsWon}
-          </span>{" "}
+          – <span className="text-xl text-secondary font-bold">{unitsWon}</span>{" "}
           total units won.
         </p>
         <p className="font-Times text-lg text-tertiary">
           –{" "}
-          <span className="text-xl text-secondary font-bold">
-            {totalUnitsLost}
-          </span>{" "}
+          <span className="text-xl text-secondary font-bold">{unitsLost}</span>{" "}
           total units lost.
         </p>
         <p className="font-Times text-lg text-tertiary">
           –{" "}
           <span className="text-xl text-secondary font-bold">
-            {totalUnitsReturned}
+            {unitsReturned}
           </span>{" "}
           total units returned.
         </p>
         <p className="font-Times text-lg text-tertiary">
           –{" "}
           <span className="text-xl text-secondary font-bold">
-            {profit > 0 ? `+${profit}` : `${profit}`}
+            {totalProfit && totalProfit > 0
+              ? `+${totalProfit}`
+              : `${totalProfit}`}
           </span>{" "}
           total units profited.
         </p>

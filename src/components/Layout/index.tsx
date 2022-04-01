@@ -9,7 +9,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="flex flex-col">
       <Navigation />
-      <div className="flex flex-col pt-16 md:pt-20 min-h-screen h-screen px-5 md:px-[15%]">
+      <div className="flex flex-col pt-16 md:pt-20 min-h-screen px-5 md:px-[15%]">
         {children}
       </div>
     </div>

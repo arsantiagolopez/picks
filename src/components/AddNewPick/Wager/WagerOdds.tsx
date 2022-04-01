@@ -64,9 +64,9 @@ const WagerOdds: FC<Props> = ({ setValue, resetField, defaultOdds }) => {
     return { decimal, american };
   };
 
-  const handleChange:
-    | React.ChangeEventHandler<HTMLInputElement>
-    | undefined = ({ target }) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = ({
+    target,
+  }) => {
     const odds = target.value;
 
     setInputValue(odds);

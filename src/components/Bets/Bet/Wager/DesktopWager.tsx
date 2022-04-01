@@ -128,7 +128,11 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
             }`}
           />
         ) : status === "void" ? (
-          <GoDash className="text-2xl text-blue-500 animate-[ping_0.5s_ease-out_1]" />
+          <GoDash
+            className={`text-2xl animate-[ping_0.5s_ease-out_1] ${
+              isBetsColored ? "text-white" : "text-blue-500"
+            }`}
+          />
         ) : (
           <RiLoader4Line className="text-2xl animate-spin-slow" />
         )}

@@ -16,9 +16,17 @@ interface Props {
   tomorrows?: boolean;
   /* Get all past bets */
   past?: boolean;
+  /* Get all graded bets */
+  graded?: boolean;
 }
 
-const useBets = ({ all, todays, tomorrows, past }: Props = {}): Response => {
+const useBets = ({
+  all,
+  todays,
+  tomorrows,
+  past,
+  graded,
+}: Props = {}): Response => {
   const [bets, setBets] = useState<BetEntity[]>([]);
   const [query, setQuery] = useState<string | null>(null);
 
@@ -37,6 +45,7 @@ const useBets = ({ all, todays, tomorrows, past }: Props = {}): Response => {
     if (todays) setQuery("todays");
     if (tomorrows) setQuery("tomorrows");
     if (past) setQuery("past");
+    if (graded) setQuery("graded");
   }, []);
 
   return { bets, setBets };

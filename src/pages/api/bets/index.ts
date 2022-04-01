@@ -17,7 +17,13 @@ const getAllBets = async (
   res: NextApiResponse
 ): Promise<BetEntity[] | void> => {
   try {
-    const bets = await Bet.find();
+    let bets: BetEntity[] = await Bet.find();
+
+    // Sort bets by date (newest to oldest)
+    bets.sort((a, b) =>
+      b.startTime.valueOf() > a.startTime.valueOf() ? 1 : -1
+    );
+
     return res.status(200).json(bets);
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -92,11 +98,42 @@ const getPastBets = async (
   const today = moment().utcOffset(-5).startOf("day");
 
   try {
-    const bets = await Bet.find({
+    let bets = await Bet.find({
       startTime: {
         $lte: moment(today).toDate(),
       },
     });
+
+    // Sort bets by date (newest to oldest)
+    bets.sort((a, b) =>
+      b.startTime.valueOf() > a.startTime.valueOf() ? 1 : -1
+    );
+
+    return res.status(200).json(bets);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+
+/**
+ * Get all graded bets.
+ * @param {object} req - http request.
+ * @param {object} res - http response.
+ * @param {string} userId - User ID.
+ * @returns an array of objects of all user's graded bets.
+ */
+const getGradedBets = async (
+  _: NextApiRequest,
+  res: NextApiResponse
+): Promise<BetEntity[] | void> => {
+  try {
+    let bets: BetEntity[] = await Bet.find({ status: { $ne: "pending" } });
+
+    // Sort bets by date (newest to oldest)
+    bets.sort((a, b) =>
+      b.startTime.valueOf() > a.startTime.valueOf() ? 1 : -1
+    );
+
     return res.status(200).json(bets);
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -117,9 +154,15 @@ const getRecord = async (
   try {
     const bets = await Bet.find({ status: { $ne: "pending" } });
 
-    const wins = bets.filter(({ status }) => status === "won").length;
-    const losses = bets.filter(({ status }) => status === "lost").length;
-    const voids = bets.filter(({ status }) => status === "void").length;
+    let wins = 0;
+    let losses = 0;
+    let voids = 0;
+
+    for (const { status } of bets) {
+      if (status === "won") wins++;
+      if (status === "lost") losses++;
+      if (status === "void") voids++;
+    }
 
     return res.status(200).json([wins, losses, voids]);
   } catch (error) {
@@ -181,6 +224,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           return getPastBets(req, res);
         case "all":
           return getAllBets(req, res);
+        case "graded":
+          return getGradedBets(req, res);
         case "record":
           return getRecord(req, res);
         default:
