@@ -31,7 +31,7 @@ const MobileStats: FC<Props> = ({
     {/* Top row */}
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 1*/}
-      <div className="flex flex-col">
+      <div className="flex flex-col text-left">
         <p className="text-tertiary">Total Picks</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">{totalPicks}</p>
@@ -40,7 +40,7 @@ const MobileStats: FC<Props> = ({
       </div>
 
       {/* Stat 2*/}
-      <div className="flex flex-col">
+      <div className="flex flex-col text-right">
         <p className="text-tertiary">Days tracked</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
@@ -54,18 +54,7 @@ const MobileStats: FC<Props> = ({
     {/* Middle row */}
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 3*/}
-      <div onClick={toggleOdds} className="flex flex-col cursor-pointer">
-        <p className="text-tertiary">Avg. odds</p>
-        <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl tracking-tighter">
-            {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
-          </p>
-          <IoPricetagsOutline className="text-xl ml-2 text-blue-500" />
-        </div>
-      </div>
-
-      {/* Stat 4 */}
-      <div className="flex flex-col">
+      <div className="flex flex-col text-left">
         <p className="text-tertiary">Win percentage</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
@@ -74,29 +63,43 @@ const MobileStats: FC<Props> = ({
           <AiOutlinePercentage className="text-xl ml-2 text-green-500" />
         </div>
       </div>
+
+      {/* Stat 4 */}
+      <div
+        onClick={toggleOdds}
+        className="flex flex-col cursor-pointer text-right"
+      >
+        <p className="text-tertiary">Avg. odds</p>
+        <div className="flex flex-row items-baseline">
+          <p className="font-Basic text-4xl tracking-tighter">
+            {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
+          </p>
+          <IoPricetagsOutline className="text-xl ml-2 text-blue-500" />
+        </div>
+      </div>
     </div>
 
     {/* Bottom row */}
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 5 */}
-      <div className="flex flex-col">
-        <p className="text-tertiary">Last five</p>
-        <div className="flex flex-row items-baseline">
-          <p className="font-Basic text-4xl tracking-tighter">
-            {lastFiveStreak ? lastFiveStreak : null}
-          </p>
-          <RiBarChartFill className="text-2xl ml-2 text-green-500" />
-        </div>
-      </div>
-
-      {/* Stat 6 */}
-      <div className="flex flex-col">
+      <div className="flex flex-col text-left">
         <p className="text-tertiary">Longest streak</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {longestStreak ? longestStreak : null}
           </p>
           <RiBarChartFill className="text-2xl ml-2 text-blue-500" />
+        </div>
+      </div>
+
+      {/* Stat 6 */}
+      <div className="flex flex-col text-right">
+        <p className="text-tertiary">Last five</p>
+        <div className="flex flex-row items-baseline">
+          <p className="font-Basic text-4xl tracking-tighter">
+            {lastFiveStreak ? lastFiveStreak : null}
+          </p>
+          <RiBarChartFill className="text-2xl ml-2 text-green-500" />
         </div>
       </div>
     </div>

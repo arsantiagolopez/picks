@@ -12,7 +12,7 @@ const IntervalSelect: FC<Props> = ({ options, selected, handleSelect }) => (
   <Listbox value={selected} onChange={handleSelect}>
     {() => (
       <div className="z-40 relative flex items-center font-Basic">
-        <Listbox.Button className="w-20 p-2 md:p-3 mx-3 md:mx-4 text-center text-primary bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black">
+        <Listbox.Button className="w-20 p-2 md:p-3 mx-3 md:mx-4 text-center text-primary bg-white rounded-lg focus:outline-black">
           {selected.toLowerCase()}
         </Listbox.Button>
         <Transition

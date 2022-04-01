@@ -79,22 +79,22 @@ const DesktopStats: FC<Props> = ({
 
       {/* Stat 5 */}
       <div className="flex flex-col">
-        <p className="text-tertiary">Last five</p>
-        <div className="flex flex-row items-baseline">
-          <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tighter">
-            {lastFiveStreak ? lastFiveStreak : null}
-          </p>
-        </div>
-      </div>
-
-      {/* Stat 6 */}
-      <div className="flex flex-col">
         <p className="text-tertiary">Longest streak</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {longestStreak ? longestStreak : null}
           </p>
           <RiBarChartFill className="text-2xl md:text-3xl ml-2 text-blue-500" />
+        </div>
+      </div>
+
+      {/* Stat 6 */}
+      <div className="flex flex-col">
+        <p className="text-tertiary">Last five</p>
+        <div className="flex flex-row items-baseline">
+          <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tighter">
+            {lastFiveStreak ? lastFiveStreak : null}
+          </p>
         </div>
       </div>
     </div>

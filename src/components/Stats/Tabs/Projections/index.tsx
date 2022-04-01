@@ -43,11 +43,11 @@ const Projections: FC<Props> = ({
 
     if (isZero) return "❓ + 🌽 = ⁉️";
     if (isSmall) return "💵 + 🌽 = 💵";
-    if (isMid) return "💵 + 🌽 = 💵💵";
-    if (isLarge) return "💵 + 🌽 = 💵💵💵";
-    if (isMillionaire) return "💵 + 🌽 = 💵🏎️";
-    if (isBillionaire) return "💵💵 + 🌽 = 🏎️🏠";
-    if (isGod) return "💵💵 + 🌽 = 🏎️🏠💁‍♀️";
+    if (isMid) return "💵 + 🌽 = 💵 💵";
+    if (isLarge) return "💵 + 🌽 = 💵 💵 💵";
+    if (isMillionaire) return "💵 + 🌽 = 💵 🏎️";
+    if (isBillionaire) return "💵 + 🌽 = 💵 🏎️ 🏠";
+    if (isGod) return "💵 + 🌽 = 💵 🏎️ 🏠 💁‍♀️";
     else return "";
   };
 
@@ -85,27 +85,30 @@ const Projections: FC<Props> = ({
   return (
     <div className="h-full min-h-[50vh]">
       <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
-        Where would you be if you tailed...
+        How much you&apos;d have by now if you tailed...
       </h1>
 
       <div className="flex flex-row justify-start items-center py-2">
+        {/* Interval select */}
         <div className="flex flex-row items-center py-6 md:py-12 text-tertiary">
           <p>a</p>
           <IntervalSelect {...intervalSelectProps} />
           <p className="min-w-[50%]">ago with</p>
         </div>
+        {/* Stake */}
         <input
           value={inputValue}
           onChange={handleChange}
           type="number"
           max={1000}
-          className="w-20 p-2 md:p-3 ml-3 md:mx-4 font-Basic text-center bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black"
+          className="w-20 p-2 md:p-3 ml-3 md:mx-4 font-Basic text-center bg-white rounded-lg focus:outline-black"
         />
       </div>
 
       <div className="flex flex-col">
         <div className="flex flex-col items-start md:flex-row flex-wrap md:items-center">
-          <p className="font-Basic text-3xl font-bold tracking-tighter md:tracking-tight mr-3">
+          {/* Stake */}
+          <p className="font-Basic text-3xl md:text-4xl font-bold tracking-tighter md:tracking-tight mr-3">
             $
             {Number(inputValue) === 0
               ? "0"
@@ -114,7 +117,8 @@ const Projections: FC<Props> = ({
           <p className="text-tertiary min-w-[33%] py-3 md:py-0 mr-2">
             bets would make you
           </p>
-          <p className="font-Basic text-3xl font-bold tracking-tighter md:tracking-tight">
+          {/* Returns */}
+          <p className="font-Basic text-3xl md:text-4xl font-bold tracking-tighter md:tracking-tight">
             ${returns}
           </p>
         </div>

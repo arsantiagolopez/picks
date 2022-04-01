@@ -37,7 +37,7 @@ const CustomTooltip = ({
   value,
   indexValue,
 }: PropsWithChildren<BarTooltipProps<BarDatum>>) => (
-  <div className="backdrop-brightness-175 backdrop-blur-lg px-2 py-1.5 rounded-sm text-gray-200 text-xs">
+  <div className="backdrop-brightness-150 bg-[rgba(255,255,255,0.2)] backdrop-blur-lg px-2 py-1.5 rounded-md text-gray-700 text-xs">
     {indexValue} (
     {`${value && value > 0 ? `+${value?.toFixed(2)}` : value?.toFixed(2)}u`})
   </div>

@@ -41,7 +41,7 @@ const IntervalSelect: FC<Props> = ({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute top-24 md:top-36 left-0 overflow-auto text-base bg-white rounded-t-none rounded-b-md shadow-xl focus:outline-none sm:text-sm w-full">
+          <Listbox.Options className="absolute top-36 md:top-36 left-0 overflow-auto text-base bg-white rounded-t-none rounded-b-md shadow-xl focus:outline-none sm:text-sm w-full">
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} className="">
                 {({ selected }) => (

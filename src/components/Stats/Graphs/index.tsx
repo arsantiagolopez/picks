@@ -84,7 +84,7 @@ const Graphs: FC<Props> = ({
   };
 
   return (
-    <div className="flex flex-col w-full h-[65vh] md:h-[75vh]">
+    <div className="flex flex-col w-full h-[65vh] md:h-[75vh] overflow-hidden md:overflow-auto">
       {/* Graph tabs */}
       <IntervalSelect {...intervalSelectProps} />
 
