@@ -35,7 +35,7 @@ const Overview: FC<Props> = ({ stats }) => {
 
   return (
     <div>
-      <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
+      <h1 className="font-Basic text-4xl md:text-5xl md:font-bold tracking-tighter md:tracking-tight">
         It&apos;s always 🌽 season
       </h1>
 
