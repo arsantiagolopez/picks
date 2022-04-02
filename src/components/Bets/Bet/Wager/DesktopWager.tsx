@@ -45,16 +45,19 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       }`}
     >
       {/* Tournament */}
-      <div className="flex flex-row justify-between items-center w-[20%]">
+      <div className="flex flex-row justify-between items-center lg:w-[20%] pr-4 lg:pr-0">
         <p className="text-2xl">{getSportEmoji(sport)}</p>
         {tournament ? (
-          <img src={getTournamentLogoSrc(tournament)} className="h-7 px-6" />
+          <img
+            src={getTournamentLogoSrc(tournament)}
+            className="hidden xl:block h-7 px-6"
+          />
         ) : (
-          <div className="min-w-[3.5rem]">
+          <div className="hidden xl:block min-w-[3.5rem]">
             <p className="capitalize">{sport}</p>
           </div>
         )}
-        <p className="text-sm text-secondary">
+        <p className="hidden lg:block text-sm text-secondary">
           {date}{" "}
           <span
             className={`hidden md:block text-xs italic self-end ${

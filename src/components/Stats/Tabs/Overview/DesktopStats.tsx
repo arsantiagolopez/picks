@@ -27,7 +27,7 @@ const DesktopStats: FC<Props> = ({
   lastFiveStreak,
   longestStreak,
 }) => (
-  <section className="hidden md:flex flex-col justify-between items-center py-2 md:py-4">
+  <section className="hidden lg:flex flex-col justify-between items-center py-2 md:py-4">
     {/* Top row */}
     <div className="flex flex-row justify-between items-center w-full py-4">
       {/* Stat 1*/}

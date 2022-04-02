@@ -7,7 +7,6 @@ interface Props {
   bets: BetEntity[];
   yearBets: BetEntity[];
   setYearBets: Dispatch<SetStateAction<BetEntity[]>>;
-  setProfit: Dispatch<SetStateAction<number>>;
   setMonthsTracked: Dispatch<SetStateAction<number>>;
   setYearProfit: Dispatch<SetStateAction<number>>;
 }
@@ -21,7 +20,6 @@ const YearGraph: FC<Props> = ({
   bets,
   yearBets,
   setYearBets,
-  setProfit,
   setMonthsTracked,
   setYearProfit,
 }) => {
@@ -66,7 +64,7 @@ const YearGraph: FC<Props> = ({
           0
         )
         .toFixed(2);
-      setProfit(Number(yearProfit));
+
       setYearProfit(Number(yearProfit));
     }
   }, [yearBets]);
@@ -77,45 +75,45 @@ const YearGraph: FC<Props> = ({
       // Split bets by months
       let monthWithProfit: IntervalAndProfit[] = [];
 
-      let currentMonth = null;
+      // Track months array
       let currentMonthIndex = 0;
 
-      // Categorize bets by months and add up month profits
-      for (const { startTime, status, stake, returns } of yearBets) {
-        const profit =
-          status === "won" ? returns : status === "lost" ? stake * -1 : 0;
+      for (const [
+        index,
+        { startTime, status, stake, returns },
+      ] of yearBets.entries()) {
+        // Get bet month & last bet month
+        const monthStart = moment(startTime).startOf("month");
+        const monthEnd = moment(startTime).endOf("month");
+        const monthLabel = monthStart.format("MMMM");
 
-        // Create first month record
-        if (!currentMonth) {
-          currentMonth = moment(startTime);
-        }
-
-        const monthStart = moment(currentMonth).startOf("month");
-        const monthEnd = moment(currentMonth).endOf("month");
-        const betIsCurrentMonth = moment(startTime).isBetween(
+        const lastBetDate = yearBets[index - 1]?.startTime;
+        const isLastBetWithinCurrentMonth = moment(lastBetDate).isBetween(
           monthStart,
           monthEnd
         );
 
-        const monthLabel = monthStart.format("MMMM");
+        // Get bet profit
+        const profit =
+          status === "won" ? returns : status === "lost" ? stake * -1 : 0;
 
-        if (betIsCurrentMonth) {
-          const monthAndProfit = {
-            interval: monthLabel,
-            profit: monthWithProfit[currentMonthIndex]
-              ? monthWithProfit[currentMonthIndex].profit + profit
-              : profit,
-          };
-
-          monthWithProfit[currentMonthIndex] = monthAndProfit;
-        } else {
-          // Reset fields & create new day record
-          currentMonthIndex += 1;
-          currentMonth = currentMonth.add(1, "month");
-
+        // Create first month entry
+        if (index === 0) {
           monthWithProfit[currentMonthIndex] = {
             interval: monthLabel,
             profit,
+          };
+        }
+        // New month: Create new entry
+        else if (!isLastBetWithinCurrentMonth) {
+          currentMonthIndex++;
+          monthWithProfit[currentMonthIndex] = { interval: monthLabel, profit };
+        }
+        // Same day: Add up profits
+        else {
+          monthWithProfit[currentMonthIndex] = {
+            interval: monthLabel,
+            profit: monthWithProfit[currentMonthIndex].profit + profit,
           };
         }
       }

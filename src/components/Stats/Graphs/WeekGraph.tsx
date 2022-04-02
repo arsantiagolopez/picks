@@ -7,7 +7,6 @@ interface Props {
   bets: BetEntity[];
   weekBets: BetEntity[];
   setWeekBets: Dispatch<SetStateAction<BetEntity[]>>;
-  setProfit: Dispatch<SetStateAction<number>>;
   setWeekProfit: Dispatch<SetStateAction<number>>;
 }
 
@@ -20,7 +19,6 @@ const WeekGraph: FC<Props> = ({
   bets,
   weekBets,
   setWeekBets,
-  setProfit,
   setWeekProfit,
 }) => {
   const [points, setPoints] = useState<IntervalAndProfit[]>([]);
@@ -36,11 +34,11 @@ const WeekGraph: FC<Props> = ({
       // Get all graded bets between today and last week
       const lastWeekDate = moment(bets[0].startTime).subtract(1, "week");
       const today = moment(bets[0].startTime);
-      const startOfLastWeek = lastWeekDate.startOf("day");
+      const endOfLastWeek = lastWeekDate.endOf("day");
       const endOfToday = today.endOf("day");
 
       const gradedBetsSinceLastWeek = bets.filter(({ startTime }) =>
-        moment(startTime).isBetween(startOfLastWeek, endOfToday)
+        moment(startTime).isBetween(endOfLastWeek, endOfToday)
       );
 
       // Store bets from oldest to newest
@@ -65,7 +63,6 @@ const WeekGraph: FC<Props> = ({
         )
         .toFixed(2);
 
-      setProfit(Number(weekProfit));
       setWeekProfit(Number(weekProfit));
     }
   }, [weekBets]);
@@ -76,41 +73,40 @@ const WeekGraph: FC<Props> = ({
       // Split bets by days
       let daysWithProfit: IntervalAndProfit[] = [];
 
-      let currentDay = null;
+      // Track days array
       let currentDayIndex = 0;
 
-      // Categorize bets by days and add up day profits
-      for (const { startTime, status, stake, returns } of weekBets) {
+      for (const [
+        index,
+        { startTime, status, stake, returns },
+      ] of weekBets.entries()) {
+        // Get bet day & last bet day
+        const dayName = moment(startTime).format("ddd, MMM Do");
+        const lastBetDayName = moment(weekBets[index - 1]?.startTime).format(
+          "ddd, MMM Do"
+        );
+
+        // Get bet profit
         const profit =
           status === "won" ? returns : status === "lost" ? stake * -1 : 0;
 
-        // Create first day record
-        if (!currentDay) {
-          currentDay = moment(startTime);
-        }
-
-        const dayName = moment(currentDay).format("ddd, MMM Do");
-        const dayStart = moment(currentDay).startOf("day");
-        const dayEnd = moment(currentDay).endOf("day");
-        const betIsCurrentDay = moment(startTime).isBetween(dayStart, dayEnd);
-
-        if (betIsCurrentDay) {
-          const dayAndProfit = {
-            interval: dayName,
-            profit: daysWithProfit[currentDayIndex]
-              ? daysWithProfit[currentDayIndex].profit + profit
-              : profit,
-          };
-
-          daysWithProfit[currentDayIndex] = dayAndProfit;
-        } else {
-          // Reset fields & create new day record
-          currentDayIndex += 1;
-          currentDay = currentDay.add(1, "day");
-
+        // Create first day entry
+        if (index === 0) {
           daysWithProfit[currentDayIndex] = {
-            interval: currentDay.format("ddd"),
+            interval: dayName,
             profit,
+          };
+        }
+        // New day: Create new entry
+        else if (dayName !== lastBetDayName) {
+          currentDayIndex++;
+          daysWithProfit[currentDayIndex] = { interval: dayName, profit };
+        }
+        // Same day: Add up profits
+        else {
+          daysWithProfit[currentDayIndex] = {
+            interval: dayName,
+            profit: daysWithProfit[currentDayIndex].profit + profit,
           };
         }
       }

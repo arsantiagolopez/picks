@@ -14,21 +14,28 @@ import { WeekGraph } from "./WeekGraph";
 import { YearGraph } from "./YearGraph";
 
 interface Props {
+  weekProfit: number;
   setWeekProfit: Dispatch<SetStateAction<number>>;
+  monthProfit: number;
   setMonthProfit: Dispatch<SetStateAction<number>>;
+  yearProfit: number;
   setYearProfit: Dispatch<SetStateAction<number>>;
+  allProfit: number;
   setAllProfit: Dispatch<SetStateAction<number>>;
 }
 
 const Graphs: FC<Props> = ({
+  weekProfit,
   setWeekProfit,
+  monthProfit,
   setMonthProfit,
+  yearProfit,
   setYearProfit,
+  allProfit,
   setAllProfit,
 }) => {
   const [selected, setSelected] = useState<string>("All time");
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [profit, setProfit] = useState<number>(0);
   const [weekBets, setWeekBets] = useState<BetEntity[]>([]);
   const [monthBets, setMonthBets] = useState<BetEntity[]>([]);
   const [yearBets, setYearBets] = useState<BetEntity[]>([]);
@@ -42,6 +49,17 @@ const Graphs: FC<Props> = ({
     "Last 31 days",
     "This year",
   ];
+
+  const profit =
+    selectedIndex === 0
+      ? allProfit
+      : selectedIndex === 1
+      ? weekProfit
+      : selectedIndex === 2
+      ? monthProfit
+      : selectedIndex === 3
+      ? yearProfit
+      : 0;
 
   const handleSelect = (option: string) => setSelected(option);
 
@@ -57,34 +75,30 @@ const Graphs: FC<Props> = ({
     weekBets,
     monthBets,
     yearBets,
-    setProfit,
     setAllProfit,
   };
   const weekGraphProps = {
     bets,
     weekBets,
     setWeekBets,
-    setProfit,
     setWeekProfit,
   };
   const monthGraphProps = {
     bets,
     monthBets,
     setMonthBets,
-    setProfit,
     setMonthProfit,
   };
   const yearGraphProps = {
     bets,
     yearBets,
     setYearBets,
-    setProfit,
     setMonthsTracked,
     setYearProfit,
   };
 
   return (
-    <div className="flex flex-col w-full h-[65vh] md:h-[75vh] overflow-hidden md:overflow-auto">
+    <div className="flex flex-col w-full h-[65vh] md:h-[75vh] overflow-hidden md:overflow-visible">
       {/* Graph tabs */}
       <IntervalSelect {...intervalSelectProps} />
 
@@ -119,10 +133,8 @@ const Graphs: FC<Props> = ({
               : monthsTracked > 5
               ? "w-3/4"
               : monthsTracked > 3
-              ? "w-1/2"
-              : monthsTracked > 1
               ? "w-1/3"
-              : "w-1/3"
+              : "w-1/2"
           }`}
         >
           <YearGraph {...yearGraphProps} />
@@ -133,7 +145,6 @@ const Graphs: FC<Props> = ({
 };
 
 export * from "./AllGraph";
-export * from "./DayGraph";
 export * from "./MonthGraph";
 export * from "./WeekGraph";
 export * from "./YearGraph";

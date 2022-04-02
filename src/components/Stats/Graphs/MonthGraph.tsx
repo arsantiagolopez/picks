@@ -7,7 +7,6 @@ interface Props {
   bets: BetEntity[];
   monthBets: BetEntity[];
   setMonthBets: Dispatch<SetStateAction<BetEntity[]>>;
-  setProfit: Dispatch<SetStateAction<number>>;
   setMonthProfit: Dispatch<SetStateAction<number>>;
 }
 
@@ -20,7 +19,6 @@ const MonthGraph: FC<Props> = ({
   bets,
   monthBets,
   setMonthBets,
-  setProfit,
   setMonthProfit,
 }) => {
   const [points, setPoints] = useState<IntervalAndProfit[]>([]);
@@ -65,7 +63,6 @@ const MonthGraph: FC<Props> = ({
         )
         .toFixed(2);
 
-      setProfit(Number(monthProfit));
       setMonthProfit(Number(monthProfit));
     }
   }, [monthBets]);
@@ -76,47 +73,47 @@ const MonthGraph: FC<Props> = ({
       // Split bets by weeks
       let weekWithProfit: IntervalAndProfit[] = [];
 
-      let currentWeek = null;
+      // Track weeks array
       let currentWeekIndex = 0;
 
-      // Categorize bets by weeks and add up week profits
-      for (const { startTime, status, stake, returns } of monthBets) {
-        const profit =
-          status === "won" ? returns : status === "lost" ? stake * -1 : 0;
-
-        // Create first week record
-        if (!currentWeek) {
-          currentWeek = moment(startTime);
-        }
-
-        const weekStart = moment(currentWeek).startOf("week");
-        const weekEnd = moment(currentWeek).endOf("week");
-        const betIsCurrentWeek = moment(startTime).isBetween(
-          weekStart,
-          weekEnd
-        );
-
+      for (const [
+        index,
+        { startTime, status, stake, returns },
+      ] of monthBets.entries()) {
+        // Get bet week & last bet week
+        const weekStart = moment(startTime).startOf("week");
+        const weekEnd = moment(startTime).endOf("week");
         const weekLabel = `${weekStart.format("MMM Do")} - ${weekEnd.format(
           "MMM Do"
         )}`;
 
-        if (betIsCurrentWeek) {
-          const weekAndProfit = {
-            interval: weekLabel,
-            profit: weekWithProfit[currentWeekIndex]
-              ? weekWithProfit[currentWeekIndex].profit + profit
-              : profit,
-          };
+        const lastBetDate = monthBets[index - 1]?.startTime;
+        const isLastBetWithinCurrentWeek = moment(lastBetDate).isBetween(
+          weekStart,
+          weekEnd
+        );
 
-          weekWithProfit[currentWeekIndex] = weekAndProfit;
-        } else {
-          // Reset fields & create new week record
-          currentWeekIndex += 1;
-          currentWeek = currentWeek.add(1, "week");
+        // Get bet profit
+        const profit =
+          status === "won" ? returns : status === "lost" ? stake * -1 : 0;
 
+        // Create first week entry
+        if (index === 0) {
           weekWithProfit[currentWeekIndex] = {
             interval: weekLabel,
             profit,
+          };
+        }
+        // New week: Create new entry
+        else if (!isLastBetWithinCurrentWeek) {
+          currentWeekIndex++;
+          weekWithProfit[currentWeekIndex] = { interval: weekLabel, profit };
+        }
+        // Same day: Add up profits
+        else {
+          weekWithProfit[currentWeekIndex] = {
+            interval: weekLabel,
+            profit: weekWithProfit[currentWeekIndex].profit + profit,
           };
         }
       }

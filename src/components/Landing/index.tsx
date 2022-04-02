@@ -1,4 +1,3 @@
-import moment from "moment-timezone";
 import { useSession } from "next-auth/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
@@ -22,15 +21,16 @@ const Landing: FC<Props> = () => {
 
   const { potdReleaseTime } = useContext(PreferencesContext);
 
-  const currentCentralizedTime = moment()
-    .tz("America/Chicago")
-    .format("h:mm A");
+  // const currentCentralizedTime = moment()
+  //   .tz("America/Chicago")
+  //   .format("h:mm A");
 
-  const isPastPotdReleastTime = moment(currentCentralizedTime).isSameOrAfter(
-    moment(potdReleaseTime, "h:mm A")
-  );
+  // const isPastPotdReleastTime = moment(currentCentralizedTime).isSameOrAfter(
+  //   moment(potdReleaseTime, "h:mm A")
+  // );
 
-  const isTomorrowsPicksVisible = isPastPotdReleastTime;
+  // const isTomorrowsPicksVisible = isPastPotdReleastTime;
+  const isTomorrowsPicksVisible = false;
 
   const isAdmin = user ? user?.isAdmin : false;
 

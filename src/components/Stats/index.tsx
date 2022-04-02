@@ -16,9 +16,13 @@ const Stats: FC<Props> = () => {
   const { data: stats } = useSWR("/api/bets/stats");
 
   const graphsProps = {
+    weekProfit,
     setWeekProfit,
+    monthProfit,
     setMonthProfit,
+    yearProfit,
     setYearProfit,
+    allProfit,
     setAllProfit,
   };
   const overviewProps = { stats };

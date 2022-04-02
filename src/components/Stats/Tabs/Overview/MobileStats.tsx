@@ -27,7 +27,7 @@ const MobileStats: FC<Props> = ({
   lastFiveStreak,
   longestStreak,
 }) => (
-  <section className="flex md:hidden flex-col justify-around items-center py-2">
+  <section className="flex lg:hidden flex-col justify-around items-center py-2">
     {/* Top row */}
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 1*/}
