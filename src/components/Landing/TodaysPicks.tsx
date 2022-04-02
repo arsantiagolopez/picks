@@ -56,7 +56,7 @@ const TodaysPicks: FC<Props> = ({
           Today&apos;s Picks
         </h1>
         {!isTomorrowsPicksVisible && (
-          <p className="text-tertiary text-sm pt-4">
+          <p className="font-Times italic tracking-tight text-tertiary pt-4">
             Picks released everyday at {potdReleaseTime}
           </p>
         )}

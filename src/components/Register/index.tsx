@@ -18,7 +18,7 @@ const Register: FC<Props> = ({ providers }) => {
     Object.values(providers).filter(({ type }) => type !== "email");
 
   return (
-    <div className="flex flex-col h-full items-center justify-center">
+    <div className="flex flex-col min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)] items-center justify-center">
       <h1 className="font-Basic text-3xl tracking-tight py-6">
         Create an account.
       </h1>

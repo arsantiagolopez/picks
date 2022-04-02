@@ -1,3 +1,4 @@
+import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { User } from "../../../models/User";
@@ -34,6 +35,14 @@ const updateMyUser = async (
   res: NextApiResponse,
   userId: string
 ) => {
+  let { potdReleaseTime } = body;
+
+  if (potdReleaseTime) {
+    // Store date in UTC format
+    potdReleaseTime = moment.utc(potdReleaseTime).toDate();
+    body.potdReleastTime = potdReleaseTime;
+  }
+
   try {
     const user = await User.findByIdAndUpdate(userId, body);
     return res.status(200).json(user);
