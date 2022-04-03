@@ -4,6 +4,7 @@ import React, { FC, useState } from "react";
 import { UserSession } from "../../types";
 import { Logo } from "../Logo";
 import { SignOutAlert } from "../SignOutAlert";
+import { ToggleColorMode } from "../ToggleColorMode";
 import { MobileMenu } from "./MobileMenu";
 
 interface Props {
@@ -38,7 +39,9 @@ const Authenticated: FC<Props> = ({ session }) => {
   return (
     <div
       className={`fixed z-50 flex items-center justify-between h-16 md:h-20 w-screen transition-all duration-200 ease-in-out px-6 md:px-[15%] ${
-        isMenuOpen ? "bg-none" : "bg-white shadow-lg shadow-gray-100"
+        isMenuOpen
+          ? "bg-none"
+          : "bg-white shadow-lg shadow-gray-100 dark:bg-primary"
       }`}
     >
       {/* Left */}
@@ -111,16 +114,21 @@ const Authenticated: FC<Props> = ({ session }) => {
         </button>
 
         <div className="hidden md:flex flex-row h-full items-center">
+          {/* Greeting */}
           <p className="font-Basic tracking-tight self-center pr-2 md:pr-4">
             Hi, {user?.name}!
           </p>
 
+          {/* Sign out */}
           <button
             onClick={handleSignOut}
             className="font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary"
           >
             Sign out
           </button>
+
+          {/* Color mode */}
+          <ToggleColorMode />
         </div>
       </div>
 

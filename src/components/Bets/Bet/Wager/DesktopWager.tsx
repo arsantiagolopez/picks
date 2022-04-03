@@ -54,13 +54,13 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
           />
         ) : (
           <div className="hidden xl:block min-w-[3.5rem]">
-            <p className="capitalize">{sport}</p>
+            <p className="capitalize dark:text-white">{sport}</p>
           </div>
         )}
-        <p className="hidden lg:block text-sm text-secondary">
+        <p className="hidden lg:block text-sm text-secondary dark:text-white">
           {date}{" "}
           <span
-            className={`hidden md:block text-xs italic self-end ${
+            className={`hidden md:block text-xs italic self-end dark:text-white ${
               isBetsColored ? "text-black" : "text-tertiary"
             }`}
           >
@@ -72,7 +72,7 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       {/* Event */}
       {home && away && (
         <div
-          className={`flex flex-row ${
+          className={`flex flex-row dark:text-white ${
             isBetsColored ? "text-black" : "text-tertiary"
           }`}
         >
@@ -84,25 +84,28 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
 
       {/* Pick */}
       <div
-        className={`flex flex-row ${
+        className={`flex flex-row dark:text-white ${
           isBetsColored ? "text-black" : "text-tertiary"
         }`}
       >
         <p>
-          Pick: <span className="text-primary font-semibold">{wager}</span>
+          Pick:{" "}
+          <span className="text-primary font-semibold dark:text-white">
+            {wager}
+          </span>
         </p>
       </div>
 
       {/* Odds */}
       <div
         onClick={handleClick}
-        className={`flex flex-row italic hover:font-semibold ${
+        className={`flex flex-row italic hover:font-semibold dark:text-white ${
           isBetsColored ? "text-black" : "text-tertiary"
         }`}
       >
         <p>
           @{" "}
-          <span className="text-primary font-semibold">
+          <span className="text-primary font-semibold dark:text-white">
             {oddsFormat === "decimal"
               ? odds.decimal
               : `${odds.american > 0 ? `+${odds.american}` : odds.american}`}
@@ -112,12 +115,19 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       </div>
 
       {/* Units */}
-      <p className={`italic ${isBetsColored ? "text-black" : "text-tertiary"}`}>
-        for <span className="text-primary font-semibold">{stake}u</span>
+      <p
+        className={`italic dark:text-white ${
+          isBetsColored ? "text-black" : "text-tertiary"
+        }`}
+      >
+        for{" "}
+        <span className="text-primary font-semibold dark:text-white">
+          {stake}u
+        </span>
       </p>
 
       {/* Status */}
-      <div className="flex flex-row text-primary italic">
+      <div className="flex flex-row text-primary italic dark:text-white">
         {status === "won" ? (
           <CgCheck
             className={`text-3xl animate-[ping_0.5s_ease-out_1] ${

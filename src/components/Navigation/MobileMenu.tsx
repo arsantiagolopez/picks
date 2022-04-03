@@ -1,8 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import React, { Dispatch, FC, Fragment, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useContext,
+} from "react";
 import { IoCloseSharp, IoMenuSharp } from "react-icons/io5";
+import { PreferencesContext } from "../../context/PreferencesContext";
 
 interface Props {
   isMenuOpen: boolean;
@@ -11,14 +18,16 @@ interface Props {
 }
 
 const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
+  const { colorMode } = useContext(PreferencesContext);
+
   const handleSignOut = () => signOut();
 
   return (
     <>
       {isMenuOpen ? (
-        <IoCloseSharp className="z-50" />
+        <IoCloseSharp className="z-50 text-primary dark:text-white" />
       ) : (
-        <IoMenuSharp className="z-50" />
+        <IoMenuSharp className="z-50 text-primary dark:text-white" />
       )}
 
       <Transition appear show={isMenuOpen} as={Fragment}>
@@ -48,7 +57,11 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="z-50 flex flex-col items-start w-full h-screen p-4 pt-28 pb-20 text-left transition-all transform font-Basic tracking-tight text-3xl leading-loose text-secondary">
+              <div
+                className={`z-50 flex flex-col items-start w-full h-screen p-4 pt-28 pb-20 text-left transition-all transform font-Basic tracking-tight text-3xl leading-loose ${
+                  colorMode === "dark" ? "text-white" : "text-primary"
+                }`}
+              >
                 <Link href="/">
                   <button>Picks</button>
                 </Link>

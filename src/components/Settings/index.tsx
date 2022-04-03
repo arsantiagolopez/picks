@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { SelectBetColors } from "./SelectBetColors";
+import { SelectColorMode } from "./SelectColorMode";
 import { SelectPotdTime } from "./SelectPotdTime";
 
 interface Props {}
@@ -12,6 +13,7 @@ const Settings: FC<Props> = () => {
       </h1>
       <SelectPotdTime />
       <SelectBetColors />
+      <SelectColorMode />
     </div>
   );
 };

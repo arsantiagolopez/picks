@@ -83,14 +83,14 @@ const Projections: FC<Props> = ({
   };
 
   return (
-    <div className="h-full min-h-[50vh]">
+    <div className="h-full min-h-[50vh] text-tertiary dark:text-white">
       <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
         How much you&apos;d have by now if you tailed...
       </h1>
 
       <div className="flex flex-row justify-start items-center py-2">
         {/* Interval select */}
-        <div className="flex flex-row items-center py-6 md:py-12 text-tertiary">
+        <div className="flex flex-row items-center py-6 md:py-12 text-tertiary dark:text-fourth">
           <p>a</p>
           <IntervalSelect {...intervalSelectProps} />
           <p className="min-w-[50%]">ago with</p>
@@ -101,7 +101,7 @@ const Projections: FC<Props> = ({
           onChange={handleChange}
           type="number"
           max={1000}
-          className="w-20 p-2 md:p-3 ml-3 md:mx-4 font-Basic text-center bg-white rounded-lg focus:outline-black"
+          className="w-20 p-2 md:p-3 ml-3 md:mx-4 font-Basic text-center bg-white rounded-lg focus:outline-black text-primary dark:text-primary"
         />
       </div>
 
@@ -114,7 +114,7 @@ const Projections: FC<Props> = ({
               ? "0"
               : Number(inputValue).toLocaleString()}
           </p>
-          <p className="text-tertiary min-w-[33%] py-3 md:py-0 mr-2">
+          <p className="text-tertiary min-w-[33%] py-3 md:py-0 mr-2 dark:text-fourth">
             bets would make you
           </p>
           {/* Returns */}

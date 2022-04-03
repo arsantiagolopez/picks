@@ -43,12 +43,16 @@ const Stats: FC<Props> = () => {
         </div>
 
         {/* Right side*/}
-        <div className="flex flex-col justify-center items-center w-full my-[3vw] rounded-lg bg-gray-50 p-5 md:p-8">
+        <div className="flex flex-col justify-center items-center w-full my-[3vw] rounded-lg bg-gray-50 dark:bg-secondary dark:shadow-xl p-5 md:p-8">
           <Tab.Group>
             <Tab.List className="flex flex-row justify-start w-full tracking-tight">
               <Tab
                 className={({ selected }) =>
-                  `${selected ? "text-primary font-bold" : "text-tertiary"}`
+                  `${
+                    selected
+                      ? "text-primary font-bold dark:text-white"
+                      : "text-tertiary dark:text-fourth"
+                  }`
                 }
               >
                 Overview
@@ -56,7 +60,9 @@ const Stats: FC<Props> = () => {
               <Tab
                 className={({ selected }) =>
                   `ml-6 ${
-                    selected ? "text-primary font-bold" : "text-tertiary"
+                    selected
+                      ? "text-primary font-bold dark:text-white"
+                      : "text-tertiary dark:text-fourth"
                   }`
                 }
               >
@@ -64,7 +70,7 @@ const Stats: FC<Props> = () => {
               </Tab>
             </Tab.List>
 
-            <Tab.Panels className="flex flex-col h-full w-full mt-6 rounded-lg bg-gradient-to-b from-gray-100 to-gray-50 p-4 md:p-8 overflow-hidden">
+            <Tab.Panels className="flex flex-col h-full w-full mt-6 rounded-lg bg-gradient-to-b from-gray-100 to-gray-50 dark:bg-gradient-to-b dark:from-tertiary dark:to-secondary p-4 md:p-8 overflow-hidden">
               <Tab.Panel>
                 <Overview {...overviewProps} />
               </Tab.Panel>

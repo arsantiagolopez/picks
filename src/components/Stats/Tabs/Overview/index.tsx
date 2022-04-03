@@ -34,12 +34,14 @@ const Overview: FC<Props> = ({ stats }) => {
   };
 
   return (
-    <div>
+    <div className="text-primary dark:text-white">
       <h1 className="font-Basic text-4xl md:text-5xl font-bold tracking-tighter md:tracking-tight">
         It&apos;s always 🌽 season
       </h1>
 
-      <p className="py-4 md:py-8 text-tertiary">You wanted more numbers...</p>
+      <p className="py-4 md:py-8 text-tertiary dark:text-fourth">
+        You wanted more numbers...
+      </p>
 
       <div className="border-b-[1px] my-2 md:my-4"></div>
 

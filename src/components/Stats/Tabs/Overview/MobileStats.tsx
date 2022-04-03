@@ -32,7 +32,7 @@ const MobileStats: FC<Props> = ({
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 1*/}
       <div className="flex flex-col text-left">
-        <p className="text-tertiary">Total Picks</p>
+        <p className="text-tertiary dark:text-fourth">Total Picks</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">{totalPicks}</p>
           <VscGraphLine className="text-xl ml-2 text-green-600" />
@@ -41,7 +41,7 @@ const MobileStats: FC<Props> = ({
 
       {/* Stat 2*/}
       <div className="flex flex-col text-right">
-        <p className="text-tertiary">Days tracked</p>
+        <p className="text-tertiary dark:text-fourth">Days tracked</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {daysTracked ? `${daysTracked} days` : null}
@@ -55,7 +55,7 @@ const MobileStats: FC<Props> = ({
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 3*/}
       <div className="flex flex-col text-left">
-        <p className="text-tertiary">Win percentage</p>
+        <p className="text-tertiary dark:text-fourth">Win percentage</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {winPercentage ? winPercentage : null}
@@ -69,7 +69,7 @@ const MobileStats: FC<Props> = ({
         onClick={toggleOdds}
         className="flex flex-col cursor-pointer text-right"
       >
-        <p className="text-tertiary">Avg. odds</p>
+        <p className="text-tertiary dark:text-fourth">Avg. odds</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
@@ -83,7 +83,7 @@ const MobileStats: FC<Props> = ({
     <div className="flex flex-row justify-around space-x-6 items-center w-full py-4">
       {/* Stat 5 */}
       <div className="flex flex-col text-left">
-        <p className="text-tertiary">Longest streak</p>
+        <p className="text-tertiary dark:text-fourth">Longest streak</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {longestStreak ? longestStreak : null}
@@ -94,7 +94,7 @@ const MobileStats: FC<Props> = ({
 
       {/* Stat 6 */}
       <div className="flex flex-col text-right">
-        <p className="text-tertiary">Last five</p>
+        <p className="text-tertiary dark:text-fourth">Last five</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic text-4xl tracking-tighter">
             {lastFiveStreak ? lastFiveStreak : null}

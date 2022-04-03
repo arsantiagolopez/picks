@@ -47,6 +47,11 @@ const UserSchema = new Schema<UserEntity>(
       required: true,
       default: true,
     },
+    defaultColorMode: {
+      type: String,
+      required: false,
+      default: "dark",
+    },
   },
   { timestamps: true }
 );

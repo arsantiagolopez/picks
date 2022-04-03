@@ -18,12 +18,12 @@ const PicksHistory: FC<Props> = ({ bets, isAdmin }) => {
         {({ open }) => (
           <>
             <Disclosure.Button className="flex flex-row justify-center items-center md:pr-6">
-              <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
+              <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter dark:text-white">
                 Past Picks
               </h1>
 
               <IoChevronDownSharp
-                className={`text-2xl md:text-5xl transition-transform duration-300 ml-4 -mr-4 md:ml-8 md:-mr-16 ${
+                className={`text-2xl md:text-5xl transition-transform duration-300 ml-4 -mr-4 md:ml-8 md:-mr-16 dark:text-white ${
                   open ? "transform -rotate-180" : ""
                 }`}
               />

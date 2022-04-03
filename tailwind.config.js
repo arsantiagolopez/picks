@@ -3,12 +3,14 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   mode: "jit",
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "#302c2c",
-        secondary: colors.stone[600],
-        tertiary: colors.zinc[400],
+        primary: "#1f1f1f",
+        secondary: "#252525",
+        tertiary: "#292929",
+        fourth: colors.gray[300],
       },
       fontFamily: {
         Basic: ["Basic", "sans-serif"],

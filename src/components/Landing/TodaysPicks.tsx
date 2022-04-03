@@ -52,16 +52,16 @@ const TodaysPicks: FC<Props> = ({
         {!isTomorrowsPicksVisible && (
           <img src="/brand.png" className="object-contain h-16 md:h-20 mb-4" />
         )}
-        <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
+        <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter dark:text-white">
           Today&apos;s Picks
         </h1>
         {!isTomorrowsPicksVisible && (
-          <p className="font-Times italic tracking-tight text-tertiary pt-4">
+          <p className="font-Times italic tracking-tight text-tertiary dark:text-fourth pt-4">
             Picks released everyday at {potdReleaseTime}
           </p>
         )}
 
-        <p className="text-tertiary text-sm tracking-tight pb-5 pt-4 md:pb-0">
+        <p className="text-tertiary text-sm tracking-tight pb-5 pt-4 md:pb-0 dark:text-fourth">
           {today}
         </p>
       </div>

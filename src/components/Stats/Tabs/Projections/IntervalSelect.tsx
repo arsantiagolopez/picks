@@ -23,11 +23,11 @@ const IntervalSelect: FC<Props> = ({ options, selected, handleSelect }) => (
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute top-8 md:top-12 left-4 overflow-auto text-base bg-white rounded-t-none rounded-b-md shadow-xl focus:outline-none sm:text-sm w-[calc(100%-2rem)]">
+          <Listbox.Options className="absolute top-8 md:top-12 left-4 overflow-auto text-base bg-white dark:bg-tertiary rounded-t-none rounded-b-md shadow-xl dark:shadow-2xl focus:outline-none sm:text-sm w-[calc(100%-2rem)]">
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} className="">
                 {({ selected }) => (
-                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 text-sm capitalize cursor-pointer py-2 px-3">
+                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 dark:hover:bg-primary text-sm capitalize cursor-pointer py-2 px-3">
                     {option.toLowerCase()}
                     {selected && <CgCheck className="text-lg" />}
                   </p>

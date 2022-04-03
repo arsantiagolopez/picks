@@ -6,7 +6,9 @@ interface ContextState {
   oddsFormat: string;
   sortBy: string;
   potdReleaseTime: string | null;
+  colorMode: string | null;
   isBetsColored: boolean;
+  toggleColorMode: () => void;
   setPotdReleaseTime: Dispatch<SetStateAction<string | null>>;
   setSortBy: Dispatch<SetStateAction<string>>;
   setOddsFormat: Dispatch<SetStateAction<string>>;
@@ -19,7 +21,9 @@ const PreferencesContext = createContext<ContextState>({
   oddsFormat: process.env.NEXT_PUBLIC_PREFERRED_ODDS || "decimal",
   sortBy: process.env.NEXT_PUBLIC_PREFERRED_ODDS || "units",
   potdReleaseTime: null,
+  colorMode: null,
   isBetsColored: false,
+  toggleColorMode: () => {},
   setPotdReleaseTime: () => {},
   setSortBy: () => {},
   setOddsFormat: () => {},

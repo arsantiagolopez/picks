@@ -27,14 +27,14 @@ const Dropdown: FC<Props> = ({
 
   return (
     <div
-      className={`relative flex flex-col w-full rounded-md shadow-lg p-3 md:p-5 ${
+      className={`relative flex flex-col w-full rounded-md shadow-lg dark:shadow-zinc-900 dark:shadow-xl p-3 md:p-5 ${
         isBetsColored && status === "won"
           ? "bg-gradient-to-br from-green-400 to-green-600"
           : isBetsColored && status === "lost"
           ? "bg-gradient-to-r from-red-400 to-red-600"
           : isBetsColored && status === "void"
           ? "bg-gradient-to-r from-blue-400 to-blue-600"
-          : "bg-white"
+          : "bg-white dark:bg-tertiary"
       }`}
     >
       <Disclosure defaultOpen={isDefaultOpen}>

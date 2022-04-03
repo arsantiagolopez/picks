@@ -20,10 +20,10 @@ const Reasoning: FC<Props> = ({ bet }) => {
 
   return (
     <div className="flex flex-col justify-between">
-      <p className="text-primary text-sm md:text-base text-justify">
+      <p className="text-primary text-sm md:text-base text-justify dark:text-white">
         {withBreaks}
       </p>
-      <p className="text-primary text-xs md:text-sm pt-2 md:pt-6">
+      <p className="text-primary text-xs md:text-sm pt-2 md:pt-6 dark:text-fourth">
         {status === "pending" ? (
           `Match ${isPast ? "started" : "starts"} ${fromNow}`
         ) : (

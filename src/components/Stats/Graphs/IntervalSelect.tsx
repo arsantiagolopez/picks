@@ -19,8 +19,10 @@ const IntervalSelect: FC<Props> = ({
   <Listbox value={selected} onChange={handleSelect}>
     {({ open }) => (
       <div className="z-40 relative flex items-center not-italic font-Basic w-44">
-        <Listbox.Button className="flex flex-col items-start capitalize font-Basic text-lg text-primary">
-          <p className="text-tertiary tracking-tight">Profit to date</p>
+        <Listbox.Button className="flex flex-col items-start capitalize font-Basic text-lg text-primary dark:text-white">
+          <p className="text-tertiary tracking-tight dark:text-fourth">
+            Profit to date
+          </p>
           <h1 className="font-Basic text-7xl font-bold tracking-tighter">
             {profit > 0 ? `+${profit}u` : `${profit}u`}
           </h1>
@@ -41,11 +43,11 @@ const IntervalSelect: FC<Props> = ({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute top-36 md:top-36 left-0 overflow-auto text-base bg-white rounded-t-none rounded-b-md shadow-xl focus:outline-none sm:text-sm w-full">
+          <Listbox.Options className="absolute top-36 md:top-36 left-0 overflow-auto text-base bg-white dark:bg-secondary rounded-t-none rounded-b-md shadow-xl dark:shadow-2xl focus:outline-none sm:text-sm w-full">
             {options.map((option, index) => (
               <Listbox.Option key={index} value={option} className="">
                 {({ selected }) => (
-                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 text-sm tracking-tighter md:tracking-tight capitalize cursor-pointer py-3 px-4">
+                  <p className="flex flex-row justify-between items-center active:bg-gray-200 hover:bg-gray-100 dark:hover:bg-primary text-sm text-primary dark:text-white tracking-tighter md:tracking-tight capitalize cursor-pointer py-3 px-4">
                     {option.toLowerCase()}
                     {selected && <CgCheck className="text-lg" />}
                   </p>

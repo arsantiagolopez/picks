@@ -41,7 +41,7 @@ const Donate: FC<Props> = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-full pt-16 md:pt-20 pb-10 md:pb-12">
-      <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
+      <h1 className="font-Basic text-primary dark:text-white text-4xl md:text-6xl tracking-tighter">
         Donate
       </h1>
 
@@ -69,7 +69,7 @@ const Donate: FC<Props> = () => {
               />
             </div>
 
-            <p className="flex flex-row justify-center md:justify-start items-center text-tertiary md:text-left w-full text-sm md:text-base">
+            <p className="flex flex-row justify-center md:justify-start items-center text-tertiary dark:text-fourth md:text-left w-full text-sm md:text-base">
               {href ? (
                 <a href={href} className="hover:underline">
                   {address}

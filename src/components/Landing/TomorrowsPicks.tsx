@@ -51,24 +51,26 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
   const betsProps = { bets: sortedBets, isTomorrow: true, isAdmin };
 
   return (
-    <div className="relative w-screen px-5 md:px-[22.5%] min-h-[50vh]">
+    <div className="relative w-screen px-5 md:px-[22.5%] min-h-[50vh] dark:bg-secondary transition-all">
       {/* Flashing background */}
-      <div className="-z-10 absolute top-0 left-0 bg-gradient-to-b from-gray-50 to-gray-100 w-full animate-pulse h-full py-20"></div>
+      <div className="-z-10 absolute top-0 left-0 bg-gradient-to-b from-gray-50 to-gray-100 dark:bg-gradient-to-b dark:from-secondary dark:to-primary w-full animate-pulse h-full py-20"></div>
 
       {/* Heading */}
       <div className="z-20 flex flex-col w-full items-center pt-16 md:pt-20 pb-10 md:pb-12">
         {isAdmin && !picksReleased && (
-          <div className="absolute top-10 rounded-md p-2 px-3 animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-sm">
+          <div className="absolute top-10 rounded-md p-2 px-3 animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 dark:bg-primary shadow-sm">
             <p className="uppercase font-Inter text-[0.6rem] text-gray-900">
               Picks to be released {timeUntilRelease}
             </p>
           </div>
         )}
         <img src="/brand.png" className="object-contain h-16 md:h-20 mb-4" />
-        <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter">
+        <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter dark:text-white">
           Tomorrow&apos;s Picks
         </h1>
-        <p className="text-tertiary text-sm tracking-tight pt-4">{tomorrow}</p>
+        <p className="text-tertiary text-sm tracking-tight pt-4 dark:text-fourth">
+          {tomorrow}
+        </p>
       </div>
 
       {/* Picks */}

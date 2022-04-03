@@ -12,6 +12,7 @@ export interface UserEntity {
   isSuperAdmin?: boolean;
   potdReleaseTime: Date;
   isBetsColored: boolean;
+  defaultColorMode: string;
   createdAt: Date;
 }
 

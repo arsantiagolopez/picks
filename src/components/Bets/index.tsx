@@ -75,11 +75,11 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
     <div className="flex flex-col items-center w-full">
       {/* POTD Record - Net profit for the day */}
       {isTomorrow ? (
-        <div className="font-Times text-secondary text-2xl mb-10 md:mb-16">
+        <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">
           {formattedRecord}
         </div>
       ) : (
-        <div className="font-Times text-secondary text-2xl mb-10 md:mb-16">
+        <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">
           {profit
             ? profit > 0
               ? `+${profit}u profit `
@@ -93,7 +93,7 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
       {/* Sort by */}
       {!isPast && (
         <div
-          className={`flex flex-row font-Times text-lg italic mb-6 md:mb-16 ${
+          className={`flex flex-row font-Times text-lg italic mb-6 md:mb-16 dark:text-fourth ${
             isTomorrow ? "text-secondary" : "text-tertiary"
           }`}
         >
@@ -111,7 +111,7 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
             ))}
           </div>
         ) : (
-          <div className="text-tertiary pb-20 text-center text-sm md:text-base">
+          <div className="text-tertiary pb-20 text-center text-sm md:text-base dark:text-fourth">
             No picks as of right now... Come back in a bit.
           </div>
         )

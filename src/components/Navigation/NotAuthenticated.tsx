@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
 import { Logo } from "../Logo";
+import { ToggleColorMode } from "../ToggleColorMode";
 import { MobileMenu } from "./MobileMenu";
 
 interface Props {}
@@ -22,7 +23,7 @@ const NotAuthenticated: FC<Props> = () => {
   };
 
   return (
-    <div className="fixed z-50 bg-white flex items-center justify-center h-16 md:h-20 w-screen transition-all duration-200 ease-in-out shadow-lg shadow-gray-100 px-6 md:px-[15%]">
+    <div className="fixed z-50 bg-white flex items-center justify-center h-16 md:h-20 w-screen transition-all duration-200 ease-in-out shadow-lg shadow-gray-100 px-6 md:px-[15%] dark:bg-primary dark:shadow-neutral-900">
       {/* Left */}
       <div className="z-50 flex flex-row h-full items-center">
         <>
@@ -30,7 +31,7 @@ const NotAuthenticated: FC<Props> = () => {
             <Logo />
           </div>
           <Link href="/">
-            <h1 className="font-Basic text-primary cursor-pointer">
+            <h1 className="font-Basic text-primary cursor-pointer dark:text-white">
               {BRAND_NAME}
             </h1>
           </Link>
@@ -40,7 +41,9 @@ const NotAuthenticated: FC<Props> = () => {
           <Link href="/">
             <button
               className={`font-Basic mx-4 ${
-                router.pathname === "/" ? "text-primary" : "text-tertiary"
+                router.pathname === "/"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Picks
@@ -49,7 +52,9 @@ const NotAuthenticated: FC<Props> = () => {
           <Link href="/record">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/record" ? "text-primary" : "text-tertiary"
+                router.pathname === "/record"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Record
@@ -58,7 +63,9 @@ const NotAuthenticated: FC<Props> = () => {
           <Link href="/stats">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/stats" ? "text-primary" : "text-tertiary"
+                router.pathname === "/stats"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Stats
@@ -67,7 +74,9 @@ const NotAuthenticated: FC<Props> = () => {
           <Link href="/donate">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/donate" ? "text-primary" : "text-tertiary"
+                router.pathname === "/donate"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Donate
@@ -78,14 +87,21 @@ const NotAuthenticated: FC<Props> = () => {
 
       {/* Right Mobile */}
       <div className="flex flex-row ml-auto">
+        {/* Color mode */}
+        <ToggleColorMode />
+
+        {/* Call to action */}
         <Link href="/donate">
-          <button className="hidden md:flex font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary">
+          <button className="hidden md:flex font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary dark:text-primary dark:bg-white dark:hover:bg-fourth">
             Buy me a beer 🍺
           </button>
         </Link>
 
         {/* Mobile only menu */}
-        <button onClick={toggleMenu} className="md:hidden text-3xl">
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-3xl ml-3 text-primary dark:text-white"
+        >
           <MobileMenu {...mobileMenuProps} />
         </button>
       </div>

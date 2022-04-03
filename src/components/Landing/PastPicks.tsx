@@ -22,7 +22,7 @@ const PastPicks: FC<Props> = ({ isAdmin }) => {
       <div className="-z-10 absolute top-0 left-0 bg-gradient-to-t from-gray-50 to-gray-100 w-full animate-pulse h-full py-20"></div>
 
       {/* Heading */}
-      <div className="z-20 flex flex-row w-full items-center pt-10 md:pt-20 pb-10 md:pb-12">
+      <div className="z-20 flex flex-row w-full items-center pt-10 md:pt-20 dark:pt-0 pb-10 md:pb-12">
         <PicksHistory {...picksHistoryProps} />
       </div>
     </div>

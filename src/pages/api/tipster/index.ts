@@ -26,6 +26,7 @@ const getTipsterPreferences = async (
     preferences = {
       potdReleaseTime: user[0]?.potdReleaseTime,
       isBetsColored: user[0]?.isBetsColored,
+      defaultColorMode: user[0]?.defaultColorMode,
     };
 
     return res.status(200).json(preferences);

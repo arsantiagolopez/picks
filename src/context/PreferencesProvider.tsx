@@ -17,11 +17,15 @@ const PreferencesProvider: FC<Props> = ({ children }) => {
   );
   const [potdReleaseTime, setPotdReleaseTime] = useState<string | null>(null);
   const [isBetsColored, setIsBetsColored] = useState<boolean>(false);
+  const [colorMode, setColorMode] = useState<string | null>(null);
 
   const { data: preferences } = useSWR<UserEntity>("/api/tipster");
 
   const toggleOdds = () =>
     setOddsFormat(oddsFormat === "decimal" ? "american" : "decimal");
+
+  const toggleColorMode = () =>
+    setColorMode(colorMode === "dark" ? "light" : "dark");
 
   const SUPPORTED_SPORTS = [
     "tennis",
@@ -58,6 +62,40 @@ const PreferencesProvider: FC<Props> = ({ children }) => {
     }
   }, [preferences]);
 
+  // Save colorMode in local storage on mount
+  useEffect(() => {
+    // SSR Check
+    if (preferences && typeof window !== "undefined") {
+      const key = "theme";
+      const storage = localStorage.getItem(key);
+      const storageValue = storage ? JSON.parse(storage) : null;
+
+      // Color mode found in storage
+      if (storageValue) {
+        setColorMode(storageValue);
+      }
+      // No value found in localstorage, store for the first time
+      else {
+        const { defaultColorMode } = preferences;
+        localStorage.setItem(key, JSON.stringify(defaultColorMode));
+      }
+    }
+  }, [preferences]);
+
+  // Update color mode in local storage
+  useEffect(() => {
+    if (typeof window !== "undefined" && colorMode) {
+      const key = "theme";
+      const storage = localStorage.getItem(key);
+      const storageValue = storage ? JSON.parse(storage) : null;
+
+      // Update color mode & store in localStorage
+      if (storageValue && storageValue !== colorMode) {
+        localStorage.setItem(key, JSON.stringify(colorMode));
+      }
+    }
+  }, [toggleColorMode]);
+
   return (
     <PreferencesContext.Provider
       value={{
@@ -66,14 +104,17 @@ const PreferencesProvider: FC<Props> = ({ children }) => {
         oddsFormat,
         sortBy,
         potdReleaseTime,
+        colorMode,
         isBetsColored,
+        toggleColorMode,
         setPotdReleaseTime,
         setSortBy,
         setOddsFormat,
         toggleOdds,
       }}
     >
-      {children}
+      {/* Enable dark mode */}
+      <div className={`${colorMode === "dark" && "dark"}`}>{children}</div>
     </PreferencesContext.Provider>
   );
 };

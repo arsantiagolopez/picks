@@ -43,7 +43,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
   return (
     <div className="flex flex-col w-full text-sm ">
       {/* Top line - Tournament */}
-      <div className="flex flex-row justify-between items-center text-gray-300">
+      <div className="flex flex-row justify-between items-center text-gray-300 dark:text-white">
         <div className="flex flex-row items-center">
           <p className="text-lg mr-2">{getSportEmoji(sport)}</p>
           {tournament ? (
@@ -104,7 +104,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
       {/* Mid line - Event */}
       {home && away && (
         <div
-          className={`flex flex-row items-center py-1 ${
+          className={`flex flex-row items-center py-1 dark:text-white ${
             isBetsColored ? "text-black" : "text-tertiary"
           }`}
         >
@@ -118,7 +118,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
       {/* Bottom line - Wager */}
       <div className="flex flex-row items-center">
         <p
-          className={`text-secondary font-semibold truncate ${
+          className={`text-secondary font-semibold truncate dark:text-fourth ${
             isMulti ? "max-w-[100%]" : "max-w-[70%]"
           }`}
         >
@@ -128,7 +128,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
           <div className="flex flex-row items-center">
             <p
               onClick={handleClick}
-              className={`text-tertiary ml-2 ${
+              className={`text-tertiary ml-2 dark:text-white ${
                 isBetsColored ? "text-black" : "text-tertiary"
               }`}
             >
@@ -138,12 +138,12 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
                 : `${odds.american > 0 ? `+${odds.american}` : odds.american}`}
             </p>
             <p
-              className={`ml-2 ${
+              className={`ml-2 dark:text-white ${
                 isBetsColored ? "text-black" : "text-tertiary"
               }`}
             >
               for{" "}
-              <span className="text-secondary font-semibold ml-1">
+              <span className="text-secondary font-semibold ml-1 dark:text-white">
                 {stake}u
               </span>
             </p>
@@ -156,7 +156,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
         <div className="flex flex-row items-center py-1">
           <p
             onClick={handleClick}
-            className={`text-tertiary ${
+            className={`text-tertiary dark:text-white ${
               isBetsColored ? "text-black" : "text-tertiary"
             }`}
           >
@@ -166,10 +166,14 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
               : `${odds.american > 0 ? `+${odds.american}` : odds.american}`}
           </p>
           <p
-            className={`ml-2 ${isBetsColored ? "text-black" : "text-tertiary"}`}
+            className={`ml-2 dark:text-white ${
+              isBetsColored ? "text-black" : "text-tertiary"
+            }`}
           >
             for{" "}
-            <span className="text-secondary font-semibold ml-1">{stake}u</span>
+            <span className="text-secondary font-semibold ml-1 dark:text-white">
+              {stake}u
+            </span>
           </p>
         </div>
       )}

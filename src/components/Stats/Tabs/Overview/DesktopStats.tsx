@@ -32,7 +32,7 @@ const DesktopStats: FC<Props> = ({
     <div className="flex flex-row justify-between items-center w-full py-4">
       {/* Stat 1*/}
       <div className="flex flex-col">
-        <p className="text-tertiary">Total Picks</p>
+        <p className="text-tertiary dark:text-fourth">Total Picks</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {totalPicks}
@@ -43,7 +43,7 @@ const DesktopStats: FC<Props> = ({
 
       {/* Stat 2*/}
       <div className="flex flex-col">
-        <p className="text-tertiary">Days tracked</p>
+        <p className="text-tertiary dark:text-fourth">Days tracked</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {daysTracked ? `${daysTracked} days` : null}
@@ -54,7 +54,7 @@ const DesktopStats: FC<Props> = ({
 
       {/* Stat 3*/}
       <div onClick={toggleOdds} className="flex flex-col cursor-pointer">
-        <p className="text-tertiary">Avg. odds</p>
+        <p className="text-tertiary dark:text-fourth">Avg. odds</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
@@ -68,7 +68,7 @@ const DesktopStats: FC<Props> = ({
     <div className="flex flex-row justify-between items-center w-full py-8">
       {/* Stat 4 */}
       <div className="flex flex-col">
-        <p className="text-tertiary">Win percentage</p>
+        <p className="text-tertiary dark:text-fourth">Win percentage</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {winPercentage ? winPercentage : null}
@@ -79,7 +79,7 @@ const DesktopStats: FC<Props> = ({
 
       {/* Stat 5 */}
       <div className="flex flex-col">
-        <p className="text-tertiary">Longest streak</p>
+        <p className="text-tertiary dark:text-fourth">Longest streak</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
             {longestStreak ? longestStreak : null}
@@ -90,7 +90,7 @@ const DesktopStats: FC<Props> = ({
 
       {/* Stat 6 */}
       <div className="flex flex-col">
-        <p className="text-tertiary">Last five</p>
+        <p className="text-tertiary dark:text-fourth">Last five</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tighter">
             {lastFiveStreak ? lastFiveStreak : null}
