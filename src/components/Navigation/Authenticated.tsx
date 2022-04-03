@@ -135,7 +135,7 @@ const Authenticated: FC<Props> = ({ session }) => {
           {/* Sign out */}
           <button
             onClick={handleSignOut}
-            className="font-Basic text-sm text-white dark:text-primary bg-primary dark:bg-white px-6 py-1.5 ml-2 rounded-full hover:bg-secondary dark:hover:bg-tertiary dark:hover:text-white"
+            className="button font-Basic text-sm px-6 py-1.5 ml-2 rounded-full"
           >
             Sign out
           </button>

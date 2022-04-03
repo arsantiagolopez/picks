@@ -92,7 +92,7 @@ const NotAuthenticated: FC<Props> = () => {
 
         {/* Call to action */}
         <Link href="/donate">
-          <button className="hidden md:flex font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary dark:text-primary dark:bg-white dark:hover:bg-fourth">
+          <button className="button hidden md:flex font-Basic text-sm px-6 py-1.5 ml-2 rounded-full">
             Buy me a beer 🍺
           </button>
         </Link>

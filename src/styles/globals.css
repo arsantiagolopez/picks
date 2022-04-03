@@ -22,5 +22,5 @@ button {
   @apply font-Basic text-secondary text-2xl md:text-2xl tracking-tight md:py-2;
 }
 .button {
-  @apply py-3 px-10 font-Basic text-white tracking-wider rounded-full shadow-xl bg-primary;
+  @apply font-Basic tracking-tight rounded-full text-white bg-primary dark:shadow-md dark:shadow-neutral-900 hover:bg-secondary dark:bg-tertiary dark:hover:bg-neutral-600;
 }

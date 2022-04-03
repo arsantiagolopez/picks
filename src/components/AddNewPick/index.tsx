@@ -150,10 +150,8 @@ const AddNewPick: FC<Props> = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`flex flex-row justify-center items-center mt-12 py-3 px-10 font-Basic text-white dark:text-primary tracking-wider rounded-full shadow-xl ${
-            Object.keys(errors)?.length
-              ? "bg-red-600 animate-pulse"
-              : "bg-primary dark:bg-white"
+          className={`button flex flex-row justify-center items-center mt-12 py-3 px-10 font-Basic rounded-full shadow-xl ${
+            Object.keys(errors)?.length ? "bg-red-600 animate-pulse" : ""
           }`}
         >
           {showUpdate ? (
