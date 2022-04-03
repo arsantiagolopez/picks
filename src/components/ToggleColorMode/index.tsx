@@ -24,13 +24,13 @@ const ToggleColorMode: FC<Props> = () => {
       <div onClick={handleTransition}>
         {colorMode === "dark" ? (
           <FaMoon
-            className={`text-xl select-none transition-all dark:text-fourth ${
+            className={`text-lg md:text-xl select-none transition-all dark:text-fourth ${
               scaleOut && "animate-ping"
             }`}
           />
         ) : (
           <IoIosSunny
-            className={`text-2xl select-none transition-all dark:text-fourth ${
+            className={`text-xl md:text-2xl select-none transition-all dark:text-fourth ${
               scaleOut && "animate-ping"
             }`}
           />

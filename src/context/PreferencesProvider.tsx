@@ -114,7 +114,13 @@ const PreferencesProvider: FC<Props> = ({ children }) => {
       }}
     >
       {/* Enable dark mode */}
-      <div className={`${colorMode === "dark" && "dark"}`}>{children}</div>
+      <div
+        className={`${
+          colorMode === "dark" && "dark bg-primary dark:bg-primary"
+        }`}
+      >
+        {children}
+      </div>
     </PreferencesContext.Provider>
   );
 };

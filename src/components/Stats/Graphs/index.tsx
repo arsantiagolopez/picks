@@ -102,7 +102,7 @@ const Graphs: FC<Props> = ({
       {/* Graph tabs */}
       <IntervalSelect {...intervalSelectProps} />
 
-      <div className="h-full w-full md:w-[80%] my-6">
+      <div className="h-full w-full md:w-[80%] my-6 dark:invert">
         <div
           className={`flex flex-row justify-center items-center w-full h-full ${
             selectedIndex === 0 ? "flex" : "hidden"

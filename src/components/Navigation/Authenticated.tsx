@@ -118,8 +118,11 @@ const Authenticated: FC<Props> = ({ session }) => {
 
       {/* Right */}
       <div className="flex flex-row ml-auto">
+        {/* Color mode */}
+        <ToggleColorMode />
+
         {/* Mobile only menu */}
-        <button onClick={toggleMenu} className="md:hidden text-3xl">
+        <button onClick={toggleMenu} className="md:hidden text-3xl ml-2">
           <MobileMenu {...mobileMenuProps} />
         </button>
 
@@ -128,9 +131,6 @@ const Authenticated: FC<Props> = ({ session }) => {
           <p className="font-Basic text-primary dark:text-white tracking-tight self-center pr-2 md:pr-4">
             Hi, {user?.name}!
           </p>
-
-          {/* Color mode */}
-          <ToggleColorMode />
 
           {/* Sign out */}
           <button
