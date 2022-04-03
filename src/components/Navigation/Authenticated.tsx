@@ -41,7 +41,7 @@ const Authenticated: FC<Props> = ({ session }) => {
       className={`fixed z-50 flex items-center justify-between h-16 md:h-20 w-screen transition-all duration-200 ease-in-out px-6 md:px-[15%] ${
         isMenuOpen
           ? "bg-none"
-          : "bg-white shadow-lg shadow-gray-100 dark:bg-primary"
+          : "bg-white shadow-lg shadow-gray-100 dark:shadow-neutral-900 dark:bg-primary"
       }`}
     >
       {/* Left */}
@@ -51,7 +51,7 @@ const Authenticated: FC<Props> = ({ session }) => {
             <Logo />
           </div>
           <Link href="/">
-            <h1 className="font-Basic text-xl text-primary tracking-tighter cursor-pointer">
+            <h1 className="font-Basic text-xl text-primary dark:text-white tracking-tighter cursor-pointer">
               {BRAND_NAME}
             </h1>
           </Link>
@@ -61,7 +61,9 @@ const Authenticated: FC<Props> = ({ session }) => {
           <Link href="/">
             <button
               className={`font-Basic mx-4 ${
-                router.pathname === "/" ? "text-primary" : "text-tertiary"
+                router.pathname === "/"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Picks
@@ -70,7 +72,9 @@ const Authenticated: FC<Props> = ({ session }) => {
           <Link href="/record">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/record" ? "text-primary" : "text-tertiary"
+                router.pathname === "/record"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Record
@@ -79,7 +83,9 @@ const Authenticated: FC<Props> = ({ session }) => {
           <Link href="/stats">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/stats" ? "text-primary" : "text-tertiary"
+                router.pathname === "/stats"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Stats
@@ -88,7 +94,9 @@ const Authenticated: FC<Props> = ({ session }) => {
           <Link href="/donate">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/donate" ? "text-primary" : "text-tertiary"
+                router.pathname === "/donate"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Donate
@@ -97,7 +105,9 @@ const Authenticated: FC<Props> = ({ session }) => {
           <Link href="/admin">
             <button
               className={`font-Basic  mx-4 ${
-                router.pathname === "/admin" ? "text-primary" : "text-tertiary"
+                router.pathname === "/admin"
+                  ? "text-primary dark:text-white"
+                  : "text-tertiary dark:text-gray-500"
               }`}
             >
               Admin
@@ -115,20 +125,20 @@ const Authenticated: FC<Props> = ({ session }) => {
 
         <div className="hidden md:flex flex-row h-full items-center">
           {/* Greeting */}
-          <p className="font-Basic tracking-tight self-center pr-2 md:pr-4">
+          <p className="font-Basic text-primary dark:text-white tracking-tight self-center pr-2 md:pr-4">
             Hi, {user?.name}!
           </p>
+
+          {/* Color mode */}
+          <ToggleColorMode />
 
           {/* Sign out */}
           <button
             onClick={handleSignOut}
-            className="font-Basic text-sm text-white bg-primary px-6 py-1.5 ml-2 rounded-full hover:bg-secondary"
+            className="font-Basic text-sm text-white dark:text-primary bg-primary dark:bg-white px-6 py-1.5 ml-2 rounded-full hover:bg-secondary dark:hover:bg-tertiary dark:hover:text-white"
           >
             Sign out
           </button>
-
-          {/* Color mode */}
-          <ToggleColorMode />
         </div>
       </div>
 

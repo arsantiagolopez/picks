@@ -23,7 +23,7 @@ const TourTypeSelect: FC<Props> = ({ setValue, watch }) => {
           <div
             key={tournament}
             onClick={() => handleSelect(tournament)}
-            className={`aspect-square mr-2 min-w-[4.5rem] bg-white shadow-md rounded-md p-3 hover:bg-gray-50 cursor-pointer ${
+            className={`aspect-square mr-2 min-w-[4.5rem] bg-white dark:bg-secondary shadow-md rounded-md p-3 hover:bg-gray-50 dark:hover:bg-tertiary cursor-pointer ${
               watch("tournament") === tournament && "outline"
             }`}
           >

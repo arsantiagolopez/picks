@@ -15,7 +15,7 @@ const Reasoning: FC<Props> = ({ watch, reasoningRegister }) => {
 
   return (
     <div className="form-field w-full md:py-3">
-      <h1 className="font-Basic tracking-tight text-3xl pt-6 pb-4 text-primary">
+      <h1 className="font-Basic tracking-tight text-3xl pt-6 pb-4 text-primary dark:text-white">
         Reasoning.
       </h1>
 

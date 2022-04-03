@@ -170,7 +170,7 @@ const UpdatePick: FC<Props> = () => {
 
   return (
     <div className="flex flex-col w-full py-16 md:py-20">
-      <h1 className="font-Basic text-primary text-4xl md:text-5xl tracking-tighter">
+      <h1 className="font-Basic text-primary dark:text-white text-4xl md:text-5xl tracking-tighter">
         Update your pick
       </h1>
 
@@ -197,10 +197,10 @@ const UpdatePick: FC<Props> = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`flex flex-row justify-center items-center mt-12 py-3 px-10 font-Basic text-white tracking-wider rounded-full shadow-xl ${
+          className={`flex flex-row justify-center items-center mt-12 py-3 px-10 font-Basic text-white dark:text-primary tracking-wider rounded-full shadow-xl ${
             Object.keys(errors)?.length
               ? "bg-red-600 animate-pulse"
-              : "bg-primary"
+              : "bg-primary dark:bg-white"
           }`}
         >
           {showUpdate ? (

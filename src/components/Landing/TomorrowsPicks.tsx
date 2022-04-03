@@ -58,7 +58,7 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
       {/* Heading */}
       <div className="z-20 flex flex-col w-full items-center pt-16 md:pt-20 pb-10 md:pb-12">
         {isAdmin && !picksReleased && (
-          <div className="absolute top-10 rounded-md p-2 px-3 animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 dark:bg-primary shadow-sm">
+          <div className="absolute top-10 rounded-md p-2 px-3 animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 dark:bg-gradient-to-br dark:from-white dark:to-gray-500 shadow-sm">
             <p className="uppercase font-Inter text-[0.6rem] text-gray-900">
               Picks to be released {timeUntilRelease}
             </p>

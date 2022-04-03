@@ -64,7 +64,7 @@ const SelectColorMode: FC<Props> = () => {
 
   return (
     <div className="w-full pt-10">
-      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary">
+      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary dark:text-white">
         What color theme do you want your users to default to?
       </h1>
 

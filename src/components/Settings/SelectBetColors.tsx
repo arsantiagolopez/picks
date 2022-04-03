@@ -62,7 +62,7 @@ const SelectBetColors: FC<Props> = () => {
 
   return (
     <div className="w-full pt-10">
-      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary">
+      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary dark:text-white">
         Turn bet slips green or red after grading
       </h1>
 

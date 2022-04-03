@@ -35,7 +35,7 @@ const EventDetails: FC<Props> = ({
 
   return (
     <div className="flex flex-col w-full">
-      <h1 className="font-Basic tracking-tight text-3xl pt-6 pb-4 text-primary">
+      <h1 className="font-Basic tracking-tight text-3xl pt-6 pb-4 text-primary dark:text-white">
         Event Details.
       </h1>
 

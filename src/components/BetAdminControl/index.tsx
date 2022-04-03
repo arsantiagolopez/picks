@@ -23,9 +23,9 @@ const BetAdminControl: FC<Props> = ({ bet, isPanelOpen }) => {
     return (
       <div
         onClick={handleClick}
-        className="absolute right-1 flex flex-row justify-center items-center h-[90%] w-12 md:w-16 bg-gradient-to-r from-white to-gray-50 rounded-md transition-all"
+        className="absolute right-1 flex flex-row justify-center items-center h-[90%] w-12 md:w-16 bg-gradient-to-r from-white to-gray-50 dark:bg-gradient-to-r dark:from-primary dark:to-tertiary rounded-md transition-all"
       >
-        <CgMoreVerticalAlt className="text-3xl" />
+        <CgMoreVerticalAlt className="text-3xl text-primary dark:text-white" />
 
         {/* Control panel dialog */}
         <ControlPanelDialog {...controlPanelDialogProps} />

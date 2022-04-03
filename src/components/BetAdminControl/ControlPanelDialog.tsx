@@ -1,9 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { AxiosResponse } from "axios";
 import { useRouter } from "next/router";
-import React, { Dispatch, FC, Fragment, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useContext,
+} from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import axios from "../../axios";
+import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
 import { refreshScreen } from "../../utils/refreshScreen";
 import { useBets } from "../../utils/useBets";
@@ -16,6 +23,8 @@ interface Props {
 
 const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
   const { bets, setBets } = useBets();
+
+  const { colorMode } = useContext(PreferencesContext);
 
   const router = useRouter();
 
@@ -99,10 +108,18 @@ const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-full max-w-md p-6 pb-10 md:p-10 md:pt-8 my-8 overflow-hidden align-middle transition-all transform bg-white shadow-xl rounded-2xl text-center">
+            <div
+              className={`inline-block w-full max-w-md p-6 pb-10 md:p-10 md:pt-8 my-8 overflow-hidden align-middle transition-all transform bg-whiteshadow-xl rounded-2xl text-center ${
+                colorMode === "dark"
+                  ? "bg-primary shadow-2xl shadow-neutral-900"
+                  : "bg-white"
+              }`}
+            >
               <Dialog.Title
                 as="h3"
-                className="text-2xl md:text-3xl leading-tight md:leading-normal tracking-tight text-primary"
+                className={`text-2xl md:text-3xl leading-tight md:leading-normal tracking-tight ${
+                  colorMode === "dark" ? "text-white" : "text-primary"
+                }`}
               >
                 Update bet status
               </Dialog.Title>
@@ -150,7 +167,11 @@ const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
                   </button>
                   <button
                     onClick={handleCancel}
-                    className="rounded-lg bg-primary hover:bg-black text-white w-full p-2"
+                    className={`rounded-lg w-full p-2 ${
+                      colorMode === "dark"
+                        ? "bg-tertiary text-white hover:bg-secondary"
+                        : "bg-primary text-white hover:bg-black"
+                    }`}
                   >
                     Cancel
                   </button>

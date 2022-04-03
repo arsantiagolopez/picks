@@ -21,7 +21,7 @@ const SportSelect: FC<Props> = ({ setValue, watch }) => {
         <div
           key={sport}
           onClick={() => handleSelect(sport)}
-          className={`aspect-square mr-2 text-5xl bg-white shadow-md rounded-md p-3 hover:bg-gray-50 cursor-pointer ${
+          className={`aspect-square mr-2 text-5xl bg-white dark:bg-secondary shadow-md rounded-md p-3 hover:bg-gray-50 dark:hover:bg-tertiary cursor-pointer ${
             watch("sport") === sport && "outline"
           }`}
         >

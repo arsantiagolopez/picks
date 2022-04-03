@@ -86,7 +86,7 @@ const SelectPotdTime: FC<Props> = () => {
 
   return (
     <div className="w-full pt-10">
-      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary">
+      <h1 className="font-Basic tracking-tight text-2xl md:text-3xl pb-4 text-primary dark:text-white">
         What time should your picks be released?
       </h1>
 

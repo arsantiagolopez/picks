@@ -60,7 +60,7 @@ const Donate: FC<Props> = () => {
                   ? "bg-[#3D95CE]"
                   : id === "cashapp"
                   ? "bg-[#39b54a]"
-                  : "bg-white"
+                  : "bg-white dark:bg-secondary"
               }`}
             >
               <img
