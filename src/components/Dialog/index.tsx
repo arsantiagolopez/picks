@@ -62,7 +62,7 @@ const Dialog: FC<Props> = ({
           leaveTo="opacity-0 scale-95"
         >
           <div
-            className={`inline-block w-full max-w-md p-6 pb-10 md:p-10 md:pt-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl ${
+            className={`inline-block w-full max-w-md p-6 pb-10 md:p-10 md:pt-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-primary shadow-xl rounded-2xl ${
               isCentered && "text-center"
             }`}
           >
@@ -74,12 +74,12 @@ const Dialog: FC<Props> = ({
 
             <HeadlessDialog.Title
               as="h3"
-              className="text-2xl md:text-3xl leading-tight md:leading-normal tracking-tight text-primary"
+              className="text-2xl md:text-3xl leading-tight md:leading-normal tracking-tight text-primary dark:text-white"
             >
               {title}
             </HeadlessDialog.Title>
 
-            <p className="text-base leading-snug text-gray-500 my-3">
+            <p className="text-base leading-snug text-gray-500 dark:text-fourth my-3">
               {message}
             </p>
 

@@ -1,19 +1,13 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { FC, useEffect } from "react";
-import { UserSession } from "../../types";
 
 interface Props {
   children: JSX.Element;
 }
 
-interface Session {
-  data: UserSession;
-  status: string;
-}
-
 const AdminRoute: FC<Props> = ({ children }) => {
-  const { data: session, status } = useSession() as unknown as Session;
+  const { data: session, status } = useSession();
   const loading = status === "loading";
 
   const router = useRouter();
@@ -31,8 +25,8 @@ const AdminRoute: FC<Props> = ({ children }) => {
     return children;
   }
 
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
+  // Session is being fetched, or not admin.
+  // If not admin, useEffect() will redirect.
   return <></>;
 };
 

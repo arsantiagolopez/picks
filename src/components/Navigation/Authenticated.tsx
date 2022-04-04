@@ -1,14 +1,14 @@
+import { Session } from "next-auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useState } from "react";
-import { UserSession } from "../../types";
 import { Logo } from "../Logo";
 import { SignOutAlert } from "../SignOutAlert";
 import { ToggleColorMode } from "../ToggleColorMode";
 import { MobileMenu } from "./MobileMenu";
 
 interface Props {
-  session: UserSession;
+  session: Session | null;
 }
 
 const Authenticated: FC<Props> = ({ session }) => {
@@ -28,7 +28,7 @@ const Authenticated: FC<Props> = ({ session }) => {
   const mobileMenuProps = {
     isMenuOpen,
     setIsMenuOpen,
-    isAdmin: user?.isAdmin,
+    isAdmin: !!user?.isAdmin,
   };
   const signOutAlertProps = {
     isOpen: isSignOutOpen,

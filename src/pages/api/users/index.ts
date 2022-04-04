@@ -2,7 +2,6 @@ import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { User } from "../../../models/User";
-import { UserSession } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 
 /**
@@ -53,10 +52,14 @@ const updateMyUser = async (
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = (await getSession({ req })) as unknown as UserSession;
+  const data = await getSession({ req });
   const { method } = req;
 
   const userId = data?.user.id;
+
+  if (!userId) {
+    return res.status(405).end("Must be authenticated.");
+  }
 
   await dbConnect();
 

@@ -2,7 +2,6 @@ import moment from "moment-timezone";
 import { useSession } from "next-auth/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { UserSession } from "../../types";
 import { Footer } from "../Footer";
 import { PastPicks } from "./PastPicks";
 import { TodaysPicks } from "./TodaysPicks";
@@ -10,13 +9,8 @@ import { TomorrowsPicks } from "./TomorrowsPicks";
 
 interface Props {}
 
-interface Session {
-  data: UserSession;
-  status: string;
-}
-
 const Landing: FC<Props> = () => {
-  const { data: session } = useSession() as unknown as Session;
+  const { data: session } = useSession();
 
   const { user } = session || {};
 

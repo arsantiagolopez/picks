@@ -2,7 +2,7 @@ import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { Bet } from "../../../models/Bet";
-import { BetEntity, UserSession } from "../../../types";
+import { BetEntity } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 
 /**
@@ -94,7 +94,7 @@ const deleteBet = async ({ query }: NextApiRequest, res: NextApiResponse) => {
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = (await getSession({ req })) as unknown as UserSession;
+  const data = await getSession({ req });
   const { method } = req;
 
   if (!data?.user?.isAdmin) {

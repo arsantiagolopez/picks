@@ -2,14 +2,13 @@ import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { Bet } from "../../../models/Bet";
-import { BetEntity, UserSession } from "../../../types";
+import { BetEntity } from "../../../types";
 import { dbConnect } from "../../../utils/dbConnect";
 
 /**
  * Get all bets.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of objects of all user's bets.
  */
 const getAllBets = async (
@@ -34,7 +33,6 @@ const getAllBets = async (
  * Get todays bets.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of objects of all user's bets.
  */
 const getTodaysBets = async (
@@ -61,7 +59,6 @@ const getTodaysBets = async (
  * Get tomorrows bets.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of objects of all user's bets.
  */
 const getTomorrowsBets = async (
@@ -88,7 +85,6 @@ const getTomorrowsBets = async (
  * Get past bets.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of objects of all user's bets.
  */
 const getPastBets = async (
@@ -119,7 +115,6 @@ const getPastBets = async (
  * Get all graded bets.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of objects of all user's graded bets.
  */
 const getGradedBets = async (
@@ -144,7 +139,6 @@ const getGradedBets = async (
  * Get record of wins, losses and draws.
  * @param {object} req - http request.
  * @param {object} res - http response.
- * @param {string} userId - User ID.
  * @returns an array of of wins, losses and draws.
  */
 const getRecord = async (
@@ -180,7 +174,7 @@ const getRecord = async (
 const createBet = async (
   { body }: NextApiRequest,
   res: NextApiResponse,
-  userId: string
+  userId?: string
 ): Promise<BetEntity | void> => {
   let { stake, odds, startTime } = body as BetEntity;
 
@@ -203,10 +197,11 @@ const createBet = async (
 
 // Main
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const data = (await getSession({ req })) as unknown as UserSession;
+  const data = await getSession({ req });
   const { method, query } = req;
 
   const userId = data?.user.id;
+  const isAdmin = data?.user.isAdmin;
 
   await dbConnect();
 
@@ -233,6 +228,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
     case "POST":
+      if (!isAdmin) {
+        return res.status(405).end("Must be an admin to create bets.");
+      }
+
       return createBet(req, res, userId);
     default:
       return res

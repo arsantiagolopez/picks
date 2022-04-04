@@ -38,11 +38,6 @@ export interface OddsEntity {
   decimal: number;
 }
 
-export interface UserSession {
-  expires: string;
-  user: UserEntity;
-}
-
 export interface IntervalAndProfit {
   interval: string;
   profit: number;

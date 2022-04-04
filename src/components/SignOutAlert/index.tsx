@@ -24,10 +24,10 @@ const SignOutAlert: FC<Props> = ({ isOpen, setIsOpen }) => {
       <Dialog
         {...dialogProps}
         ActionControl={
-          <div className="flex flex-row space-x-2 w-full h-12 mt-6">
+          <div className="flex flex-row space-x-2 w-full h-12 mt-6 dark:bg-primary">
             <button
               onClick={cancelSignOut}
-              className="rounded-lg bg-primary text-white w-full hover:bg-black"
+              className="rounded-lg bg-primary dark:bg-secondary text-white w-full hover:bg-black"
             >
               Cancel
             </button>
