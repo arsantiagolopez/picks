@@ -30,15 +30,15 @@ const Reasoning: FC<Props> = ({ bet }) => {
   return (
     <div className="flex flex-col justify-between md:text-sm">
       {sport === "tennis" && (
-        <p className="hidden md:block text-primary text-xs dark:text-fourth">
+        <p className="hidden md:block text-primary text-sm dark:text-fourth">
           <span className="uppercase">{tournament}</span> – {tournamentName}
         </p>
       )}
 
-      <p className="text-primary text-sm md:text-base text-justify dark:text-white">
+      <p className="text-primary text-sm md:text-base text-justify dark:text-white my-1 md:my-2">
         {withBreaks}
       </p>
-      <p className="text-primary text-xs md:text-sm dark:text-fourth">
+      <p className="text-primary text-xs dark:text-fourth">
         {status === "pending" ? (
           `Match ${isPast ? "started" : "starts"} ${fromNow}`
         ) : (
