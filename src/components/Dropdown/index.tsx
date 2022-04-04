@@ -42,7 +42,6 @@ const Dropdown: FC<Props> = ({
           <>
             <Disclosure.Button className="flex flex-row justify-between items-center md:pr-5">
               {Button}
-
               {/* Admin control */}
               {isAdmin && (
                 <BetAdminControl isPanelOpen={open} {...betAdminControlProps} />
@@ -57,7 +56,7 @@ const Dropdown: FC<Props> = ({
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel className="mt-2 md:mt-6 mx-1 md:mx-3 my-1 md:my-4">
+              <Disclosure.Panel className="md:mt-6 mx-1 md:mx-3 my-1 md:my-4">
                 {Panel}
               </Disclosure.Panel>
             </Transition>
