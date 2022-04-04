@@ -7,23 +7,38 @@ interface Props {
 }
 
 const Reasoning: FC<Props> = ({ bet }) => {
-  const { startTime, reasoning, status, stake, returns } = bet;
+  const {
+    sport,
+    startTime,
+    tournament,
+    tournamentName,
+    reasoning,
+    status,
+    stake,
+    returns,
+  } = bet;
 
   const fromNow = moment().to(moment(startTime));
   const isPast = moment(startTime).isBefore();
 
   const withBreaks = reasoning?.split("\n").map((str, index) => (
-    <p key={index} className="my-2 md:my-3">
+    <p key={index} className="my-4 md:my-2">
       {str}
     </p>
   ));
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between md:text-sm">
+      {sport === "tennis" && (
+        <p className="hidden md:block text-primary text-xs dark:text-fourth">
+          <span className="uppercase">{tournament}</span> – {tournamentName}
+        </p>
+      )}
+
       <p className="text-primary text-sm md:text-base text-justify dark:text-white">
         {withBreaks}
       </p>
-      <p className="text-primary text-xs md:text-sm pt-2 md:pt-6 dark:text-fourth">
+      <p className="text-primary text-xs md:text-sm dark:text-fourth">
         {status === "pending" ? (
           `Match ${isPast ? "started" : "starts"} ${fromNow}`
         ) : (
