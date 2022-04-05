@@ -24,3 +24,24 @@ button {
 .button {
   @apply font-Basic tracking-tight rounded-full text-white bg-primary dark:shadow-md dark:shadow-neutral-900 hover:bg-secondary dark:bg-tertiary dark:hover:bg-neutral-600;
 }
+
+/* Masonry styles */
+@layer utilities {
+  @variants responsive {
+    .masonry-1-col {
+      column-count: 1;
+      column-gap: 1em;
+    }
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 1em;
+    }
+    .masonry-3-col {
+      column-count: 3;
+      column-gap: 1em;
+    }
+    .break-inside {
+      break-inside: avoid;
+    }
+  }
+}

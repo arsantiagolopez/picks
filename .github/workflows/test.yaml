@@ -1,0 +1,13 @@
+name: minute-cron-job
+on:
+  schedule:
+    - cron: "*/1 * * * *"
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: minute-cron-job
+        run: |
+          curl --request POST \
+          --url 'https://maizepicks.vercel.app/api/example' \
+          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'

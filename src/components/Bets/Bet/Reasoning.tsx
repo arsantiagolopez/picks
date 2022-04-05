@@ -23,7 +23,10 @@ const Reasoning: FC<Props> = ({ bet }) => {
 
   const isUpdated: string | null =
     // @ts-ignore
-    bet?.createdAt !== bet?.updatedAt ? moment(bet?.updatedAt).fromNow() : null;
+    bet?.createdAt !== bet?.updatedAt && status === "pending"
+      ? // @ts-ignore
+        moment(bet?.updatedAt).fromNow()
+      : null;
 
   const withBreaks = reasoning?.split("\n").map((str, index) => (
     <p key={index} className="mb-4 mt-2 md:my-2">

@@ -27,7 +27,7 @@ const Record: FC<Props> = () => {
       <h1 className="font-Basic text-primary dark:text-white text-4xl md:text-6xl tracking-tighter">
         Record To Date
       </h1>
-      <p className="text-tertiary dark:text-fourth text-base tracking-tight pt-4 dark:text-fourth">
+      <p className="text-tertiary text-base tracking-tight pt-4 dark:text-fourth">
         as of {today}
       </p>
 
