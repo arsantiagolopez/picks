@@ -40,6 +40,11 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     // Debugging
     debug: process.env.NODE_ENV === "development",
     // Callbacks
-    callbacks: {},
+    callbacks: {
+      // Return userId on session
+      async session({ session, user }) {
+        return { ...session, user };
+      },
+    },
   });
 }
