@@ -36,13 +36,7 @@ const updateBet = async (
 
   // Update bet status
   if (body?.status !== "pending") {
-    console.log(body);
     try {
-      let { stake, odds } = body as BetEntity;
-
-      const returns = Number((stake * odds.decimal - stake).toFixed(2));
-      body.returns = returns;
-
       const bet = await Bet.findByIdAndUpdate(id, body);
 
       return res.status(200).json(bet);

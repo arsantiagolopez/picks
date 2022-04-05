@@ -48,6 +48,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           user: { ...session?.user, ...user } as UserEntity,
           expires: session?.expires,
         };
+
         return session;
       },
     },

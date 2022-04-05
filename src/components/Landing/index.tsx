@@ -12,8 +12,6 @@ interface Props {}
 const Landing: FC<Props> = () => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   const { user } = session || {};
 
   const { potdReleaseTime } = useContext(PreferencesContext);
