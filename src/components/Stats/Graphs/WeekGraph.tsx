@@ -121,6 +121,7 @@ const WeekGraph: FC<Props> = ({
   // console.log("* points: ", points);
 
   if (points) {
+    // @ts-ignore
     return <BarGraph {...graphProps} />;
   } else {
     return <></>;

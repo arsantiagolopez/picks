@@ -1,15 +1,16 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { BetEntity } from "../../types";
+import { BetEntity, ParlayBetEntity } from "../../types";
 import { BetAdminControl } from "../BetAdminControl";
 
 interface Props {
   Button: JSX.Element;
   Panel: JSX.Element;
   isDefaultOpen?: boolean;
-  bet: BetEntity;
+  bet: BetEntity | ParlayBetEntity;
   isAdmin: boolean;
+  isParlay?: boolean;
 }
 
 const Dropdown: FC<Props> = ({
@@ -18,12 +19,13 @@ const Dropdown: FC<Props> = ({
   isDefaultOpen,
   bet,
   isAdmin,
+  isParlay,
 }) => {
   const { status } = bet;
 
   const { isBetsColored } = useContext(PreferencesContext);
 
-  const betAdminControlProps = { bet };
+  const betAdminControlProps = { bet, isParlay };
 
   return (
     <div
@@ -34,7 +36,9 @@ const Dropdown: FC<Props> = ({
           ? "bg-gradient-to-r from-red-400 to-red-600"
           : isBetsColored && status === "void"
           ? "bg-gradient-to-r from-blue-400 to-blue-600"
-          : "bg-white dark:bg-tertiary"
+          : !isParlay
+          ? "bg-white dark:bg-tertiary"
+          : "bg-primary dark:bg-neutral-900"
       }`}
     >
       <Disclosure defaultOpen={isDefaultOpen}>

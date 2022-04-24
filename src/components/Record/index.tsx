@@ -90,14 +90,14 @@ const Record: FC<Props> = () => {
         <p className="text-tertiary dark:text-fourth">
           –{" "}
           <span className="text-xl text-secondary dark:text-white font-semibold font-Times">
-            {unitsWon}
+            {unitsWon?.toFixed(2)}
           </span>{" "}
           total units won.
         </p>
         <p className="text-tertiary dark:text-fourth">
           –{" "}
           <span className="text-xl text-secondary dark:text-white font-semibold font-Times">
-            {unitsLost}
+            {unitsLost?.toFixed(2)}
           </span>{" "}
           total units lost.
         </p>
@@ -112,8 +112,8 @@ const Record: FC<Props> = () => {
           –{" "}
           <span className="text-xl text-secondary dark:text-white font-semibold font-Times">
             {totalProfit && totalProfit > 0
-              ? `+${totalProfit}`
-              : `${totalProfit}`}
+              ? `+${totalProfit?.toFixed(2)}`
+              : `${totalProfit?.toFixed(2)}`}
           </span>{" "}
           total units profited.
         </p>

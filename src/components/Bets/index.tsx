@@ -3,6 +3,7 @@ import { Virtuoso } from "react-virtuoso";
 import useSWR from "swr";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
+import { TwitterButton } from "../TwitterButton";
 import { Bet } from "./Bet";
 import { SortBySelect } from "./SortBySelect";
 
@@ -22,15 +23,15 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
 
   const { data: record } = useSWR("/api/bets?set=record");
 
+  const isTwitterVisible = true;
+
   const formattedRecord = record
     ? `${record[0]}-${record[1]}-${record[2]}`
     : null;
 
   const options: string[] = ["units", "date"];
 
-  const handleSelect = (option: string) => {
-    setSelected(option);
-  };
+  const handleSelect = (option: string) => setSelected(option);
 
   // Update sortBy on option selection
   useEffect(() => {
@@ -73,6 +74,11 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
 
   return (
     <div className="flex flex-col items-center w-full">
+      {/* Twitter promo */}
+      <div className="mt-2 md:-mt-4">
+        {isTwitterVisible && !isPast && <TwitterButton />}
+      </div>
+
       {/* POTD Record - Net profit for the day */}
       {isTomorrow ? (
         <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">

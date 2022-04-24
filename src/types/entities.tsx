@@ -60,3 +60,15 @@ export interface BetStats {
   longestStreak: number;
   lastFiveStreak: string;
 }
+
+export interface ParlayBetEntity {
+  _id: string;
+  startTime: Date;
+  wager: string;
+  odds: OddsEntity;
+  stake: number;
+  returns: number;
+  reasoning?: string;
+  status: string;
+  userId: ObjectId;
+}

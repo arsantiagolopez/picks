@@ -1,9 +1,11 @@
 import moment from "moment";
 import React, { FC, useContext, useEffect, useState } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { BetEntity } from "../../types";
+import { BetEntity, ParlayBetEntity } from "../../types";
 import { useBets } from "../../utils/useBets";
+import { useParlayBets } from "../../utils/useParlayBets";
 import { Bets } from "../Bets";
+import { ParlaySection } from "../ParlaySection";
 
 interface Props {
   potdReleaseTime: string | null;
@@ -17,8 +19,12 @@ const TodaysPicks: FC<Props> = ({
   isAdmin,
 }) => {
   const [sortedBets, setSortedBets] = useState<BetEntity[]>([]);
+  const [sortedParlayBets, setSortedParlayBets] = useState<ParlayBetEntity[]>(
+    []
+  );
 
   let { bets } = useBets({ todays: true });
+  let { bets: parlayBets } = useParlayBets({ todays: true });
 
   const { sortBy } = useContext(PreferencesContext);
 
@@ -43,7 +49,27 @@ const TodaysPicks: FC<Props> = ({
     }
   }, [bets, sortBy]);
 
+  // Sort parlay bets
+  useEffect(() => {
+    if (parlayBets && sortBy) {
+      // Sort by units
+      if (sortBy === "units") {
+        setSortedParlayBets([...parlayBets.sort((a, b) => b.stake - a.stake)]);
+      }
+
+      // Sort by date
+      if (sortBy === "date") {
+        setSortedParlayBets([
+          ...parlayBets.sort((a, b) =>
+            b.startTime.valueOf() < a.startTime.valueOf() ? 1 : -1
+          ),
+        ]);
+      }
+    }
+  }, [parlayBets, sortBy]);
+
   const betsProps = { bets: sortedBets, isAdmin };
+  const parlaySectionProps = { bets: sortedParlayBets, isAdmin };
 
   return (
     <div className="w-full pb-8 md:pb-0">
@@ -68,6 +94,9 @@ const TodaysPicks: FC<Props> = ({
 
       {/* Picks */}
       <Bets {...betsProps} />
+
+      {/* Parlays */}
+      <ParlaySection {...parlaySectionProps} />
     </div>
   );
 };

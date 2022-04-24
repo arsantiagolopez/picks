@@ -29,7 +29,7 @@ const SignIn: FC<Props> = ({ providers }) => {
             key={id}
             onClick={() =>
               signIn(id, {
-                callbackUrl: `${process.env.NEXTAUTH_URL}`,
+                callbackUrl: "/",
               })
             }
             className={`button w-fit flex flex-row items-center py-3 px-10 ${

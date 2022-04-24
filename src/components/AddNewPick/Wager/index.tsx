@@ -44,7 +44,7 @@ const Wager: FC<Props> = ({
           <input
             spellCheck={false}
             autoComplete="off"
-            placeholder="What is the pick?"
+            placeholder="What's the pick?"
             className={`relative w-full py-2 pl-3 pr-8 my-2 md:my-4 text-left bg-white border-[1px] border-gray-200 md:border-0 rounded-lg shadow-md focus:outline-black ${
               !validWagerField && "animate-pulse pr-0"
             }`}

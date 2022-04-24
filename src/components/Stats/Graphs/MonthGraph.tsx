@@ -126,6 +126,7 @@ const MonthGraph: FC<Props> = ({
   const graphProps = { data: points };
 
   if (points) {
+    // @ts-ignore
     return <BarGraph {...graphProps} />;
   } else {
     return <></>;

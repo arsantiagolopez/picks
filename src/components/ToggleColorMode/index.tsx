@@ -19,6 +19,7 @@ const ToggleColorMode: FC<Props> = () => {
       setScaleOut(false);
     }, 150);
   };
+
   return (
     <div className="flex flex-row justify-center items-center mx-2 md:mx-4 cursor-pointer select-none">
       <div onClick={handleTransition}>

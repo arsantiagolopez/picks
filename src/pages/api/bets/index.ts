@@ -42,7 +42,7 @@ const getTodaysBets = async (
   const today = moment().utcOffset(-5).startOf("day");
 
   try {
-    const bets = await Bet.find({
+    const bets: BetEntity[] = await Bet.find({
       startTime: {
         $gte: today,
         $lte: moment(today).endOf("day"),
@@ -68,7 +68,7 @@ const getTomorrowsBets = async (
   const tomorrow = moment().utcOffset(-5).add(1, "day").startOf("day");
 
   try {
-    const bets = await Bet.find({
+    const bets: BetEntity[] = await Bet.find({
       startTime: {
         $gte: tomorrow.toDate(),
         $lte: moment(tomorrow).endOf("day").toDate(),
@@ -94,7 +94,7 @@ const getPastBets = async (
   const today = moment().utcOffset(-5).startOf("day");
 
   try {
-    let bets = await Bet.find({
+    let bets: BetEntity[] = await Bet.find({
       startTime: {
         $lte: moment(today).toDate(),
       },
@@ -146,7 +146,7 @@ const getRecord = async (
   res: NextApiResponse
 ): Promise<[number, number, number] | void> => {
   try {
-    const bets = await Bet.find({ status: { $ne: "pending" } });
+    const bets: BetEntity[] = await Bet.find({ status: { $ne: "pending" } });
 
     let wins = 0;
     let losses = 0;

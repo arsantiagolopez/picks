@@ -71,7 +71,7 @@ const AddNewPick: FC<Props> = () => {
     {
       required:
         watch("sport") === "tennis"
-          ? "What is the tennis tournament name?"
+          ? "What's the tennis tournament name?"
           : false,
     }
   );
@@ -95,7 +95,7 @@ const AddNewPick: FC<Props> = () => {
   useEffect(() => {
     register("tournament", {
       required:
-        watch("sport") === "tennis" ? "What is the tennis tour type?" : false,
+        watch("sport") === "tennis" ? "What's the tennis tour type?" : false,
     });
   }, [watch("sport")]);
 

@@ -42,9 +42,9 @@ const Reasoning: FC<Props> = ({ bet }) => {
         </p>
       )}
 
-      <p className="text-primary text-sm md:text-base text-justify dark:text-white my-1 md:my-2">
+      <div className="text-primary text-sm md:text-base text-justify dark:text-white my-1 md:my-2">
         {withBreaks}
-      </p>
+      </div>
 
       {!!isUpdated && (
         <p className="-mt-2 mb-3 md:mt-2 md:mb-4 text-xs text-fourth md:text-tertiary dark:text-fourth italic">

@@ -22,11 +22,8 @@ const AdminRoute: FC<Props> = ({ children }) => {
   }, [isAdmin, loading]);
 
   if (isAdmin) {
-    console.log("returning ADMIN");
     return children;
   }
-
-  console.log("not returning");
 
   // Session is being fetched, or not admin.
   // If not admin, useEffect() will redirect.

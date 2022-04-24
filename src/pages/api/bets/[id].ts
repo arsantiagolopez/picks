@@ -11,11 +11,14 @@ import { dbConnect } from "../../../utils/dbConnect";
  * @param {object} res - http response.
  * @returns an bet object.
  */
-const getBetById = async ({ query }: NextApiRequest, res: NextApiResponse) => {
+const getBetById = async (
+  { query }: NextApiRequest,
+  res: NextApiResponse
+): Promise<BetEntity | null | void> => {
   const { id } = query;
 
   try {
-    const bet = await Bet.findById(id);
+    const bet: BetEntity | null = await Bet.findById(id);
     return res.status(200).json(bet);
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -31,13 +34,14 @@ const getBetById = async ({ query }: NextApiRequest, res: NextApiResponse) => {
 const updateBet = async (
   { body, query }: NextApiRequest,
   res: NextApiResponse
-) => {
+): Promise<BetEntity | null | void> => {
   const { id } = query;
+  const { status } = body;
 
   // Update bet status
-  if (body?.status !== "pending") {
+  if (status) {
     try {
-      const bet = await Bet.findByIdAndUpdate(id, body);
+      const bet: BetEntity | null = await Bet.findByIdAndUpdate(id, { status });
 
       return res.status(200).json(bet);
     } catch (error) {
@@ -81,7 +85,10 @@ const updateBet = async (
  * @param {object} res - http response.
  * @returns a success message on deletion.
  */
-const deleteBet = async ({ query }: NextApiRequest, res: NextApiResponse) => {
+const deleteBet = async (
+  { query }: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
   const { id } = query;
 
   try {
