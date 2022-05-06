@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { Footer } from "../Footer";
+import { Reviews } from "../Reviews";
 import { PastPicks } from "./PastPicks";
 import { TodaysPicks } from "./TodaysPicks";
 import { TomorrowsPicks } from "./TomorrowsPicks";
@@ -42,6 +43,9 @@ const Landing: FC<Props> = () => {
         <TomorrowsPicks {...tomorrowsPicksProps} />
       )}
       <TodaysPicks {...todaysPicksProps} />
+
+      <Reviews />
+
       <PastPicks {...pastPicks} />
       <Footer />
     </div>
