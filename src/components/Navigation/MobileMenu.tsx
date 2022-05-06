@@ -1,13 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  SetStateAction,
-  useContext,
-} from "react";
+import React, { Dispatch, FC, SetStateAction, useContext } from "react";
 import { IoCloseSharp, IoMenuSharp } from "react-icons/io5";
 import { PreferencesContext } from "../../context/PreferencesContext";
 
@@ -30,7 +24,7 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
         <IoMenuSharp className="z-50 text-primary dark:text-white" />
       )}
 
-      <Transition appear show={isMenuOpen} as={Fragment}>
+      <Transition appear show={isMenuOpen} as="div">
         <Dialog
           as="div"
           className="z-40 fixed inset-0 overflow-y-auto backdrop-blur-3xl shadow-2xl"
@@ -38,7 +32,7 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
-              as={Fragment}
+              as="div"
               enter="ease-out duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
@@ -49,7 +43,7 @@ const MobileMenu: FC<Props> = ({ isMenuOpen, setIsMenuOpen, isAdmin }) => {
               <Dialog.Overlay className="fixed inset-0 bg-black opacity-5" />
             </Transition.Child>
             <Transition.Child
-              as={Fragment}
+              as="div"
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"

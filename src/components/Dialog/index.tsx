@@ -1,5 +1,5 @@
 import { Dialog as HeadlessDialog, Transition } from "@headlessui/react";
-import React, { Dispatch, FC, Fragment, SetStateAction } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { CgCheck } from "react-icons/cg";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -29,7 +29,7 @@ const Dialog: FC<Props> = ({
   ActionControl,
   isCentered,
 }) => (
-  <Transition appear show={isOpen} as={Fragment}>
+  <Transition appear show={isOpen} as="div">
     <HeadlessDialog
       as="div"
       className="z-50 fixed inset-0 overflow-y-auto backdrop-blur-3xl shadow-2xl"
@@ -37,7 +37,7 @@ const Dialog: FC<Props> = ({
     >
       <div className="min-h-screen px-4 text-center">
         <Transition.Child
-          as={Fragment}
+          as="div"
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -53,7 +53,7 @@ const Dialog: FC<Props> = ({
           &#8203;
         </span>
         <Transition.Child
-          as={Fragment}
+          as="div"
           enter="ease-out duration-300"
           enterFrom="opacity-0 scale-95"
           enterTo="opacity-100 scale-100"

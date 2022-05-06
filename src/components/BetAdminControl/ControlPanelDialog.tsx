@@ -1,13 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { AxiosResponse } from "axios";
 import { useRouter } from "next/router";
-import React, {
-  Dispatch,
-  FC,
-  Fragment,
-  SetStateAction,
-  useContext,
-} from "react";
+import React, { Dispatch, FC, SetStateAction, useContext } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import axios from "../../axios";
 import { PreferencesContext } from "../../context/PreferencesContext";
@@ -115,7 +109,7 @@ const ControlPanelDialog: FC<Props> = ({
   };
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen} as="div">
       <Dialog
         as="div"
         className="z-50 fixed inset-0 overflow-y-auto backdrop-blur-3xl shadow-2xl font-Basic"
@@ -123,7 +117,7 @@ const ControlPanelDialog: FC<Props> = ({
       >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
-            as={Fragment}
+            as="div"
             enter="ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
@@ -142,7 +136,7 @@ const ControlPanelDialog: FC<Props> = ({
             &#8203;
           </span>
           <Transition.Child
-            as={Fragment}
+            as="div"
             enter="ease-out duration-300"
             enterFrom="opacity-0 scale-95"
             enterTo="opacity-100 scale-100"
