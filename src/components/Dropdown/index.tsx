@@ -27,8 +27,6 @@ const Dropdown: FC<Props> = ({
 
   const betAdminControlProps = { bet, isParlay };
 
-  console.log(bet);
-
   return (
     <div
       className={`relative flex flex-col w-full rounded-md shadow-lg dark:shadow-zinc-900 dark:shadow-xl p-3 md:p-5 ${
