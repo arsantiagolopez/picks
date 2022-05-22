@@ -45,9 +45,12 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
       {/* Top line - Tournament */}
       <div className="flex flex-row justify-between items-center text-gray-300 dark:text-white">
         <div className="flex flex-row items-center">
-          <p className="text-lg mr-2">{getSportEmoji(sport)}</p>
+          <p className="text-xl mr-2">{getSportEmoji(sport)}</p>
           {tournament ? (
-            <img src={getTournamentLogoSrc(tournament)} className="h-3" />
+            <img
+              src={getTournamentLogoSrc(tournament)}
+              className={tournament === "roland-garros" ? "h-5" : "h-3"}
+            />
           ) : (
             <div className="ml-1 mr-3">
               <p className="uppercase font-Inter text-xs tracking-wider">

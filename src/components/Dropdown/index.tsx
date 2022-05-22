@@ -27,6 +27,8 @@ const Dropdown: FC<Props> = ({
 
   const betAdminControlProps = { bet, isParlay };
 
+  console.log(bet);
+
   return (
     <div
       className={`relative flex flex-col w-full rounded-md shadow-lg dark:shadow-zinc-900 dark:shadow-xl p-3 md:p-5 ${
@@ -37,7 +39,9 @@ const Dropdown: FC<Props> = ({
           : isBetsColored && status === "void"
           ? "bg-gradient-to-r from-blue-400 to-blue-600"
           : !isParlay
-          ? "bg-white dark:bg-tertiary"
+          ? // "bg-white dark:bg-tertiary"
+            // Conditional color based on active events
+            "roland-garros-card"
           : "bg-primary dark:bg-neutral-900"
       }`}
     >
