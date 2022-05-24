@@ -28,6 +28,7 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
     odds,
     stake,
     status,
+    isFutures,
   } = bet;
 
   const date = moment(startTime).format("LT");
@@ -45,7 +46,11 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       }`}
     >
       {/* Tournament */}
-      <div className="flex flex-row justify-between items-center lg:w-[20%] pr-4 lg:pr-0">
+      <div
+        className={`flex flex-row justify-between items-center ${
+          isFutures ? "" : "lg:w-[20%] pr-4 lg:pr-0"
+        }`}
+      >
         <p className="text-2xl">{getSportEmoji(sport)}</p>
         {tournament ? (
           <img
@@ -57,16 +62,18 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
             <p className="capitalize dark:text-white">{sport}</p>
           </div>
         )}
-        <p className="hidden lg:block text-sm text-secondary dark:text-white">
-          {date}{" "}
-          <span
-            className={`hidden md:block text-xs italic self-end dark:text-white ${
-              isBetsColored ? "text-black" : "text-tertiary"
-            }`}
-          >
-            ({fromNow})
-          </span>
-        </p>
+        {!isFutures && (
+          <p className="hidden lg:block text-sm text-secondary dark:text-white">
+            {date}{" "}
+            <span
+              className={`hidden md:block text-xs italic self-end dark:text-white ${
+                isBetsColored ? "text-black" : "text-tertiary"
+              }`}
+            >
+              ({fromNow})
+            </span>
+          </p>
+        )}
       </div>
 
       {/* Event */}
@@ -89,8 +96,14 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
         }`}
       >
         <p>
-          Pick:{" "}
-          <span className="text-primary font-semibold dark:text-white">
+          {!isFutures && <span>Pick: </span>}
+          <span
+            className={
+              isFutures
+                ? "text-white"
+                : `text-primary font-semibold dark:text-white`
+            }
+          >
             {wager}
           </span>
         </p>
@@ -103,9 +116,15 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
           isBetsColored ? "text-black" : "text-tertiary"
         }`}
       >
-        <p>
+        <p
+          className={
+            isFutures
+              ? "text-white"
+              : `text-primary font-semibold dark:text-white`
+          }
+        >
           @{" "}
-          <span className="text-primary font-semibold dark:text-white">
+          <span className="font-semibold">
             {oddsFormat === "decimal"
               ? odds.decimal
               : `${odds.american > 0 ? `+${odds.american}` : odds.american}`}
@@ -115,19 +134,30 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       </div>
 
       {/* Units */}
-      <p
-        className={`italic dark:text-white ${
-          isBetsColored ? "text-black" : "text-tertiary"
-        }`}
-      >
-        for{" "}
-        <span className="text-primary font-semibold dark:text-white">
+      <p className={`italic ${isBetsColored ? "text-black" : "text-tertiary"}`}>
+        <span
+          className={`${
+            isFutures ? "text-white" : "text-primary dark:text-white"
+          }`}
+        >
+          for{" "}
+        </span>
+
+        <span
+          className={`font-semibold ${
+            isFutures ? "text-white" : "text-primary dark:text-white"
+          }`}
+        >
           {stake}u
         </span>
       </p>
 
       {/* Status */}
-      <div className="flex flex-row text-primary italic dark:text-white">
+      <div
+        className={`flex flex-row italic ${
+          isFutures ? "text-white" : "text-primary dark:text-white"
+        }`}
+      >
         {status === "won" ? (
           <CgCheck
             className={`text-3xl animate-[ping_0.5s_ease-out_1] ${

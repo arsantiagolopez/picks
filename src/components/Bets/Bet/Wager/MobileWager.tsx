@@ -29,6 +29,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
     odds,
     stake,
     status,
+    isFutures,
   } = bet;
 
   const isMulti = sport === "multi";
@@ -43,7 +44,11 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
   return (
     <div className="flex flex-col w-full text-sm ">
       {/* Top line - Tournament */}
-      <div className="flex flex-row justify-between items-center text-gray-300 dark:text-white">
+      <div
+        className={`flex flex-row justify-between items-center  ${
+          isFutures ? "text-white" : "text-gray-300 dark:text-white"
+        }`}
+      >
         <div className="flex flex-row items-center">
           <p className="text-xl mr-2">{getSportEmoji(sport)}</p>
           {tournament ? (
@@ -125,18 +130,21 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
       {/* Bottom line - Wager */}
       <div className="flex flex-row items-center">
         <p
-          className={`text-secondary font-semibold truncate dark:text-fourth ${
+          className={`font-semibold truncate ${
             isMulti ? "max-w-[100%]" : "max-w-[70%]"
-          }`}
+          }
+          ${isFutures ? "text-white" : "text-secondary dark:text-fourth"}
+          `}
         >
           {wager}
         </p>
+
         {!isMulti && (
           <div className="flex flex-row items-center">
             <p
               onClick={handleClick}
-              className={`text-tertiary ml-2 dark:text-white ${
-                isBetsColored ? "text-black" : "text-tertiary"
+              className={`ml-2 ${
+                isFutures ? "text-white" : "text-tertiary dark:text-white"
               }`}
             >
               @{" "}
@@ -145,12 +153,17 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
                 : `${odds.american > 0 ? `+${odds.american}` : odds.american}`}
             </p>
             <p
-              className={`ml-2 dark:text-white ${
-                isBetsColored ? "text-black" : "text-tertiary"
-              }`}
+              className={`ml-2 ${
+                isFutures ? "text-white" : "text-tertiary dark:text-white"
+              }
+              `}
             >
               for{" "}
-              <span className="text-secondary font-semibold ml-1 dark:text-white">
+              <span
+                className={`font-semibold ml-1 ${
+                  isFutures ? "text-white" : "text-secondary dark:text-white"
+                }`}
+              >
                 {stake}u
               </span>
             </p>

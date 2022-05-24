@@ -16,6 +16,7 @@ const Reasoning: FC<Props> = ({ bet }) => {
     status,
     stake,
     returns,
+    isFutures,
   } = bet;
 
   const fromNow = moment().to(moment(startTime));
@@ -37,24 +38,44 @@ const Reasoning: FC<Props> = ({ bet }) => {
   return (
     <div className="flex flex-col justify-between md:text-sm">
       {sport === "tennis" && (
-        <p className="hidden md:block text-primary text-sm dark:text-fourth">
+        <p
+          className={`hidden md:block text-sm ${
+            isFutures ? "text-white" : "text-primary dark:text-fourth"
+          }`}
+        >
           <span className="uppercase">{tournament}</span> – {tournamentName}
         </p>
       )}
 
-      <div className="text-primary text-sm md:text-base text-justify dark:text-white my-1 md:my-2">
+      <div
+        className={`text-sm md:text-base text-justify my-1 md:my-2 ${
+          isFutures ? "text-white" : "text-primary dark:text-white"
+        }`}
+      >
         {withBreaks}
       </div>
 
       {!!isUpdated && (
-        <p className="-mt-2 mb-3 md:mt-2 md:mb-4 text-xs text-fourth md:text-tertiary dark:text-fourth italic">
+        <p
+          className={`-mt-2 mb-3 md:mt-2 md:mb-4 text-xs italic ${
+            isFutures
+              ? "text-white"
+              : "text-fourth md:text-tertiary dark:text-fourth"
+          }`}
+        >
           Edited {isUpdated}
         </p>
       )}
 
-      <p className="text-primary text-xs dark:text-fourth">
-        {status === "pending" ? (
+      <p
+        className={`text-xs ${
+          isFutures ? "text-white" : "text-primary dark:text-fourth"
+        }`}
+      >
+        {status === "pending" && !isFutures ? (
           `Match ${isPast ? "started" : "starts"} ${fromNow}`
+        ) : isFutures ? (
+          `${tournamentName} is ongoing.`
         ) : (
           <span>
             Result:

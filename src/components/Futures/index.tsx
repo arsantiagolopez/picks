@@ -15,7 +15,7 @@ const Futures: FC<Props> = ({ bets, isAdmin }) => {
 
   return (
     <div className="flex flex-col w-full md:pb-10">
-      <div className="flex flex-col w-full justify-center items-center font-Basic text-primary dark:text-white pb-6">
+      <div className="flex flex-col w-full justify-center items-center font-Basic text-primary dark:text-white pb-12">
         <h1 className="text-4xl md:text-6xl tracking-tighter">Futures</h1>
       </div>
 
