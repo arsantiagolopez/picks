@@ -5,37 +5,24 @@ import React, { Dispatch, FC, SetStateAction, useContext } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import axios from "../../axios";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { BetEntity, ParlayBetEntity } from "../../types";
+import { BetEntity } from "../../types";
 import { refreshScreen } from "../../utils/refreshScreen";
 import { useBets } from "../../utils/useBets";
-import { useParlayBets } from "../../utils/useParlayBets";
 
 interface Props {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  bet: BetEntity | ParlayBetEntity;
-  isParlay?: boolean;
+  bet: BetEntity;
 }
 
-const ControlPanelDialog: FC<Props> = ({
-  isOpen,
-  setIsOpen,
-  bet,
-  isParlay,
-}) => {
+const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
   const { bets, setBets } = useBets();
-  const { bets: parlayBets, setBets: setParlayBets } = useParlayBets();
 
   const { colorMode } = useContext(PreferencesContext);
 
   const router = useRouter();
 
-  const redirectToUpdate = () =>
-    router.push(
-      isParlay
-        ? `/admin/update-parlay?id=${bet?._id}`
-        : `/admin/update?id=${bet?._id}`
-    );
+  const redirectToUpdate = () => router.push(`/admin/update?id=${bet?._id}`);
 
   const handleCancel = () => setIsOpen(false);
 
@@ -43,63 +30,34 @@ const ControlPanelDialog: FC<Props> = ({
     let response: AxiosResponse<any, any> | null = null;
 
     let updatedBets = bets;
-    let updatedParlayBets = parlayBets;
 
     switch (action) {
       case "DELETE":
-        response = await axios.delete(
-          isParlay ? `/api/parlayBets/${bet?._id}` : `/api/bets/${bet?._id}`
-        );
-        if (isParlay) {
-          updatedParlayBets = bets.filter(({ _id }) => _id !== bet?._id);
-        } else {
-          updatedBets = bets.filter(({ _id }) => _id !== bet?._id);
-        }
+        response = await axios.delete(`/api/bets/${bet?._id}`);
+        updatedBets = bets.filter(({ _id }) => _id !== bet?._id);
         break;
       case "LOST":
-        response = await axios.put(
-          isParlay ? `/api/parlayBets/${bet?._id}` : `/api/bets/${bet?._id}`,
-          {
-            status: "lost",
-          }
-        );
-        if (isParlay) {
-          updatedParlayBets = [...bets, { ...response?.data, status: "lost" }];
-        } else {
-          updatedBets = [...bets, { ...response?.data, status: "lost" }];
-        }
+        response = await axios.put(`/api/bets/${bet?._id}`, {
+          status: "lost",
+        });
+        updatedBets = [...bets, { ...response?.data, status: "lost" }];
         break;
       case "VOID":
-        response = await axios.put(
-          isParlay ? `/api/parlayBets/${bet?._id}` : `/api/bets/${bet?._id}`,
-          {
-            status: "void",
-          }
-        );
-        if (isParlay) {
-          updatedParlayBets = [...bets, { ...response?.data, status: "void" }];
-        } else {
-          updatedBets = [...bets, { ...response?.data, status: "void" }];
-        }
+        response = await axios.put(`/api/bets/${bet?._id}`, {
+          status: "void",
+        });
+        updatedBets = [...bets, { ...response?.data, status: "void" }];
         break;
       case "WON":
-        response = await axios.put(
-          isParlay ? `/api/parlayBets/${bet?._id}` : `/api/bets/${bet?._id}`,
-          {
-            status: "won",
-          }
-        );
-        if (isParlay) {
-          updatedParlayBets = [...bets, { ...response?.data, status: "won" }];
-        } else {
-          updatedBets = [...bets, { ...response?.data, status: "won" }];
-        }
+        response = await axios.put(`/api/bets/${bet?._id}`, {
+          status: "won",
+        });
+        updatedBets = [...bets, { ...response?.data, status: "won" }];
         break;
     }
 
     // Mutate state for better UI
-    if (isParlay) setParlayBets(updatedParlayBets);
-    else setBets(updatedBets);
+    setBets(updatedBets);
 
     // Refresh screen
     refreshScreen();

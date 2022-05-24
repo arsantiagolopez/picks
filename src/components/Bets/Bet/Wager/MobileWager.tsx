@@ -49,7 +49,11 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
           {tournament ? (
             <img
               src={getTournamentLogoSrc(tournament)}
-              className={tournament === "roland-garros" ? "h-5" : "h-3"}
+              className={
+                tournament === "roland-garros" || tournament === "wimbledon"
+                  ? "h-5"
+                  : "h-3"
+              }
             />
           ) : (
             <div className="ml-1 mr-3">

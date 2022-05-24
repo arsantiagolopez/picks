@@ -1,16 +1,15 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import React, { FC, useContext } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { BetEntity, ParlayBetEntity } from "../../types";
+import { BetEntity } from "../../types";
 import { BetAdminControl } from "../BetAdminControl";
 
 interface Props {
   Button: JSX.Element;
   Panel: JSX.Element;
   isDefaultOpen?: boolean;
-  bet: BetEntity | ParlayBetEntity;
+  bet: BetEntity;
   isAdmin: boolean;
-  isParlay?: boolean;
 }
 
 const Dropdown: FC<Props> = ({
@@ -19,13 +18,12 @@ const Dropdown: FC<Props> = ({
   isDefaultOpen,
   bet,
   isAdmin,
-  isParlay,
 }) => {
-  const { status } = bet;
+  const { status, isFutures } = bet;
 
   const { isBetsColored } = useContext(PreferencesContext);
 
-  const betAdminControlProps = { bet, isParlay };
+  const betAdminControlProps = { bet };
 
   return (
     <div
@@ -36,7 +34,7 @@ const Dropdown: FC<Props> = ({
           ? "bg-gradient-to-r from-red-400 to-red-600"
           : isBetsColored && status === "void"
           ? "bg-gradient-to-r from-blue-400 to-blue-600"
-          : !isParlay
+          : !isFutures
           ? // "bg-white dark:bg-tertiary"
             // Conditional color based on active events
             "roland-garros-card"

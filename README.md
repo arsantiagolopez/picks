@@ -43,7 +43,6 @@
 - Light/Dark mode.
 - Daily sports betting tips displayed in tomorrow's, today's and past sections.
 - Tips are displayed in cards with the tour level logo, start time, tournament name, headline, prediction, odds, units staked and reasoning.
-- Singles and parlay sections with its corresponding records.
 - Completed predictions are graded with either a win, loss, or push, and the resulting profits are displayed on the slip.
 - Stats are automatically calculated and displayed on the Records and Stats page.
 - The Records page shows the most important stats in the win/loss/push overall record, return of investment (ROI), units staked, units returned, and others.

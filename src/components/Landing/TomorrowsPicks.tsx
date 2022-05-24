@@ -1,11 +1,11 @@
 import moment from "moment-timezone";
 import React, { FC, useContext, useEffect, useState } from "react";
 import { PreferencesContext } from "../../context/PreferencesContext";
-import { BetEntity, ParlayBetEntity } from "../../types";
+import { BetEntity } from "../../types";
 import { useBets } from "../../utils/useBets";
-import { useParlayBets } from "../../utils/useParlayBets";
+import { useFuturesBets } from "../../utils/useFuturesBets";
 import { Bets } from "../Bets";
-import { ParlaySection } from "../ParlaySection";
+import { Futures } from "../Futures";
 
 interface Props {
   isAdmin: boolean;
@@ -14,12 +14,9 @@ interface Props {
 
 const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
   const [sortedBets, setSortedBets] = useState<BetEntity[]>([]);
-  const [sortedParlayBets, setSortedParlayBets] = useState<ParlayBetEntity[]>(
-    []
-  );
 
   let { bets } = useBets({ tomorrows: true });
-  let { bets: parlayBets } = useParlayBets({ tomorrows: true });
+  let { bets: futuresBets } = useFuturesBets();
 
   const { sortBy } = useContext(PreferencesContext);
 
@@ -54,31 +51,8 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
     }
   }, [bets, sortBy]);
 
-  // Sort parlay bets
-  useEffect(() => {
-    if (parlayBets && sortBy) {
-      // Sort by units
-      if (sortBy === "units") {
-        setSortedParlayBets([...parlayBets.sort((a, b) => b.stake - a.stake)]);
-      }
-
-      // Sort by date
-      if (sortBy === "date") {
-        setSortedParlayBets([
-          ...parlayBets.sort((a, b) =>
-            b.startTime.valueOf() < a.startTime.valueOf() ? 1 : -1
-          ),
-        ]);
-      }
-    }
-  }, [parlayBets, sortBy]);
-
   const betsProps = { bets: sortedBets, isTomorrow: true, isAdmin };
-  const parlaySectionProps = {
-    bets: sortedParlayBets,
-    isTomorrow: true,
-    isAdmin,
-  };
+  const futuresProps = { bets: futuresBets, isAdmin };
 
   return (
     <div className="relative w-screen px-5 md:px-[22.5%] min-h-[50vh] dark:bg-secondary transition-all">
@@ -106,8 +80,8 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
       {/* Picks */}
       <Bets {...betsProps} />
 
-      {/* Parlays */}
-      <ParlaySection {...parlaySectionProps} />
+      {/* Futures */}
+      <Futures {...futuresProps} />
     </div>
   );
 };

@@ -12,12 +12,6 @@ const AdminDashboard: FC<Props> = () => {
         </button>
       </Link>
 
-      <Link href="/admin/new-parlay">
-        <button className="font-Basic tracking-tighter text-2xl md:text-3xl text-primary dark:text-white bg-white dark:bg-secondary aspect-square shadow-md rounded-lg hover:animate-pulse hover:bg-gray-50 dark:hover:bg-tertiary">
-          Create parlay
-        </button>
-      </Link>
-
       <Link href="/admin/settings">
         <button className="font-Basic tracking-tighter text-2xl md:text-3xl text-primary dark:text-white bg-white dark:bg-secondary aspect-square shadow-md rounded-lg hover:animate-pulse hover:bg-gray-50 dark:hover:bg-tertiary">
           Settings

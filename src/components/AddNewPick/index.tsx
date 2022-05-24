@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { FC, useEffect, useState } from "react";
 import { useForm, UseFormRegisterReturn } from "react-hook-form";
 import { CgCheck } from "react-icons/cg";
@@ -7,6 +8,7 @@ import { EventDetails } from "./EventDetails";
 import { Reasoning } from "./Reasoning";
 import { SportSelect } from "./SportSelect";
 import { TournamentDetails } from "./TournamentDetails";
+import { TypeDetails } from "./TypeDetails";
 import { Wager } from "./Wager";
 
 interface Props {}
@@ -15,6 +17,7 @@ const AddNewPick: FC<Props> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [helperMessage, setHelperMessage] = useState<string | null>(null);
   const [showUpdate, setShowUpdate] = useState<boolean>(false);
+  const [isFutures, setIsFutures] = useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -49,7 +52,7 @@ const AddNewPick: FC<Props> = () => {
     stake = Number(stake);
     reasoning = reasoning === "" ? undefined : reasoning;
 
-    values = { ...values, stake, reasoning };
+    values = { ...values, stake, reasoning, isFutures };
 
     // Create bet
     const { status } = await axios.post("/api/bets", { ...values });
@@ -77,11 +80,15 @@ const AddNewPick: FC<Props> = () => {
   );
   const homeRegister: UseFormRegisterReturn = register("home", {
     required:
-      watch("sport") !== "multi" ? "The home field is required." : false,
+      !isFutures && watch("sport") !== "multi"
+        ? "The home field is required."
+        : false,
   });
   const awayRegister: UseFormRegisterReturn = register("away", {
     required:
-      watch("sport") !== "multi" ? "The away field is required." : false,
+      !isFutures && watch("sport") !== "multi"
+        ? "The away field is required."
+        : false,
   });
   const wagerRegister: UseFormRegisterReturn = register("wager", {
     required: "The wager field is required.",
@@ -109,7 +116,16 @@ const AddNewPick: FC<Props> = () => {
     });
   }, []);
 
+  // Set default time if isFutures
+  useEffect(() => {
+    if (isFutures) {
+      const today = moment(new Date()).toDate();
+      setValue("startTime", today);
+    }
+  }, [isFutures]);
+
   const sportSelectProps = { setValue, watch };
+  const typeProps = { isFutures, setIsFutures };
   const tournamentDetailsProps = { setValue, watch, tournamentNameRegister };
   const eventDetailsProps = { setValue, watch, homeRegister, awayRegister };
   const wagerProps = {
@@ -135,11 +151,14 @@ const AddNewPick: FC<Props> = () => {
         {/* Sport */}
         <SportSelect {...sportSelectProps} />
 
+        {/* Type details */}
+        <TypeDetails {...typeProps} />
+
         {/* Tournament Details */}
         <TournamentDetails {...tournamentDetailsProps} />
 
         {/* Event Details */}
-        <EventDetails {...eventDetailsProps} />
+        {!isFutures && <EventDetails {...eventDetailsProps} />}
 
         {/* Wager */}
         <Wager {...wagerProps} />

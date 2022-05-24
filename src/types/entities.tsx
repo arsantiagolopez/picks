@@ -30,6 +30,7 @@ export interface BetEntity {
   returns: number;
   reasoning?: string;
   status: string;
+  isFutures?: boolean;
   userId: ObjectId;
 }
 
@@ -59,16 +60,4 @@ export interface BetStats {
   avgOdds: OddsEntity;
   longestStreak: number;
   lastFiveStreak: string;
-}
-
-export interface ParlayBetEntity {
-  _id: string;
-  startTime: Date;
-  wager: string;
-  odds: OddsEntity;
-  stake: number;
-  returns: number;
-  reasoning?: string;
-  status: string;
-  userId: ObjectId;
 }

@@ -43,10 +43,15 @@ const getTodaysBets = async (
 
   try {
     const bets: BetEntity[] = await Bet.find({
-      startTime: {
-        $gte: today,
-        $lte: moment(today).endOf("day"),
-      },
+      $and: [
+        {
+          startTime: {
+            $gte: today,
+            $lte: moment(today).endOf("day"),
+          },
+        },
+        { isFutures: { $ne: true } },
+      ],
     });
 
     return res.status(200).json(bets);
@@ -69,10 +74,15 @@ const getTomorrowsBets = async (
 
   try {
     const bets: BetEntity[] = await Bet.find({
-      startTime: {
-        $gte: tomorrow.toDate(),
-        $lte: moment(tomorrow).endOf("day").toDate(),
-      },
+      $and: [
+        {
+          startTime: {
+            $gte: tomorrow.toDate(),
+            $lte: moment(tomorrow).endOf("day").toDate(),
+          },
+        },
+        { isFutures: { $ne: true } },
+      ],
     });
 
     return res.status(200).json(bets);
@@ -165,6 +175,29 @@ const getRecord = async (
 };
 
 /**
+ * Get ungraded futures bets.
+ * @param {object} req - http request.
+ * @param {object} res - http response.
+ * @returns an array of objects of futures bets.
+ */
+const getFutures = async (
+  _: NextApiRequest,
+  res: NextApiResponse
+): Promise<BetEntity[] | void> => {
+  try {
+    // Get pending futures, or futures that were graded before the end of the day
+    const bets: BetEntity[] = await Bet.find({
+      status: "pending",
+      isFutures: true,
+    });
+
+    return res.status(200).json(bets);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+
+/**
  * Create bet.
  * @param {object} req - http request, including the body.
  * @param {object} res - http response.
@@ -223,6 +256,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           return getGradedBets(req, res);
         case "record":
           return getRecord(req, res);
+        case "futures":
+          return getFutures(req, res);
         default:
           return getAllBets(req, res);
       }

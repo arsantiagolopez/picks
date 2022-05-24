@@ -55,6 +55,10 @@ const BetSchema = new Schema<BetEntity>(
       type: String,
       required: false,
     },
+    isFutures: {
+      type: Boolean,
+      required: false,
+    },
     status: {
       type: String,
       required: true,
