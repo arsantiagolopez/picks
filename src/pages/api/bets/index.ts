@@ -104,10 +104,23 @@ const getPastBets = async (
   const today = moment().utcOffset(-5).startOf("day");
 
   try {
+    // let bets: BetEntity[] = await Bet.find({
+    //   startTime: {
+    //     $lte: moment(today).toDate(),
+    //   },
+    // });
+
     let bets: BetEntity[] = await Bet.find({
-      startTime: {
-        $lte: moment(today).toDate(),
-      },
+      $and: [
+        {
+          startTime: {
+            $lte: moment(today).toDate(),
+          },
+        },
+        {
+          status: { $ne: "pending" },
+        },
+      ],
     });
 
     // Sort bets by date (newest to oldest)

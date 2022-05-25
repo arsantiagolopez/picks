@@ -46,7 +46,7 @@ const MobileWager: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
       {/* Top line - Tournament */}
       <div
         className={`flex flex-row justify-between items-center  ${
-          isFutures ? "text-white" : "text-gray-300 dark:text-white"
+          isFutures ? "text-white pb-2" : "text-gray-300 dark:text-white"
         }`}
       >
         <div className="flex flex-row items-center">

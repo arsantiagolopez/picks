@@ -40,7 +40,11 @@ const Reasoning: FC<Props> = ({ bet }) => {
       {sport === "tennis" && (
         <p
           className={`hidden md:block text-sm ${
-            isFutures ? "text-white" : "text-primary dark:text-fourth"
+            isFutures
+              ? status === "pending"
+                ? "text-white"
+                : "text-primary dark:text-white"
+              : "text-primary dark:text-fourth"
           }`}
         >
           <span className="uppercase">{tournament}</span> – {tournamentName}
@@ -49,7 +53,11 @@ const Reasoning: FC<Props> = ({ bet }) => {
 
       <div
         className={`text-sm md:text-base text-justify my-1 md:my-2 ${
-          isFutures ? "text-white" : "text-primary dark:text-white"
+          isFutures
+            ? status === "pending"
+              ? "text-white"
+              : "text-primary dark:text-white"
+            : "text-primary dark:text-white"
         }`}
       >
         {withBreaks}
@@ -59,7 +67,9 @@ const Reasoning: FC<Props> = ({ bet }) => {
         <p
           className={`-mt-2 mb-3 md:mt-2 md:mb-4 text-xs italic ${
             isFutures
-              ? "text-white"
+              ? status === "pending"
+                ? "text-white"
+                : "text-primary dark:text-white"
               : "text-fourth md:text-tertiary dark:text-fourth"
           }`}
         >
@@ -69,12 +79,16 @@ const Reasoning: FC<Props> = ({ bet }) => {
 
       <p
         className={`text-xs ${
-          isFutures ? "text-white" : "text-primary dark:text-fourth"
+          isFutures
+            ? status === "pending"
+              ? "text-white"
+              : "text-primary dark:text-white"
+            : "text-primary dark:text-fourth"
         }`}
       >
         {status === "pending" && !isFutures ? (
           `Match ${isPast ? "started" : "starts"} ${fromNow}`
-        ) : isFutures ? (
+        ) : isFutures && status === "pending" ? (
           `${tournamentName} is ongoing.`
         ) : (
           <span>

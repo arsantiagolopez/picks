@@ -100,7 +100,9 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
           <span
             className={
               isFutures
-                ? "text-white"
+                ? status === "pending"
+                  ? "text-white"
+                  : "text-primary dark:text-white"
                 : `text-primary font-semibold dark:text-white`
             }
           >
@@ -119,7 +121,9 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
         <p
           className={
             isFutures
-              ? "text-white"
+              ? status === "pending"
+                ? "text-white"
+                : "text-primary dark:text-white"
               : `text-primary font-semibold dark:text-white`
           }
         >
@@ -137,7 +141,11 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       <p className={`italic ${isBetsColored ? "text-black" : "text-tertiary"}`}>
         <span
           className={`${
-            isFutures ? "text-white" : "text-primary dark:text-white"
+            isFutures
+              ? status === "pending"
+                ? "text-white"
+                : "text-primary dark:text-white"
+              : "text-primary dark:text-white"
           }`}
         >
           for{" "}
@@ -145,7 +153,11 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
 
         <span
           className={`font-semibold ${
-            isFutures ? "text-white" : "text-primary dark:text-white"
+            isFutures
+              ? status === "pending"
+                ? "text-white"
+                : "text-primary dark:text-white"
+              : "text-primary dark:text-white"
           }`}
         >
           {stake}u
@@ -155,7 +167,11 @@ const DesktopWager: FC<Props> = ({ bet, isBetsColored, isAdmin }) => {
       {/* Status */}
       <div
         className={`flex flex-row italic ${
-          isFutures ? "text-white" : "text-primary dark:text-white"
+          isFutures
+            ? status === "pending"
+              ? "text-white"
+              : "text-primary dark:text-white"
+            : "text-primary dark:text-white"
         }`}
       >
         {status === "won" ? (
