@@ -73,26 +73,19 @@ const ControlPanelDialog: FC<Props> = ({ isOpen, setIsOpen, bet }) => {
         className="z-50 fixed inset-0 overflow-y-auto backdrop-blur-3xl shadow-2xl font-Basic"
         onClose={() => setIsOpen(false)}
       >
-        <div className="min-h-screen px-4 text-center">
-          <Transition.Child
-            as="div"
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-black opacity-5" />
-          </Transition.Child>
+        <Transition.Child
+          as="div"
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Dialog.Overlay className="fixed inset-0 bg-black opacity-5" />
+        </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="inline-block h-screen align-middle"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
+        <div className="flex flex-col justify-center min-h-screen px-4 text-center">
           <Transition.Child
             as="div"
             enter="ease-out duration-300"

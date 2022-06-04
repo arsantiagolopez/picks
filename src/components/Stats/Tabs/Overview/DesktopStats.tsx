@@ -46,7 +46,7 @@ const DesktopStats: FC<Props> = ({
         <p className="text-tertiary dark:text-fourth">Days tracked</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
-            {daysTracked ? `${daysTracked} days` : null}
+            {daysTracked ? `${daysTracked}d` : null}
           </p>
           <BsSun className="text-xl md:text-2xl ml-2 text-yellow-500" />
         </div>
@@ -57,7 +57,11 @@ const DesktopStats: FC<Props> = ({
         <p className="text-tertiary dark:text-fourth">Avg. odds</p>
         <div className="flex flex-row items-baseline">
           <p className="font-Basic font-bold text-4xl md:text-5xl tracking-tight">
-            {activeOdds === "american" ? avgOdds?.american : avgOdds?.decimal}
+            {activeOdds === "american"
+              ? avgOdds?.american > 0
+                ? `+${avgOdds?.american}`
+                : avgOdds?.american
+              : avgOdds?.decimal}
           </p>
           <IoPricetagsOutline className="text-xl md:text-2xl ml-2 text-blue-500" />
         </div>
