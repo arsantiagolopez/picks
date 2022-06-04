@@ -64,3 +64,9 @@ button {
   background-size: 600% 600%;
   animation: shine 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+.wimbledon-card {
+  background: linear-gradient(270deg, #bd4eff, #bd4eff, #691396);
+  background-size: 600% 600%;
+  animation: shine 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

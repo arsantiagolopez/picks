@@ -11,14 +11,14 @@ interface Props {
 }
 
 const Bet: FC<Props> = ({ bet, isAdmin, isBetsColored }) => {
-  const { tournament } = bet;
+  // const { tournament } = bet;
   const wagerProps = { isAdmin, isBetsColored };
 
   return (
     <div className="relative w-full mb-2 md:mb-6">
-      {tournament === "roland-garros" && (
+      {/* {tournament === "roland-garros" && (
         <img src="/rg.png" className="z-20 absolute -top-3 -left-3 w-6" />
-      )}
+      )} */}
 
       <Dropdown
         Button={<Wager bet={bet} {...wagerProps} />}
