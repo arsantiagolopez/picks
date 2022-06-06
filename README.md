@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://i.ibb.co/1rZDsn6/centered.png" width="90%"/>
+    <img src="https://i.ibb.co/pf52rD3/logo.png" width="25%"/>
     <a href="https://maizepicks.vercel.app" style="color: #303030;"><h1>Maize Picks</h1></a>
     <h4>A platform to post daily sports betting picks. Stats like profits, ROI, streaks, and many more tracked over intervals of time.</h4>
 </div>
@@ -31,10 +31,12 @@
 
 <details open>
   <summary>Mobile</summary>
+  <img src="https://github.com/arsantiagolopez/gifs/blob/main/picks/mobile.gif" />
 </details>
 
 <details>
   <summary>Desktop</summary>
+  <img src="https://github.com/arsantiagolopez/gifs/blob/main/picks/desktop.gif" />
 </details>
 
 <h2 id="features">🎯 Features</h2>
