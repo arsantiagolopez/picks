@@ -42,7 +42,7 @@
 <h2 id="features">🎯 Features</h2>
 
 - Currently being used in production.
-- Averaging 15,000 new users per month.
+- Average 15,000 new users a month.
 - Light/Dark mode.
 - Daily sports betting tips displayed in tomorrow's, today's and past sections.
 - Tips are displayed in cards with the tour level logo, start time, tournament name, headline, prediction, odds, units staked and reasoning.
