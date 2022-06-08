@@ -1,6 +1,6 @@
 <div align="center">
     <img src="https://i.ibb.co/pf52rD3/logo.png" width="25%"/>
-    <a href="https://maizepicks.vercel.app" style="color: #303030;"><h1>Maize Picks</h1></a>
+    <a href="https://maizepicks.vercel.app" style="color: #303030;"><h1>Picks</h1></a>
     <h4>A platform to post daily sports betting picks. Stats like profits, ROI, streaks, and many more tracked over intervals of time.</h4>
 </div>
 
@@ -42,6 +42,7 @@
 <h2 id="features">🎯 Features</h2>
 
 - Currently being used in production.
+- Averaging 15,000 new users per month.
 - Light/Dark mode.
 - Daily sports betting tips displayed in tomorrow's, today's and past sections.
 - Tips are displayed in cards with the tour level logo, start time, tournament name, headline, prediction, odds, units staked and reasoning.
