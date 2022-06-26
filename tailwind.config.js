@@ -18,6 +18,9 @@ module.exports = {
         Times: ["Times New Roman", "serif"],
       },
       display: ["group-hover"],
+      animation: {
+        "spin-slow": "spin 5s linear infinite",
+      },
     },
   },
 };

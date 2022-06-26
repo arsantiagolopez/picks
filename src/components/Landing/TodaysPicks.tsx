@@ -54,7 +54,12 @@ const TodaysPicks: FC<Props> = ({
       {/* Heading */}
       <div className="flex flex-col w-full items-center pt-16 md:pt-20 md:pb-12">
         {!isTomorrowsPicksVisible && (
-          <img src="/brand.png" className="object-contain h-16 md:h-20 mb-4" />
+          <img
+            src="/w-brand.png"
+            // @todo - revert after special wimbledon
+            // className="object-contain h-16 md:h-20 mb-4"
+            className="object-contain h-20 md:h-24 mb-4 -ml-4"
+          />
         )}
         <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter dark:text-white">
           Today&apos;s Picks

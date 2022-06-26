@@ -68,7 +68,12 @@ const TomorrowsPicks: FC<Props> = ({ isAdmin, potdReleaseTime }) => {
             </p>
           </div>
         )}
-        <img src="/brand.png" className="object-contain h-16 md:h-20 mb-4" />
+        <img
+          src="/w-brand.png"
+          // @todo - revert after special wimbledon
+          // className="object-contain h-16 md:h-20 mb-4"
+          className="object-contain h-20 md:h-24 mb-4 -ml-4"
+        />
         <h1 className="font-Basic text-primary text-4xl md:text-6xl tracking-tighter dark:text-white">
           Tomorrow&apos;s Picks
         </h1>
