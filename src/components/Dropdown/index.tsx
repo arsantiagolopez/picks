@@ -35,10 +35,10 @@ const Dropdown: FC<Props> = ({
           : isBetsColored && status === "void"
           ? "bg-gradient-to-r from-blue-400 to-blue-600"
           : !isFutures
-          ? // ? "bg-white dark:bg-tertiary"
-            // Conditional color based on active events
-            "wimbledon-card"
-          : "bg-primary dark:bg-neutral-900"
+          ? "bg-gray-50 dark:bg-tertiary"
+          : // Conditional color based on active events
+            // "wimbledon-card"
+            "bg-primary dark:bg-neutral-900"
       }`}
     >
       <Disclosure defaultOpen={isDefaultOpen}>

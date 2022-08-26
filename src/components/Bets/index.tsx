@@ -1,6 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
-import useSWR from "swr";
 import { PreferencesContext } from "../../context/PreferencesContext";
 import { BetEntity } from "../../types";
 import { TwitterButton } from "../TwitterButton";
@@ -21,13 +20,13 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
 
   const { setSortBy, isBetsColored } = useContext(PreferencesContext);
 
-  const { data: record } = useSWR("/api/bets?set=record");
+  // const { data: record } = useSWR("/api/bets?set=record");
 
   const isTwitterVisible = true;
 
-  const formattedRecord = record
-    ? `${record[0]}-${record[1]}-${record[2]}`
-    : null;
+  // const formattedRecord = record
+  //   ? `${record[0]}-${record[1]}-${record[2]}`
+  //   : null;
 
   const options: string[] = ["units", "date"];
 
@@ -80,21 +79,21 @@ const Bets: FC<Props> = ({ bets, isTomorrow, isAdmin, isPast }) => {
       </div>
 
       {/* POTD Record - Net profit for the day */}
-      {isTomorrow ? (
+      {/* {isTomorrow ? (
         <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">
           {formattedRecord}
         </div>
-      ) : (
-        <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">
-          {profit
-            ? profit > 0
-              ? `+${profit}u profit `
-              : `${profit}u profit `
-            : unitsPending
-            ? `(${unitsPending}u pending)`
-            : null}
-        </div>
-      )}
+      ) : ( */}
+      <div className="font-Times text-secondary text-2xl mb-10 md:mb-16 dark:text-white">
+        {profit
+          ? profit > 0
+            ? `+${profit}u profit `
+            : `${profit}u profit `
+          : unitsPending
+          ? `(${unitsPending}u pending)`
+          : "No plays yet"}
+      </div>
+      {/* )} */}
 
       {/* Sort by */}
       {!isPast && (

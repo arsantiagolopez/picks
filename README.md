@@ -1,7 +1,7 @@
 <div align="center">
-    <img src="https://i.ibb.co/pf52rD3/logo.png" width="25%"/>
+    <img src="https://i.ibb.co/FHT4MP5/rg-logo.png" width="25%"/>
     <a href="https://maizepicks.vercel.app" style="color: #303030;"><h1>Picks</h1></a>
-    <h4>A platform to post daily sports betting picks. Stats like profits, ROI, streaks, and many more tracked over intervals of time.</h4>
+    <h4>Maize Picks is a platform to post and get daily sports betting picks and winning predictions. Key stats like profits, ROI, streaks, and many more tracked over intervals of time.</h4>
 </div>
 
 <div align="center">
@@ -48,10 +48,10 @@
 - Tips are displayed in cards with the tour level logo, start time, tournament name, headline, prediction, odds, units staked and reasoning.
 - Completed predictions are graded with either a win, loss, or push, and the resulting profits are displayed on the slip.
 - Stats are automatically calculated and displayed on the Records and Stats page.
-- The Records page shows the most important stats in the win/loss/push overall record, return of investment (ROI), units staked, units returned, and others.
-- The Stats page shows more detailed stats like the total amount of picks, days tracked, current streaks, longest streaks, win percentage, profits over a week, a month, a year, overall. There's also a projections section that allows you to calculate how much money you would have made if you followed the tipsters tips on different intervals.
-- Admins have access to protected routes where they can add new tips, parlays, decide on preferred picks release time, preferred UI for users.
-- Admins can update picks before the match starts, update time displayed on the pick for tipster's credibility.
+- The Records page shows the most important stats in the win/loss/push overall record; return on investment (ROI), units staked, units returned, and others.
+- The Stats page shows more detailed stats like the total amount of picks, days tracked, current streaks, longest streaks, win percentage, profits over a week, a month, a year, overall. There's also a projections section that allows you to calculate how much money you would have made if you followed the tipster's tips on different intervals.
+- Admins have access to protected routes where they can add new tips or parlays and decide on preferred picks release time or preferred UI for users.
+- Admins can update picks before the match starts and update time displayed on the pick for tipster's credibility.
 - Admins can grade the pick as a win, loss, or push after the event has finished.
 
 <h2 id="tech">‎‍💻 Tech Stack</h2>
@@ -69,11 +69,11 @@
   </tr>
   <tr>
       <td><a href="https://reactjs.org/">React</a></td>
-      <td>To build a component based user interface.</td>
+      <td>Build a component-based user interface.</td>
   </tr>
   <tr>
       <td><a href="https://nextjs.org/">Next.js</a></td>
-      <td>Server side rendering (SSR) of React components.</td>
+      <td>Server-side rendering (SSR) of React components.</td>
   </tr>
     <tr>
     <td><a href="https://tailwindcss.com/">Tailwind CSS</td>
@@ -93,7 +93,7 @@
   </tr>
   <tr>
       <td><a href="https://virtuoso.dev/">React Virtuoso</a></td>
-      <td>Efficiently render huge data sets.</td>
+      <td>Efficiently render large data sets.</td>
     </tr>
     <tr>
       <td><a href="https://nivo.rocks/">Nivo Graphs</a></td>
@@ -105,7 +105,7 @@
   </tr>
   <tr>
       <td><a href="https://axios-http.com/docs/intro">Axios</a></td>
-      <td>HTTP promise based data fetching requests.</td>
+      <td>HTTP promise-based data fetching requests.</td>
   </tr>
   <tr>
       <td><a href="https://momentjs.com/">Moment.js</a></td>
@@ -135,7 +135,7 @@
     </tr>
         <tr>
         <td><a href="https://www.mongodb.com/">MongoDB</a></td>
-        <td>NoSQL document based database.</td>
+        <td>NoSQL document-based database.</td>
     </tr>
     <tr>
         <td><a href="https://www.mongoose.com/">Mongoose</a></td>
@@ -147,7 +147,7 @@
     </tr>
      <tr>
       <td><a href="https://axios-http.com/docs/intro">Axios</a></td>
-      <td>Fetch data with promise based HTTP requests.</td>
+      <td>Fetch data with promise-based HTTP requests.</td>
   </tr>
     <tr>
         <td>REST API</td>
@@ -174,9 +174,9 @@
 
 <h2 id="inspiration">💡 Inspiration</h2>
 
-There's a very interesting subreddit in Reddit, [/r/sportsbook](https://www.reddit.com/r/sportsbook/). This subreddit is dedicated to sports betting tips. In it, there's a daily thread called the "Pick of the Day" which drops at a set time every day. On this thread, tipster from all around the world post their picks along with their record. The way Reddit works is the highest upvoted comments rise to the top, and the downvoted, to sink to the bottom. My client wanted to replicate a similar environment where he could post his daily picks, keep track of his record, and showcase other important stats that a simple comment thread could not include. Graphs, projections, an interactive UI.
+There's a very interesting subreddit in Reddit: [/r/sportsbook](https://www.reddit.com/r/sportsbook/). This subreddit is dedicated to sports betting tips. In it, there's a daily thread called the "Pick of the Day," which drops at a set time every day. On this thread, tipsters from all around the world post their picks along with their record. The highest upvoted comments rise to the top, and the most downvoted sink to the bottom. My client wanted to replicate a similar environment where he could post his daily picks, keep track of his record, and showcase other important stats that a simple comment thread could not include. Graphs, projections, an interactive UI. etc.
 
-Maize Picks is a simple minimal solution that emcompasses the selling product, which is the reliable tips, and allows the audience to get in and get out persay. A mutual relationship where the owner posts his picks, and the users see them.
+Maize Picks is a simple, minimal solution that emcompasses the selling product (the reliable tips) and allows the audience to, in simple terms, get in and get out. The platform fosters a mutual relationship where the owner posts his picks and the users see them.
 
 <h2 id="objectives">🚀 Learning Objectives</h2>
 

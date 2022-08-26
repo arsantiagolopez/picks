@@ -34,7 +34,7 @@ const Graphs: FC<Props> = ({
   allProfit,
   setAllProfit,
 }) => {
-  const [selected, setSelected] = useState<string>("All time");
+  const [selected, setSelected] = useState<string>("Last 7 days");
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [weekBets, setWeekBets] = useState<BetEntity[]>([]);
   const [monthBets, setMonthBets] = useState<BetEntity[]>([]);
@@ -44,21 +44,21 @@ const Graphs: FC<Props> = ({
   const { bets } = useBets({ graded: true });
 
   const options: string[] = [
-    "All time",
     "Last 7 days",
     "Last 31 days",
     "This year",
+    "All time",
   ];
 
   const profit =
     selectedIndex === 0
-      ? allProfit
-      : selectedIndex === 1
       ? weekProfit
-      : selectedIndex === 2
+      : selectedIndex === 1
       ? monthProfit
-      : selectedIndex === 3
+      : selectedIndex === 2
       ? yearProfit
+      : selectedIndex === 3
+      ? allProfit
       : 0;
 
   const handleSelect = (option: string) => setSelected(option);
@@ -108,25 +108,18 @@ const Graphs: FC<Props> = ({
             selectedIndex === 0 ? "flex" : "hidden"
           }`}
         >
-          <AllGraph {...allGraphProps} />
-        </div>
-        <div
-          className={`flex flex-row justify-center items-center w-full h-full ${
-            selectedIndex === 1 ? "flex" : "hidden"
-          }`}
-        >
           <WeekGraph {...weekGraphProps} />
         </div>
         <div
           className={`flex flex-row justify-center items-center w-1/2 h-full mx-auto ${
-            selectedIndex === 2 ? "flex" : "hidden"
+            selectedIndex === 1 ? "flex" : "hidden"
           }`}
         >
           <MonthGraph {...monthGraphProps} />
         </div>
         <div
           className={`flex flex-row justify-center items-center h-full mx-auto ${
-            selectedIndex === 3 ? "flex" : "hidden"
+            selectedIndex === 2 ? "flex" : "hidden"
           } ${
             monthsTracked > 8
               ? "w-full"
@@ -138,6 +131,13 @@ const Graphs: FC<Props> = ({
           }`}
         >
           <YearGraph {...yearGraphProps} />
+        </div>
+        <div
+          className={`flex flex-row justify-center items-center w-full h-full ${
+            selectedIndex === 3 ? "flex" : "hidden"
+          }`}
+        >
+          <AllGraph {...allGraphProps} />
         </div>
       </div>
     </div>
